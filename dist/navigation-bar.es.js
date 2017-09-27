@@ -5357,8 +5357,8 @@ var defaultProps = {
   'nav-top': null,
   light: false,
   inverse: false,
-  fixed: false,
-  sticky: false,
+  fixed: null,
+  sticky: null,
   bgColor: 'primary',
   offsetNavBgColor: null,
   'menu-right': false,
@@ -5563,5 +5563,5 @@ var PageWrapper = styled(PageWrapperUnstyled).withConfig({
 });
 PageWrapper.defaultProps = defaultProps$4$1;
 
-export { NavigationBar, NavigationBar as PageWrapper, makeTheme$1 as makeThemeNavigationBar, theme$1 as themeNavigationBar };
+export { NavigationBar, PageWrapper, makeTheme$1 as makeThemeNavigationBar, theme$1 as themeNavigationBar };
 //# sourceMappingURL=navigation-bar.es.js.map

@@ -5362,8 +5362,8 @@ var defaultProps = {
   'nav-top': null,
   light: false,
   inverse: false,
-  fixed: false,
-  sticky: false,
+  fixed: null,
+  sticky: null,
   bgColor: 'primary',
   offsetNavBgColor: null,
   'menu-right': false,
@@ -5569,7 +5569,7 @@ var PageWrapper = styled(PageWrapperUnstyled).withConfig({
 PageWrapper.defaultProps = defaultProps$4$1;
 
 exports.NavigationBar = NavigationBar;
-exports.PageWrapper = NavigationBar;
+exports.PageWrapper = PageWrapper;
 exports.makeThemeNavigationBar = makeTheme$1;
 exports.themeNavigationBar = theme$1;
 
