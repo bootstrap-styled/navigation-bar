@@ -33,3 +33,38 @@
 |               | `$menu-offset-nav-box-shadow` | 'rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px' |
 |               | `$menu-offset-nav-transition` | '.3s'                                                                        |
 |               | `$overlay-bg`                 | 'rgba(0, 0, 0, 0.3)'                                                         |
+
+
+**example usage**:
+
+```
+import NavigationBar from 'navigation-bar';
+
+<NavigationBar
+  animation-push
+  menu-right
+  menuClose
+  noOverlay
+  fixed="top"
+  className="flex-lg-column p-0"
+  button={{
+    component: MenuButton,
+    className: 'd-lg-none mr-lg-5 mr-3 my-auto btn-primary',
+  }}
+  nav-top={(
+    <div>
+      <A href="#home"><Img alt="Responsive image" src="rs-logo-white.png" className="logo-home my-2" /></A>
+      <Nav className="d-lg-flex d-none my-auto">
+        <NavItem>
+          <NavLink>home</NavLink>
+        </NavItem>
+      </Nav>
+    </div>
+  )}
+>
+  <ListGroup>
+    <ListGroupItem>home</ListGroupItem>
+    <ListGroupItem>services</ListGroupItem>
+  </ListGroup>
+</NavigationBar>
+```
