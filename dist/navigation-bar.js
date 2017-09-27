@@ -1713,7 +1713,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
       if (typeSpecs.hasOwnProperty(typeSpecName)) {
         var error;
         try {
-          invariant$2(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
+          invariant$2(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'React.PropTypes.', componentName || 'React class', location, typeSpecName);
           error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$3);
         } catch (ex) {
           error = ex;
@@ -1757,8 +1757,7 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
     objectOf: createObjectOfTypeChecker,
     oneOf: createEnumTypeChecker,
     oneOfType: createUnionTypeChecker,
-    shape: createShapeTypeChecker,
-    exact: createStrictShapeTypeChecker,
+    shape: createShapeTypeChecker
   };
   function is(x, y) {
     if (x === y) {
@@ -1931,7 +1930,7 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
       if (typeof checker !== 'function') {
         warning_1(
           false,
-          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
+          'Invalid argument supplid to oneOfType. Expected an array of check functions, but ' +
           'received %s at index %s.',
           getPostfixForTypeWarning(checker),
           i
@@ -1970,32 +1969,6 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
         var checker = shapeTypes[key];
         if (!checker) {
           continue;
-        }
-        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$2);
-        if (error) {
-          return error;
-        }
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-  function createStrictShapeTypeChecker(shapeTypes) {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-      if (propType !== 'object') {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
-      }
-      var allKeys = objectAssign({}, props[propName], shapeTypes);
-      for (var key in allKeys) {
-        var checker = shapeTypes[key];
-        if (!checker) {
-          return new PropTypeError(
-            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
-            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
-            '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
-          );
         }
         var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1$2);
         if (error) {
@@ -5362,8 +5335,8 @@ var defaultProps = {
   'nav-top': null,
   light: false,
   inverse: false,
-  fixed: false,
-  sticky: false,
+  fixed: null,
+  sticky: null,
   bgColor: 'primary',
   offsetNavBgColor: null,
   'menu-right': false,
@@ -5569,7 +5542,7 @@ var PageWrapper = styled(PageWrapperUnstyled).withConfig({
 PageWrapper.defaultProps = defaultProps$4$1;
 
 exports.NavigationBar = NavigationBar;
-exports.PageWrapper = NavigationBar;
+exports.PageWrapper = PageWrapper;
 exports.makeThemeNavigationBar = makeTheme$1;
 exports.themeNavigationBar = theme$1;
 

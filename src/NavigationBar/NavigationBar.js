@@ -38,7 +38,7 @@ export const defaultProps = {
   inverse: false,
   fixed: null,
   sticky: null,
-  bgColor: 'primary',
+  bgColor: null,
   offsetNavBgColor: null,
   'menu-right': false,
   'animation-push': false,
