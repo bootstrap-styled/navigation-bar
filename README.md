@@ -14,7 +14,7 @@ navigation-bar npm package.
 
 ## Table of Contents
 
-  - [NavigationBar](#navigation-bar)
+  - [NavigationBar](#navigationbar)
   - [Changelog](#changelog)
   - [Reminders](#reminders)
   - [Quick start](#quick-start)
