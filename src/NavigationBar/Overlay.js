@@ -8,8 +8,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 import omit from 'lodash.omit';
-import { fade } from 'bootstrap-styled-mixins/lib/utilities/transition';
-import makeTheme from 'bootstrap-styled/lib/makeTheme';
+import { transitionUtils } from 'bootstrap-styled-mixins';
+import { makeTheme } from 'bootstrap-styled';
 import { theme as themeNavigationBar } from './theme';
 
 const theme = makeTheme(themeNavigationBar);
@@ -54,7 +54,7 @@ const Overlay = styled(OverlayUnstyled)`
     z-index: ${props.theme.navigationBar['$zindex-overlay']};
     background: ${props.theme.navigationBar['$overlay-bg']};
     transform: translate3d(100%, 0, 0);
-    ${fade(props.theme['$enable-transitions'], props.theme['$transition-fade'])}
+    ${transitionUtils.fade(props.theme['$enable-transitions'], props.theme['$transition-fade'])}
     &.show {
       transform: translate3d(0, 0, 0);
     }
