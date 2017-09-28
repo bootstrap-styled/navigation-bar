@@ -12,10 +12,8 @@ import styled from 'styled-components';
 import cn from 'classnames';
 import omit from 'lodash.omit';
 import mapToCssModules from 'map-to-css-modules';
-import { ifThen } from 'bootstrap-styled-mixins/lib/conditional';
-import Button from 'bootstrap-styled/lib/Button';
-import Header from 'bootstrap-styled/lib/Header';
-import makeTheme from 'bootstrap-styled/lib/makeTheme';
+import { ifThen } from 'bootstrap-styled-mixins';
+import { Button, Header, makeTheme } from 'bootstrap-styled';
 import { theme as themeNavigationBar } from './theme';
 import OffsetNavPush from './OffsetNavPush';
 import OffsetNavSlide from './OffsetNavSlide';
@@ -38,9 +36,9 @@ export const defaultProps = {
   'nav-top': null,
   light: false,
   inverse: false,
-  fixed: false,
-  sticky: false,
-  bgColor: 'primary',
+  fixed: null,
+  sticky: null,
+  bgColor: null,
   offsetNavBgColor: null,
   'menu-right': false,
   'animation-push': false,

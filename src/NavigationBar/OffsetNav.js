@@ -11,8 +11,7 @@ import styled from 'styled-components';
 import cn from 'classnames';
 import omit from 'lodash.omit';
 import mapToCssModules from 'map-to-css-modules';
-import makeTheme from 'bootstrap-styled/lib/makeTheme';
-import Close from 'bootstrap-styled/lib/Close';
+import { makeTheme, Close } from 'bootstrap-styled';
 import { theme as themeNavigationBar } from './theme';
 
 const theme = makeTheme(themeNavigationBar);
