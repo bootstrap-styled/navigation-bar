@@ -74,18 +74,16 @@ class NavigationBarUnstyled extends React.Component {
 
   componentDidMount() {
     const { 'animation-push': animationPush, 'menu-right': menuRight } = this.props;
+    const wrapper = document.getElementById('wrapper');
     //  menu-push animation
-    if (animationPush) {
-      menuRight ? ( // eslint-disable-line no-unused-expressions
-        document.getElementById('wrapper').classList.toggle('right')
-      ) : (
-        document.getElementById('wrapper').classList.toggle('left')
-      );
+    if (animationPush && wrapper) {
+      menuRight ? wrapper.classList.toggle('right') : wrapper.classList.toggle(('left')); // eslint-disable-line no-unused-expressions
     }
   }
 
   handleClick = (e) => {
     const { onClick, 'animation-push': animationPush } = this.props;
+    const wrapper = document.getElementById('wrapper');
     if (onClick) {
       onClick(e);
     }
@@ -93,8 +91,8 @@ class NavigationBarUnstyled extends React.Component {
     this.setState({ show: !this.state.show });
 
     //  menu-push animation
-    if (animationPush) {
-      document.getElementById('wrapper').classList.toggle('active');
+    if (animationPush && wrapper) {
+      wrapper.classList.toggle('active');
     }
   };
 
