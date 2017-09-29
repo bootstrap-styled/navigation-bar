@@ -1,4 +1,4 @@
-import { NavigationBar, PageWrapper, makeThemeNavigationBar, themeNavigationBar } from '../index';
+import NavigationBar, { PageWrapper, theme, makeTheme } from '../index';
 
 describe('should exports login forms', () => {
   describe('NavigationBar', () => {
@@ -9,10 +9,10 @@ describe('should exports login forms', () => {
       expect(typeof PageWrapper).toEqual('function');
     });
     it('should export makeTheme', () => {
-      expect(typeof makeThemeNavigationBar).toEqual('function');
+      expect(typeof makeTheme).toEqual('function');
     });
-    it('should export LoginForm', () => {
-      expect(typeof themeNavigationBar).toEqual('object');
+    it('should export theme', () => {
+      expect(typeof theme).toEqual('object');
     });
   });
 });

@@ -2,34 +2,26 @@
  * Testing our OffsetNavPush component
  */
 
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
-import { BootstrapProvider } from 'bootstrap-styled';
-import NavigationBar, { defaultProps } from '../NavigationBar';
+import { BootstrapProvider, makeTheme } from 'bootstrap-styled';
+import { theme } from '../theme';
 import OffsetNavPush from '../OffsetNavPush';
 
-const children = (<h1>Test</h1>);
-
 describe('<OffsetNavPush />', () => {
-  let theme;
   let props;
 
   beforeEach(() => {
-    theme = defaultProps.theme;
-    props = Object.assign(defaultProps, {
-      children,
-      'animation-push': true,
-    });
+    props = {
+      theme: makeTheme(theme),
+      children: <h1>Test</h1>,
+    };
   });
 
   it('should render an OffsetNavPush', () => {
-    const renderedComponent = shallow(
-      <BootstrapProvider theme={theme}>
-        <NavigationBar {...props}>
-          <OffsetNavPush>
-            {children}
-          </OffsetNavPush>
-        </NavigationBar>
+    const renderedComponent = mount(
+      <BootstrapProvider theme={props.theme}>
+        <OffsetNavPush {...props} />
       </BootstrapProvider>
     );
     expect(renderedComponent.find('OffsetNavPush').length).toEqual(1);

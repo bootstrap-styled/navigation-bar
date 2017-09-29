@@ -2643,12 +2643,13 @@ var NavigationBarUnstyled = function (_React$Component) {
       var _this$props = _this.props,
           onClick = _this$props.onClick,
           animationPush = _this$props['animation-push'];
+      var wrapper = document.getElementById('wrapper');
       if (onClick) {
         onClick(e);
       }
       _this.setState({ show: !_this.state.show });
-      if (animationPush) {
-        document.getElementById('wrapper').classList.toggle('active');
+      if (animationPush && wrapper) {
+        wrapper.classList.toggle('active');
       }
     }, _temp), possibleConstructorReturn(_this, _ret);
   }
@@ -2658,9 +2659,9 @@ var NavigationBarUnstyled = function (_React$Component) {
       var _props = this.props,
           animationPush = _props['animation-push'],
           menuRight = _props['menu-right'];
-      if (animationPush) {
-        menuRight ?
-        document.getElementById('wrapper').classList.toggle('right') : document.getElementById('wrapper').classList.toggle('left');
+      var wrapper = document.getElementById('wrapper');
+      if (animationPush && wrapper) {
+        menuRight ? wrapper.classList.toggle('right') : wrapper.classList.toggle('left');
       }
     }
   }, {
@@ -2825,10 +2826,10 @@ var PageWrapper = styled(PageWrapperUnstyled).withConfig({
 });
 PageWrapper.defaultProps = defaultProps$4$1;
 
-exports.NavigationBar = NavigationBar;
+exports['default'] = NavigationBar;
 exports.PageWrapper = PageWrapper;
-exports.makeThemeNavigationBar = makeTheme$1;
-exports.themeNavigationBar = theme$1;
+exports.makeTheme = makeTheme$1;
+exports.theme = theme$1;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
