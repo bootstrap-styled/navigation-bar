@@ -2820,5 +2820,6 @@ var PageWrapper = styled(PageWrapperUnstyled).withConfig({
 });
 PageWrapper.defaultProps = defaultProps$4$1;
 
-export { NavigationBar, PageWrapper, makeTheme$1 as makeThemeNavigationBar, theme$1 as themeNavigationBar };
+export { PageWrapper, makeTheme$1 as makeTheme, theme$1 as theme };
+export default NavigationBar;
 //# sourceMappingURL=navigation-bar.es.js.map

@@ -2825,10 +2825,10 @@ var PageWrapper = styled(PageWrapperUnstyled).withConfig({
 });
 PageWrapper.defaultProps = defaultProps$4$1;
 
-exports.NavigationBar = NavigationBar;
+exports['default'] = NavigationBar;
 exports.PageWrapper = PageWrapper;
-exports.makeThemeNavigationBar = makeTheme$1;
-exports.themeNavigationBar = theme$1;
+exports.makeTheme = makeTheme$1;
+exports.theme = theme$1;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

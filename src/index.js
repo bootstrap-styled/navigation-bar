@@ -1,1 +1,1 @@
-export { default as NavigationBar, PageWrapper, makeTheme as makeThemeNavigationBar, theme as themeNavigationBar } from './NavigationBar';
+export { default, PageWrapper, makeTheme, theme } from './NavigationBar';
