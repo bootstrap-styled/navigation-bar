@@ -4,8 +4,7 @@
 
 import { mount } from 'enzyme';
 import React from 'react';
-import BootstrapProvider from 'bootstrap-styled/lib/BootstrapProvider';
-
+import { BootstrapProvider } from 'bootstrap-styled';
 import Overlay, { defaultProps } from '../Overlay';
 
 describe('<Overlay />', () => {

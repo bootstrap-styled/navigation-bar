@@ -30,7 +30,6 @@ navigation-bar npm package.
 | Name               | Type      | Default                                        | Description                                                       |
 |--------------------|-----------|------------------------------------------------|-------------------------------------------------------------------|
 | `noOverlay`        | bool      | false                                          | disables Overlay                                                  |
-| `belowHeader`      | bool      | false                                          | positions OffsetNav under the NavigationBar                       |
 | `menuClose`        | bool      | flase                                          | enables a Close button in the OffsetNav                           |
 | `shadowHeader`     | bool      | false                                          | enables box-shadow on NavigationBar                               |
 | `light`            | bool      | false                                          | enables dark font                                                 |

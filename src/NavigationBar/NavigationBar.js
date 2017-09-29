@@ -7,12 +7,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import findDOMNode from 'react-dom/lib/findDOMNode';
 import styled from 'styled-components';
 import cn from 'classnames';
 import omit from 'lodash.omit';
 import mapToCssModules from 'map-to-css-modules';
-import { ifThen } from 'bootstrap-styled-mixins';
 import { Button, Header, makeTheme } from 'bootstrap-styled';
 import { theme as themeNavigationBar } from './theme';
 import OffsetNavPush from './OffsetNavPush';
@@ -27,7 +25,6 @@ export const defaultProps = {
     className: null,
   },
   noOverlay: false,
-  belowHeader: false,
   menuClose: false,
   onClick: null,
   shadowHeader: false,
@@ -52,7 +49,6 @@ class NavigationBarUnstyled extends React.Component {
     children: PropTypes.node.isRequired,
     theme: PropTypes.object,
     onClick: PropTypes.func,
-    belowHeader: PropTypes.bool,
     shadowHeader: PropTypes.bool,
     noOverlay: PropTypes.bool,
     menuClose: PropTypes.bool,
@@ -77,15 +73,7 @@ class NavigationBarUnstyled extends React.Component {
   };
 
   componentDidMount() {
-    const { 'animation-push': animationPush, 'menu-right': menuRight, belowHeader } = this.props;
-
-    // get header height for props belowHeader
-    const componentAsANodeReact = findDOMNode(this); // eslint-disable-line react/no-find-dom-node
-    const node = componentAsANodeReact.querySelector('.navbar.justify-content-between');
-    const nodeHeight = node.clientHeight;
-    const offsetNav = componentAsANodeReact.querySelector('.offset-header-navbar');
-    belowHeader ? (offsetNav.style.marginTop = `${nodeHeight}px`) : null; // eslint-disable-line no-unused-expressions
-
+    const { 'animation-push': animationPush, 'menu-right': menuRight } = this.props;
     //  menu-push animation
     if (animationPush) {
       menuRight ? ( // eslint-disable-line no-unused-expressions
@@ -129,7 +117,7 @@ class NavigationBarUnstyled extends React.Component {
       offsetNavBgColor,
       shadowHeader,
       ...attributesTemp
-    } = omit(this.props, ['theme', 'belowHeader']);
+    } = omit(this.props, ['theme']);
 
     const {
       ...attributes
@@ -164,6 +152,7 @@ class NavigationBarUnstyled extends React.Component {
         animation-push={animationPush}
         menuClose={noOverlay && menuClose}
         dismiss={this.handleClick}
+        innerRef={(offsetNav) => { this.offsetNav = offsetNav; }}
       >
         {children}
       </OffsetNavPush>
@@ -176,6 +165,7 @@ class NavigationBarUnstyled extends React.Component {
         animation-push={animationPush}
         menuClose={noOverlay && menuClose}
         dismiss={this.handleClick}
+        innerRef={(offsetNav) => { this.offsetNav = offsetNav; }}
       >
         {children}
       </OffsetNavSlide>
@@ -197,7 +187,6 @@ class NavigationBarUnstyled extends React.Component {
 const NavigationBar = styled(NavigationBarUnstyled)`
   ${(props) => `
     z-index: calc(${props.theme.navigationBar['$zindex-overlay']} - 10);
-    ${ifThen(props.belowHeader, `z-index: calc(${props.theme.navigationBar['$zindex-overlay']} + 5);`)}
     &.fixed-header-${props.fixed} {
       position: fixed;
       ${props.fixed}: 0;

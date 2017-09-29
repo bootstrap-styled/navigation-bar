@@ -4,10 +4,9 @@
 
 import { mount } from 'enzyme';
 import React from 'react';
-import BootstrapProvider from 'bootstrap-styled/lib/BootstrapProvider';
-
-import Button from 'bootstrap-styled/lib/Button';
+import { BootstrapProvider, Button } from 'bootstrap-styled';
 import NavigationBar, { defaultProps } from '../NavigationBar';
+
 const children = (<h1>Test</h1>);
 const navTopContent = (<span>Nav Top Content Test</span>);
 
@@ -24,7 +23,6 @@ describe('<NavigationBar />', () => {
         className: null,
       },
       noOverlay: false,
-      belowHeader: false,
       menuClose: false,
       onClick: jest.fn(),
       shadowHeader: false,
@@ -56,14 +54,6 @@ describe('<NavigationBar />', () => {
       </BootstrapProvider>
     );
     expect(renderedComponent.find('Overlay').length).toEqual(0);
-  });
-  it('should render an NavigationBar placed below the Header', () => {
-    const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
-        <NavigationBar {...Object.assign(props, { belowHeader: true })} />
-      </BootstrapProvider>
-    );
-    expect(renderedComponent.find('NavigationBar').props().belowHeader).toBe(true);
   });
   it('should render an NavigationBar with a close button in the OffsetNav when menuClose and noOverlay are active', () => {
     const renderedComponent = mount(
