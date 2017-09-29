@@ -2643,12 +2643,13 @@ var NavigationBarUnstyled = function (_React$Component) {
       var _this$props = _this.props,
           onClick = _this$props.onClick,
           animationPush = _this$props['animation-push'];
+      var wrapper = document.getElementById('wrapper');
       if (onClick) {
         onClick(e);
       }
       _this.setState({ show: !_this.state.show });
-      if (animationPush) {
-        document.getElementById('wrapper').classList.toggle('active');
+      if (animationPush && wrapper) {
+        wrapper.classList.toggle('active');
       }
     }, _temp), possibleConstructorReturn(_this, _ret);
   }
@@ -2658,9 +2659,9 @@ var NavigationBarUnstyled = function (_React$Component) {
       var _props = this.props,
           animationPush = _props['animation-push'],
           menuRight = _props['menu-right'];
-      if (animationPush) {
-        menuRight ?
-        document.getElementById('wrapper').classList.toggle('right') : document.getElementById('wrapper').classList.toggle('left');
+      var wrapper = document.getElementById('wrapper');
+      if (animationPush && wrapper) {
+        menuRight ? wrapper.classList.toggle('right') : wrapper.classList.toggle('left');
       }
     }
   }, {
