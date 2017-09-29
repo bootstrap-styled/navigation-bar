@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.4] - 2017-09-30
+
+- Remove prefix "v" to build version.
+
 ## [0.0.3] - 2017-09-30
 
 - Upgrade dependency [bootstrap-styled](https://module.kopaxgroup.com/styled-components/bootstrap-styled/tags/v1.4.1) 1.4.1.
