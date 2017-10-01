@@ -2687,7 +2687,7 @@ var NavigationBarUnstyled = function (_React$Component) {
       var ButtonToggle = button.component,
           classNameButton = button.className,
           restButton = objectWithoutProperties(button, ['component', 'className']);
-      var cssClasses = cn('navbar', 'justify-content-between', 'w-100', className, (_cn = {
+      var cssClasses = cn('d-flex', 'justify-content-between', 'w-100', className, (_cn = {
         'navbar-light': light,
         'navbar-inverse': inverse
       }, defineProperty(_cn, 'bg-' + bgColor, bgColor), defineProperty(_cn, 'fixed-header-' + fixed, fixed), defineProperty(_cn, 'sticky-' + sticky, sticky), _cn));
