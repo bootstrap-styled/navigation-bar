@@ -127,7 +127,7 @@ class NavigationBarUnstyled extends React.Component {
       ...restButton
     } = button;
 
-    const cssClasses = cn('navbar', 'justify-content-between', 'w-100', className, {
+    const cssClasses = cn('d-flex', 'justify-content-between', 'w-100', className, {
       'navbar-light': light,
       'navbar-inverse': inverse,
       [`bg-${bgColor}`]: bgColor,

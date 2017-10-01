@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.5] - 2017-09-30
+
+- Replaced className `navbar` on `Header` to `d-flex`. 
+
 ## [0.0.4] - 2017-09-30
 
 - Remove prefix "v" to build version.
