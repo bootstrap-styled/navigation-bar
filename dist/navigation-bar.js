@@ -2573,7 +2573,7 @@ var defaultProps$2$1 = {
   active: false,
   dismiss: null,
   menuClose: false,
-  bgColor: 'primary',
+  bgColor: null,
   right: false,
   push: false,
   top: null,
