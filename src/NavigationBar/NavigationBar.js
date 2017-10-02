@@ -12,6 +12,7 @@ import cn from 'classnames';
 import omit from 'lodash.omit';
 import mapToCssModules from 'map-to-css-modules';
 import { Button, Header, makeTheme } from 'bootstrap-styled';
+import { ifElse } from 'bootstrap-styled-mixins';
 import { theme as themeNavigationBar } from './theme';
 import OffsetNavPush from './OffsetNavPush';
 import OffsetNavSlide from './OffsetNavSlide';
@@ -201,7 +202,7 @@ class NavigationBarUnstyled extends React.Component {
 
 const NavigationBar = styled(NavigationBarUnstyled)`
   ${(props) => `
-    z-index: calc(${props.theme.navigationBar['$zindex-overlay']} - 10);
+    z-index:  ${ifElse(props.top, `calc(${props.theme.navigationBar['$zindex-overlay']} + 5`, `calc(${props.theme.navigationBar['$zindex-overlay']} - 10`)};
     &.fixed-header-${props.fixed} {
       position: fixed;
       ${props.fixed}: 0;
