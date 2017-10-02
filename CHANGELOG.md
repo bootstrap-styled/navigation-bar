@@ -2,9 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.1] - 2017-10-02
+## [1.0.2] - 2017-10-02
 
 - Fixed minor css mistake.
+- Changed default value of `offsetNav.bgColor` from `primary` to null.
 
 ## [1.0.1] - 2017-10-02
 
