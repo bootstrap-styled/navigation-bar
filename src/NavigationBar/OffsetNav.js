@@ -21,8 +21,10 @@ export const defaultProps = {
   dismiss: null,
   menuClose: false,
   bgColor: 'primary',
-  'menu-right': false,
-  'animation-push': false,
+  right: false,
+  push: false,
+  top: null,
+  show: null,
   cssModule: null,
   theme,
 };
@@ -37,8 +39,10 @@ class OffsetNavUnstyled extends React.Component {
     menuClose: PropTypes.bool,
     theme: PropTypes.object,
     bgColor: PropTypes.string,
-    'menu-right': PropTypes.bool,
-    'animation-push': PropTypes.bool,
+    top: PropTypes.string,
+    right: PropTypes.bool,
+    push: PropTypes.bool,
+    show: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
     cssModule: PropTypes.object,
   }
 
@@ -51,11 +55,12 @@ class OffsetNavUnstyled extends React.Component {
       menuClose,
       bgColor,
       cssModule,
-      'menu-right': menuRight,
+      right,
+      show,
       ...attributes
-    } = omit(this.props, ['theme', 'elementWidth', 'animation-push']);
+    } = omit(this.props, ['theme', 'push', 'top']);
 
-    const menuDirectionClassNames = menuRight ? 'menu-right' : 'menu-left';
+    const menuDirectionClassNames = right ? 'menu-right' : 'menu-left';
 
     const cssClasses = cn(className, menuDirectionClassNames, {
       [`bg-${bgColor}`]: bgColor,
@@ -65,6 +70,7 @@ class OffsetNavUnstyled extends React.Component {
       <div
         className={mapToCssModules(cn(cssClasses, { active }), cssModule)}
         {...attributes}
+        show={show}
       >
         {menuClose && <Close aria-label="Close" onDismiss={dismiss} />}
         {children}
@@ -76,7 +82,7 @@ class OffsetNavUnstyled extends React.Component {
 const OffsetNav = styled(OffsetNavUnstyled)`
   ${(props) => `
     position: fixed;
-    top: 0;
+    top: ${props.top ? `${props.top}px;` : '0;'}
     bottom: 0;
     width: ${props.theme.navigationBar['$menu-offset-width']};
     height: 100%;

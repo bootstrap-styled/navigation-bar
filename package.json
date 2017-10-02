@@ -1,6 +1,6 @@
 {
   "name": "navigation-bar",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "Library navigation-bar description",
   "main": "lib/index.js",
   "jsnext:main": "dist/navigation-bar.es.js",
@@ -193,10 +193,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "statements": 94,
-        "branches": 87,
-        "functions": 87,
-        "lines": 94
+        "statements": 97,
+        "branches": 90,
+        "functions": 100,
+        "lines": 97
       }
     },
     "moduleDirectories": [

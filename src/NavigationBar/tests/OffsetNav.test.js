@@ -18,10 +18,11 @@ describe('<OffsetNav />', () => {
       children,
       active: false,
       dismiss: jest.fn(),
-      menuClose: false,
-      bgColor: 'primary',
-      'menu-right': false,
-      'animation-push': false,
+      bgColor: null,
+      top: null,
+      show: null,
+      right: false,
+      push: false,
     });
   });
 
@@ -67,20 +68,28 @@ describe('<OffsetNav />', () => {
     );
     expect(renderedComponent.find('OffsetNav').props().bgColor).toEqual('primary');
   });
-  it('should render an OffsetNav with a menu-right props', () => {
+  it('should render an OffsetNav with a right props', () => {
     const renderedComponent = mount(
       <BootstrapProvider theme={theme}>
-        <OffsetNav {...Object.assign(props, { 'menu-right': true })} />
+        <OffsetNav {...Object.assign(props, { right: true })} />
       </BootstrapProvider>
     );
-    expect(renderedComponent.find('OffsetNav').props()['menu-right']).toBe(true);
+    expect(renderedComponent.find('OffsetNav').props().right).toBe(true);
   });
   it('should render an OffsetNav with a animation-push props', () => {
     const renderedComponent = mount(
       <BootstrapProvider theme={theme}>
-        <OffsetNav {...Object.assign(props, { 'animation-push': true })} />
+        <OffsetNav {...Object.assign(props, { push: true })} />
       </BootstrapProvider>
     );
-    expect(renderedComponent.find('OffsetNav').props()['animation-push']).toBe(true);
+    expect(renderedComponent.find('OffsetNav').props().push).toBe(true);
+  });
+  it('should render an OffsetNav with a show props', () => {
+    const renderedComponent = mount(
+      <BootstrapProvider theme={theme}>
+        <OffsetNav {...Object.assign(props, { show: 'md' })} />
+      </BootstrapProvider>
+    );
+    expect(renderedComponent.find('OffsetNav').props().show).toEqual('md');
   });
 });

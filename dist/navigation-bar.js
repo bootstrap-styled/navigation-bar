@@ -1,14 +1,557 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('prop-types'), require('styled-components'), require('classnames'), require('lodash.omit'), require('bootstrap-styled')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'react', 'prop-types', 'styled-components', 'classnames', 'lodash.omit', 'bootstrap-styled'], factory) :
-	(factory((global['navigation-bar'] = {}),global.React,global.PropTypes,global.styled,global.cn,global.omit,global.BootstrapStyled));
-}(this, (function (exports,React,PropTypes,styled,cn,omit,bootstrapStyled) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('prop-types'), require('styled-components'), require('classnames'), require('bootstrap-styled')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react', 'prop-types', 'styled-components', 'classnames', 'bootstrap-styled'], factory) :
+	(factory((global['navigation-bar'] = {}),global.React,global.PropTypes,global.styled,global.cn,global.BootstrapStyled));
+}(this, (function (exports,React,PropTypes,styled,cn,bootstrapStyled) { 'use strict';
 
 React = React && React.hasOwnProperty('default') ? React['default'] : React;
 PropTypes = PropTypes && PropTypes.hasOwnProperty('default') ? PropTypes['default'] : PropTypes;
 styled = styled && styled.hasOwnProperty('default') ? styled['default'] : styled;
 cn = cn && cn.hasOwnProperty('default') ? cn['default'] : cn;
-omit = omit && omit.hasOwnProperty('default') ? omit['default'] : omit;
+
+var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+var LARGE_ARRAY_SIZE = 200;
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+var INFINITY = 1 / 0;
+var MAX_SAFE_INTEGER = 9007199254740991;
+var argsTag = '[object Arguments]';
+var funcTag = '[object Function]';
+var genTag = '[object GeneratorFunction]';
+var symbolTag = '[object Symbol]';
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+var reIsUint = /^(?:0|[1-9]\d*)$/;
+var freeGlobal = typeof commonjsGlobal == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+var root = freeGlobal || freeSelf || Function('return this')();
+function apply(func, thisArg, args) {
+  switch (args.length) {
+    case 0: return func.call(thisArg);
+    case 1: return func.call(thisArg, args[0]);
+    case 2: return func.call(thisArg, args[0], args[1]);
+    case 3: return func.call(thisArg, args[0], args[1], args[2]);
+  }
+  return func.apply(thisArg, args);
+}
+function arrayIncludes(array, value) {
+  var length = array ? array.length : 0;
+  return !!length && baseIndexOf(array, value, 0) > -1;
+}
+function arrayIncludesWith(array, value, comparator) {
+  var index = -1,
+      length = array ? array.length : 0;
+  while (++index < length) {
+    if (comparator(value, array[index])) {
+      return true;
+    }
+  }
+  return false;
+}
+function arrayMap(array, iteratee) {
+  var index = -1,
+      length = array ? array.length : 0,
+      result = Array(length);
+  while (++index < length) {
+    result[index] = iteratee(array[index], index, array);
+  }
+  return result;
+}
+function arrayPush(array, values) {
+  var index = -1,
+      length = values.length,
+      offset = array.length;
+  while (++index < length) {
+    array[offset + index] = values[index];
+  }
+  return array;
+}
+function baseFindIndex(array, predicate, fromIndex, fromRight) {
+  var length = array.length,
+      index = fromIndex + (fromRight ? 1 : -1);
+  while ((fromRight ? index-- : ++index < length)) {
+    if (predicate(array[index], index, array)) {
+      return index;
+    }
+  }
+  return -1;
+}
+function baseIndexOf(array, value, fromIndex) {
+  if (value !== value) {
+    return baseFindIndex(array, baseIsNaN, fromIndex);
+  }
+  var index = fromIndex - 1,
+      length = array.length;
+  while (++index < length) {
+    if (array[index] === value) {
+      return index;
+    }
+  }
+  return -1;
+}
+function baseIsNaN(value) {
+  return value !== value;
+}
+function baseTimes(n, iteratee) {
+  var index = -1,
+      result = Array(n);
+  while (++index < n) {
+    result[index] = iteratee(index);
+  }
+  return result;
+}
+function baseUnary(func) {
+  return function(value) {
+    return func(value);
+  };
+}
+function cacheHas(cache, key) {
+  return cache.has(key);
+}
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+function isHostObject(value) {
+  var result = false;
+  if (value != null && typeof value.toString != 'function') {
+    try {
+      result = !!(value + '');
+    } catch (e) {}
+  }
+  return result;
+}
+function overArg(func, transform) {
+  return function(arg) {
+    return func(transform(arg));
+  };
+}
+var arrayProto = Array.prototype;
+var funcProto = Function.prototype;
+var objectProto = Object.prototype;
+var coreJsData = root['__core-js_shared__'];
+var maskSrcKey = (function() {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? ('Symbol(src)_1.' + uid) : '';
+}());
+var funcToString = funcProto.toString;
+var hasOwnProperty = objectProto.hasOwnProperty;
+var objectToString = objectProto.toString;
+var reIsNative = RegExp('^' +
+  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+var Symbol$1 = root.Symbol;
+var getPrototype = overArg(Object.getPrototypeOf, Object);
+var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+var splice = arrayProto.splice;
+var spreadableSymbol = Symbol$1 ? Symbol$1.isConcatSpreadable : undefined;
+var nativeGetSymbols = Object.getOwnPropertySymbols;
+var nativeMax = Math.max;
+var Map = getNative(root, 'Map');
+var nativeCreate = getNative(Object, 'create');
+function Hash(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+function hashClear() {
+  this.__data__ = nativeCreate ? nativeCreate(null) : {};
+}
+function hashDelete(key) {
+  return this.has(key) && delete this.__data__[key];
+}
+function hashGet(key) {
+  var data = this.__data__;
+  if (nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+  return hasOwnProperty.call(data, key) ? data[key] : undefined;
+}
+function hashHas(key) {
+  var data = this.__data__;
+  return nativeCreate ? data[key] !== undefined : hasOwnProperty.call(data, key);
+}
+function hashSet(key, value) {
+  var data = this.__data__;
+  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
+  return this;
+}
+Hash.prototype.clear = hashClear;
+Hash.prototype['delete'] = hashDelete;
+Hash.prototype.get = hashGet;
+Hash.prototype.has = hashHas;
+Hash.prototype.set = hashSet;
+function ListCache(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+function listCacheClear() {
+  this.__data__ = [];
+}
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+  if (index < 0) {
+    return false;
+  }
+  var lastIndex = data.length - 1;
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+  return true;
+}
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+  return index < 0 ? undefined : data[index][1];
+}
+function listCacheHas(key) {
+  return assocIndexOf(this.__data__, key) > -1;
+}
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+  if (index < 0) {
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+  return this;
+}
+ListCache.prototype.clear = listCacheClear;
+ListCache.prototype['delete'] = listCacheDelete;
+ListCache.prototype.get = listCacheGet;
+ListCache.prototype.has = listCacheHas;
+ListCache.prototype.set = listCacheSet;
+function MapCache(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+function mapCacheClear() {
+  this.__data__ = {
+    'hash': new Hash,
+    'map': new (Map || ListCache),
+    'string': new Hash
+  };
+}
+function mapCacheDelete(key) {
+  return getMapData(this, key)['delete'](key);
+}
+function mapCacheGet(key) {
+  return getMapData(this, key).get(key);
+}
+function mapCacheHas(key) {
+  return getMapData(this, key).has(key);
+}
+function mapCacheSet(key, value) {
+  getMapData(this, key).set(key, value);
+  return this;
+}
+MapCache.prototype.clear = mapCacheClear;
+MapCache.prototype['delete'] = mapCacheDelete;
+MapCache.prototype.get = mapCacheGet;
+MapCache.prototype.has = mapCacheHas;
+MapCache.prototype.set = mapCacheSet;
+function SetCache(values) {
+  var index = -1,
+      length = values ? values.length : 0;
+  this.__data__ = new MapCache;
+  while (++index < length) {
+    this.add(values[index]);
+  }
+}
+function setCacheAdd(value) {
+  this.__data__.set(value, HASH_UNDEFINED);
+  return this;
+}
+function setCacheHas(value) {
+  return this.__data__.has(value);
+}
+SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
+SetCache.prototype.has = setCacheHas;
+function arrayLikeKeys(value, inherited) {
+  var result = (isArray(value) || isArguments(value))
+    ? baseTimes(value.length, String)
+    : [];
+  var length = result.length,
+      skipIndexes = !!length;
+  for (var key in value) {
+    if ((inherited || hasOwnProperty.call(value, key)) &&
+        !(skipIndexes && (key == 'length' || isIndex(key, length)))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+function assocIndexOf(array, key) {
+  var length = array.length;
+  while (length--) {
+    if (eq(array[length][0], key)) {
+      return length;
+    }
+  }
+  return -1;
+}
+function baseDifference(array, values, iteratee, comparator) {
+  var index = -1,
+      includes = arrayIncludes,
+      isCommon = true,
+      length = array.length,
+      result = [],
+      valuesLength = values.length;
+  if (!length) {
+    return result;
+  }
+  if (iteratee) {
+    values = arrayMap(values, baseUnary(iteratee));
+  }
+  if (comparator) {
+    includes = arrayIncludesWith;
+    isCommon = false;
+  }
+  else if (values.length >= LARGE_ARRAY_SIZE) {
+    includes = cacheHas;
+    isCommon = false;
+    values = new SetCache(values);
+  }
+  outer:
+  while (++index < length) {
+    var value = array[index],
+        computed = iteratee ? iteratee(value) : value;
+    value = (comparator || value !== 0) ? value : 0;
+    if (isCommon && computed === computed) {
+      var valuesIndex = valuesLength;
+      while (valuesIndex--) {
+        if (values[valuesIndex] === computed) {
+          continue outer;
+        }
+      }
+      result.push(value);
+    }
+    else if (!includes(values, computed, comparator)) {
+      result.push(value);
+    }
+  }
+  return result;
+}
+function baseFlatten(array, depth, predicate, isStrict, result) {
+  var index = -1,
+      length = array.length;
+  predicate || (predicate = isFlattenable);
+  result || (result = []);
+  while (++index < length) {
+    var value = array[index];
+    if (depth > 0 && predicate(value)) {
+      if (depth > 1) {
+        baseFlatten(value, depth - 1, predicate, isStrict, result);
+      } else {
+        arrayPush(result, value);
+      }
+    } else if (!isStrict) {
+      result[result.length] = value;
+    }
+  }
+  return result;
+}
+function baseGetAllKeys(object, keysFunc, symbolsFunc) {
+  var result = keysFunc(object);
+  return isArray(object) ? result : arrayPush(result, symbolsFunc(object));
+}
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+  var pattern = (isFunction(value) || isHostObject(value)) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+function baseKeysIn(object) {
+  if (!isObject(object)) {
+    return nativeKeysIn(object);
+  }
+  var isProto = isPrototype(object),
+      result = [];
+  for (var key in object) {
+    if (!(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+function basePick(object, props) {
+  object = Object(object);
+  return basePickBy(object, props, function(value, key) {
+    return key in object;
+  });
+}
+function basePickBy(object, props, predicate) {
+  var index = -1,
+      length = props.length,
+      result = {};
+  while (++index < length) {
+    var key = props[index],
+        value = object[key];
+    if (predicate(value, key)) {
+      result[key] = value;
+    }
+  }
+  return result;
+}
+function baseRest(func, start) {
+  start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
+  return function() {
+    var args = arguments,
+        index = -1,
+        length = nativeMax(args.length - start, 0),
+        array = Array(length);
+    while (++index < length) {
+      array[index] = args[start + index];
+    }
+    index = -1;
+    var otherArgs = Array(start + 1);
+    while (++index < start) {
+      otherArgs[index] = args[index];
+    }
+    otherArgs[start] = array;
+    return apply(func, this, otherArgs);
+  };
+}
+function getAllKeysIn(object) {
+  return baseGetAllKeys(object, keysIn, getSymbolsIn);
+}
+function getMapData(map, key) {
+  var data = map.__data__;
+  return isKeyable(key)
+    ? data[typeof key == 'string' ? 'string' : 'hash']
+    : data.map;
+}
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+var getSymbols = nativeGetSymbols ? overArg(nativeGetSymbols, Object) : stubArray;
+var getSymbolsIn = !nativeGetSymbols ? stubArray : function(object) {
+  var result = [];
+  while (object) {
+    arrayPush(result, getSymbols(object));
+    object = getPrototype(object);
+  }
+  return result;
+};
+function isFlattenable(value) {
+  return isArray(value) || isArguments(value) ||
+    !!(spreadableSymbol && value && value[spreadableSymbol]);
+}
+function isIndex(value, length) {
+  length = length == null ? MAX_SAFE_INTEGER : length;
+  return !!length &&
+    (typeof value == 'number' || reIsUint.test(value)) &&
+    (value > -1 && value % 1 == 0 && value < length);
+}
+function isKeyable(value) {
+  var type = typeof value;
+  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
+    ? (value !== '__proto__')
+    : (value === null);
+}
+function isMasked(func) {
+  return !!maskSrcKey && (maskSrcKey in func);
+}
+function isPrototype(value) {
+  var Ctor = value && value.constructor,
+      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto;
+  return value === proto;
+}
+function nativeKeysIn(object) {
+  var result = [];
+  if (object != null) {
+    for (var key in Object(object)) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+function toKey(value) {
+  if (typeof value == 'string' || isSymbol(value)) {
+    return value;
+  }
+  var result = (value + '');
+  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+}
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+function eq(value, other) {
+  return value === other || (value !== value && other !== other);
+}
+function isArguments(value) {
+  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') &&
+    (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
+}
+var isArray = Array.isArray;
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
+}
+function isArrayLikeObject(value) {
+  return isObjectLike(value) && isArrayLike(value);
+}
+function isFunction(value) {
+  var tag = isObject(value) ? objectToString.call(value) : '';
+  return tag == funcTag || tag == genTag;
+}
+function isLength(value) {
+  return typeof value == 'number' &&
+    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+function isObject(value) {
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+}
+function keysIn(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object, true) : baseKeysIn(object);
+}
+var omit = baseRest(function(object, props) {
+  if (object == null) {
+    return {};
+  }
+  props = arrayMap(baseFlatten(props, 1), toKey);
+  return basePick(object, baseDifference(getAllKeysIn(object), props));
+});
+function stubArray() {
+  return [];
+}
+var lodash_omit$1 = omit;
 
 function mapToCssModules(className, cssModule) {
   if (!cssModule) return className;
@@ -38,10 +581,10 @@ function makeTheme$1() {
   return newTheme;
 }
 
-function unwrapExports (x) {
+function unwrapExports$1 (x) {
 	return x && x.__esModule ? x['default'] : x;
 }
-function createCommonjsModule(fn, module) {
+function createCommonjsModule$1(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
 'use strict';
@@ -204,7 +747,7 @@ var isArrayish = function isArrayish(obj) {
 		(obj.length >= 0 && (obj.splice instanceof Function ||
 			(Object.getOwnPropertyDescriptor(obj, (obj.length - 1)) && obj.constructor.name !== 'String')));
 };
-var simpleSwizzle = createCommonjsModule(function (module) {
+var simpleSwizzle = createCommonjsModule$1(function (module) {
 'use strict';
 var concat = Array.prototype.concat;
 var slice = Array.prototype.slice;
@@ -226,7 +769,7 @@ swizzle.wrap = function (fn) {
 	};
 };
 });
-var colorString = createCommonjsModule(function (module) {
+var colorString = createCommonjsModule$1(function (module) {
 var reverseNames = {};
 for (var name in colorName) {
 	if (colorName.hasOwnProperty(name)) {
@@ -408,7 +951,7 @@ function hexDouble(num) {
 	return (str.length < 2) ? '0' + str : str;
 }
 });
-var conversions = createCommonjsModule(function (module) {
+var conversions = createCommonjsModule$1(function (module) {
 var reverseKeywords = {};
 for (var key in colorName) {
 	if (colorName.hasOwnProperty(key)) {
@@ -1570,7 +2113,7 @@ function boxShadow() {
   }
   return '';
 }
-var unitUtils = createCommonjsModule(function (module, exports) {
+var unitUtils = createCommonjsModule$1(function (module, exports) {
 'use strict';
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -1636,7 +2179,83 @@ var UnitUtils = function UnitUtils() {
 exports.default = new UnitUtils();
 module.exports = exports['default'];
 });
-var unitUtils$1 = unwrapExports(unitUtils);
+var unitUtils$1 = unwrapExports$1(unitUtils);
+var defaultProps$6 = {
+  '$grid-breakpoints': {
+    xs: '0',
+    sm: '576px',
+    md: '768px',
+    lg: '992px',
+    xl: '1200px'
+  }
+};
+function breakpointNext(name) {
+  var breakpoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultProps$6['$grid-breakpoints'];
+  var breakpointNames = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : Object.keys(breakpoints);
+  var n = breakpointNames.indexOf(name);
+  if (n !== -1 && n + 1 < breakpointNames.length) {
+    return breakpointNames[n + 1];
+  }
+  return null;
+}
+function breakpointMin(name) {
+  var breakpoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultProps$6['$grid-breakpoints'];
+  var min = breakpoints[name];
+  return min !== '0' ? min : null;
+}
+function breakpointMax(name) {
+  var breakpoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultProps$6['$grid-breakpoints'];
+  var next = breakpointNext(name, breakpoints);
+  if (next) {
+    var min = unitUtils$1.rmUnit(breakpointMin(next, breakpoints), unitUtils$1.UNIT.PX);
+    return (min - 1).toString() + unitUtils$1.UNIT.PX;
+  }
+  return null;
+}
+function mediaBreakpointUp(name) {
+  var breakpoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultProps$6['$grid-breakpoints'];
+  var content = arguments[2];
+  var min = breakpointMin(name, breakpoints);
+  if (min) {
+    return '\n      @media (min-width: ' + min + ') {\n        ' + content + '\n      }\n    ';
+  }
+  return '\n    ' + content + '\n  ';
+}
+function mediaBreakpointDown(name) {
+  var breakpoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultProps$6['$grid-breakpoints'];
+  var content = arguments[2];
+  var max = breakpointMax(name, breakpoints);
+  if (max) {
+    return '\n      @media (max-width: ' + max + ') {\n        ' + content + '\n      }\n    ';
+  }
+  return '\n    ' + content + '\n  ';
+}
+function mediaBreakpointBetween(lower, upper) {
+  var breakpoints = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : defaultProps$6['$grid-breakpoints'];
+  var content = arguments[3];
+  var min = breakpointMin(lower, breakpoints);
+  var max = breakpointMax(upper, breakpoints);
+  if (min && max) {
+    return '\n      @media (min-width: ' + min + ') and (max-width: ' + max + ') {\n        ' + content + '\n      }\n    ';
+  } else if (min) {
+    return '\n      @media (min-width: ' + min + ') {\n        ' + content + '\n      }\n    ';
+  } else if (max) {
+    return '\n      @media (max-width: ' + max + ') {\n        ' + content + '\n      }\n    ';
+  }
+  return '\n    ' + content + '\n  ';
+}
+function mediaBreakpointOnly(name) {
+  var breakpoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultProps$6['$grid-breakpoints'];
+  var content = arguments[2];
+  return mediaBreakpointBetween(name, name, breakpoints, content);
+}
+var breakpoints = {
+  defaultProps: defaultProps$6,
+  up: mediaBreakpointUp,
+  down: mediaBreakpointDown,
+  between: mediaBreakpointBetween,
+  only: mediaBreakpointOnly
+};
 var defaultProps$8 = {
   '$enable-transitions': true
 };
@@ -1650,7 +2269,10 @@ function transition() {
   }
   return '';
 }
-var parseTransition_1 = createCommonjsModule(function (module, exports) {
+function ifElse(conditions, returnTrue, returnFalse) {
+  return conditions ? returnTrue : returnFalse;
+}
+var parseTransition_1 = createCommonjsModule$1(function (module, exports) {
 'use strict';
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -1687,7 +2309,7 @@ var parseTransition = function parseTransition(transitions) {
 exports.default = parseTransition;
 module.exports = exports['default'];
 });
-var parseTransition = unwrapExports(parseTransition_1);
+var parseTransition = unwrapExports$1(parseTransition_1);
 var defaultProps$35 = {
   '$enable-transitions': true,
   '$transition-fade': 'opacity .15s linear',
@@ -1952,8 +2574,10 @@ var defaultProps$2$1 = {
   dismiss: null,
   menuClose: false,
   bgColor: 'primary',
-  'menu-right': false,
-  'animation-push': false,
+  right: false,
+  push: false,
+  top: null,
+  show: false,
   cssModule: null,
   theme: theme$2
 };
@@ -1966,7 +2590,7 @@ var OffsetNavUnstyled = function (_React$Component) {
   createClass(OffsetNavUnstyled, [{
     key: 'render',
     value: function render() {
-      var _omit = omit(this.props, ['theme', 'elementWidth', 'animation-push']),
+      var _omit = lodash_omit$1(this.props, ['theme', 'push', 'top']),
           className = _omit.className,
           children = _omit.children,
           active = _omit.active,
@@ -1974,15 +2598,18 @@ var OffsetNavUnstyled = function (_React$Component) {
           menuClose = _omit.menuClose,
           bgColor = _omit.bgColor,
           cssModule = _omit.cssModule,
-          menuRight = _omit['menu-right'],
-          attributes = objectWithoutProperties(_omit, ['className', 'children', 'active', 'dismiss', 'menuClose', 'bgColor', 'cssModule', 'menu-right']);
-      var menuDirectionClassNames = menuRight ? 'menu-right' : 'menu-left';
+          right = _omit.right,
+          show = _omit.show,
+          attributes = objectWithoutProperties(_omit, ['className', 'children', 'active', 'dismiss', 'menuClose', 'bgColor', 'cssModule', 'right', 'show']);
+      var menuDirectionClassNames = right ? 'menu-right' : 'menu-left';
       var cssClasses = cn(className, menuDirectionClassNames, defineProperty({}, 'bg-' + bgColor, bgColor));
       return React.createElement(
         'div',
         _extends({
           className: mapToCssModules(cn(cssClasses, { active: active }), cssModule)
-        }, attributes),
+        }, attributes, {
+          show: show
+        }),
         menuClose && React.createElement(bootstrapStyled.Close, { 'aria-label': 'Close', onDismiss: dismiss }),
         children
       );
@@ -1999,27 +2626,29 @@ OffsetNavUnstyled.propTypes = {
   menuClose: PropTypes.bool,
   theme: PropTypes.object,
   bgColor: PropTypes.string,
-  'menu-right': PropTypes.bool,
-  'animation-push': PropTypes.bool,
+  top: PropTypes.string,
+  right: PropTypes.bool,
+  push: PropTypes.bool,
+  show: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   cssModule: PropTypes.object
 };
 var OffsetNav = styled(OffsetNavUnstyled).withConfig({
   displayName: 'OffsetNav'
 })(['', ''], function (props) {
-  return '\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    width: ' + props.theme.navigationBar['$menu-offset-width'] + ';\n    height: 100%;\n    background-color: ' + props.theme.navigationBar['$menu-offset-nav-bg-color'] + ';\n    z-index: calc(' + props.theme.navigationBar['$zindex-overlay'] + ' + 10);\n  ';
+  return '\n    position: fixed;\n    top: ' + (props.top ? props.top + 'px;' : '0;') + '\n    bottom: 0;\n    width: ' + props.theme.navigationBar['$menu-offset-width'] + ';\n    height: 100%;\n    background-color: ' + props.theme.navigationBar['$menu-offset-nav-bg-color'] + ';\n    z-index: calc(' + props.theme.navigationBar['$zindex-overlay'] + ' + 10);\n  ';
 });
 OffsetNav.defaultProps = defaultProps$2$1;
 
 var OffsetNavPush = styled(OffsetNav).withConfig({
   displayName: 'OffsetNavPush'
 })(['', ''], function (props) {
-  return '\n    ' + boxShadow(props.theme['$enable-shadows'], props.theme.navigationBar['$menu-offset-nav-box-shadow']) + '\n    &.menu-left {\n      left: -' + props.theme.navigationBar['$menu-offset-width'] + ';\n      ' + transition(props.theme['$enable-transitions'], props.theme.navigationBar['$menu-offset-nav-transition']) + '\n      &.active {\n        left: 0;\n      }\n    }\n    \n    &.menu-right {\n      right: -' + props.theme.navigationBar['$menu-offset-width'] + ';\n      ' + transition(props.theme['$enable-transitions'], props.theme.navigationBar['$menu-offset-nav-transition']) + '\n      &.active {\n        right: 0;\n      }\n    }\n  ';
+  return '\n    ' + boxShadow(props.theme['$enable-shadows'], props.theme.navigationBar['$menu-offset-nav-box-shadow']) + '\n    &.menu-left {\n      // if showMenu is true, then it shows the menu from xs-xl. If showMenu is set with a string such as md, it will only be show from breakpoint md and upwards.\n      ' + ifElse(props.show, typeof props.show === 'boolean' ? 'left: 0;' : 'left: -' + props.theme.navigationBar['$menu-offset-width'] + '; ' + breakpoints.up(props.show, props.theme['$grid-breakpoints'], 'left: 0;'), 'left: -' + props.theme.navigationBar['$menu-offset-width'] + ';') + '\n      ' + transition(props.theme['$enable-transitions'], props.theme.navigationBar['$menu-offset-nav-transition']) + '\n      &.active {\n        left: 0;\n      }\n    }\n    \n    &.menu-right {\n      ' + ifElse(props.show, typeof props.show === 'boolean' ? 'right: 0;' : 'right: -' + props.theme.navigationBar['$menu-offset-width'] + '; ' + breakpoints.up(props.show, props.theme['$grid-breakpoints'], 'right: 0;'), 'right: -' + props.theme.navigationBar['$menu-offset-width'] + ';') + '\n      ' + transition(props.theme['$enable-transitions'], props.theme.navigationBar['$menu-offset-nav-transition']) + '\n      &.active {\n        right: 0;\n      }\n    }\n  ';
 });
 
 var OffsetNavSlide = styled(OffsetNav).withConfig({
   displayName: 'OffsetNavSlide'
 })(['', ''], function (props) {
-  return '\n    ' + transition(props.theme['$enable-transitions'], props.theme.navigationBar['$menu-offset-nav-transition']) + '\n    ' + boxShadow(props.theme['$enable-shadows'], props.theme.navigationBar['$menu-offset-nav-box-shadow']) + '  \n    &.menu-left {\n      left: 0;\n      transform: translateX(-100%);\n      &.active {\n        transform: translateX(0);\n      }\n    }\n    \n    &.menu-right {\n      right: 0;\n      transform: translateX(100%);\n      &.active {\n        transform: translateX(0);\n      }\n    }\n\n  ';
+  return '\n    ' + transition(props.theme['$enable-transitions'], props.theme.navigationBar['$menu-offset-nav-transition']) + '\n    ' + boxShadow(props.theme['$enable-shadows'], props.theme.navigationBar['$menu-offset-nav-box-shadow']) + '  \n    &.menu-left {\n      left: 0;\n      // if showMenu is true, then it shows the menu from xs-xl. If showMenu is set with a string such as md, it will only be show from breakpoint md and upwards.\n      ' + ifElse(props.show, typeof props.show === 'boolean' ? 'transform: translateX(0);' : 'transform: translateX(-100%); ' + breakpoints.up(props.show, props.theme['$grid-breakpoints'], 'transform: translateX(0);'), 'transform: translateX(-100%);') + '\n      \n      &.active {\n        transform: translateX(0);\n      }\n    }\n    \n    &.menu-right {\n      right: 0;\n      ' + ifElse(props.show, typeof props.show === 'boolean' ? 'transform: translateX(0);' : 'transform: translateX(100%); ' + breakpoints.up(props.show, props.theme['$grid-breakpoints'], 'transform: translateX(0);'), 'transform: translateX(100%);') + '\n      &.active {\n        transform: translateX(0);\n      }\n    }\n\n  ';
 });
 
 var theme$3 = bootstrapStyled.makeTheme(theme$1);
@@ -2036,7 +2665,7 @@ var OverlayUnstyled = function (_React$Component) {
   createClass(OverlayUnstyled, [{
     key: 'render',
     value: function render() {
-      var _omit = omit(this.props, ['theme']),
+      var _omit = lodash_omit$1(this.props, ['theme']),
           className = _omit.className,
           active = _omit.active,
           attributes = objectWithoutProperties(_omit, ['className', 'active']);
@@ -2068,6 +2697,13 @@ var defaultProps = {
     component: bootstrapStyled.Button,
     className: null
   },
+  offsetNav: {
+    show: false,
+    bgColor: null,
+    top: null,
+    right: false,
+    push: false
+  },
   noOverlay: false,
   menuClose: false,
   onClick: null,
@@ -2080,9 +2716,6 @@ var defaultProps = {
   fixed: null,
   sticky: null,
   bgColor: null,
-  offsetNavBgColor: null,
-  'menu-right': false,
-  'animation-push': false,
   theme: theme$$1
 };
 var NavigationBarUnstyled = function (_React$Component) {
@@ -2097,9 +2730,8 @@ var NavigationBarUnstyled = function (_React$Component) {
     return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = NavigationBarUnstyled.__proto__ || Object.getPrototypeOf(NavigationBarUnstyled)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       show: false
     }, _this.handleClick = function (e) {
-      var _this$props = _this.props,
-          onClick = _this$props.onClick,
-          animationPush = _this$props['animation-push'];
+      var onClick = _this.props.onClick;
+      var animationPush = _this.props.offsetNav.push;
       var wrapper = document.getElementById('wrapper');
       if (onClick) {
         onClick(e);
@@ -2113,9 +2745,9 @@ var NavigationBarUnstyled = function (_React$Component) {
   createClass(NavigationBarUnstyled, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _props = this.props,
-          animationPush = _props['animation-push'],
-          menuRight = _props['menu-right'];
+      var _props$offsetNav = this.props.offsetNav,
+          animationPush = _props$offsetNav.push,
+          menuRight = _props$offsetNav.right;
       var wrapper = document.getElementById('wrapper');
       if (animationPush && wrapper) {
         menuRight ? wrapper.classList.toggle('right') : wrapper.classList.toggle('left');
@@ -2126,7 +2758,7 @@ var NavigationBarUnstyled = function (_React$Component) {
     value: function render() {
       var _cn,
           _this2 = this;
-      var _omit = omit(this.props, ['theme']),
+      var _omit = lodash_omit$1(this.props, ['theme']),
           className = _omit.className,
           children = _omit.children,
           cssModule = _omit.cssModule,
@@ -2134,56 +2766,63 @@ var NavigationBarUnstyled = function (_React$Component) {
           noOverlay = _omit.noOverlay,
           menuClose = _omit.menuClose,
           navTop = _omit['nav-top'],
-          menuRight = _omit['menu-right'],
-          animationPush = _omit['animation-push'],
           light = _omit.light,
           inverse = _omit.inverse,
           fixed = _omit.fixed,
           sticky = _omit.sticky,
           bgColor = _omit.bgColor,
-          offsetNavBgColor = _omit.offsetNavBgColor,
+          offsetNav = _omit.offsetNav,
           shadowHeader = _omit.shadowHeader,
-          attributesTemp = objectWithoutProperties(_omit, ['className', 'children', 'cssModule', 'button', 'noOverlay', 'menuClose', 'nav-top', 'menu-right', 'animation-push', 'light', 'inverse', 'fixed', 'sticky', 'bgColor', 'offsetNavBgColor', 'shadowHeader']);
-      var _omit2 = omit(attributesTemp, ['onClick']),
+          attributesTemp = objectWithoutProperties(_omit, ['className', 'children', 'cssModule', 'button', 'noOverlay', 'menuClose', 'nav-top', 'light', 'inverse', 'fixed', 'sticky', 'bgColor', 'offsetNav', 'shadowHeader']);
+      var _omit2 = lodash_omit$1(attributesTemp, ['onClick']),
           attributes = objectWithoutProperties(_omit2, []);
       var ButtonToggle = button.component,
           classNameButton = button.className,
           restButton = objectWithoutProperties(button, ['component', 'className']);
-      var cssClasses = cn('navbar', 'justify-content-between', 'w-100', className, (_cn = {
+      var offsetNavShow = offsetNav.show,
+          offsetNavBgColor = offsetNav.bgColor,
+          offsetNavTop = offsetNav.top,
+          offsetNavRight = offsetNav.right,
+          offsetNavPush = offsetNav.push;
+      var cssClasses = cn('d-flex', 'justify-content-between', 'w-100', className, (_cn = {
         'navbar-light': light,
         'navbar-inverse': inverse
       }, defineProperty(_cn, 'bg-' + bgColor, bgColor), defineProperty(_cn, 'fixed-header-' + fixed, fixed), defineProperty(_cn, 'sticky-' + sticky, sticky), _cn));
-      var buttonMenuRight = menuRight ? 'flex-last' : '';
+      var buttonMenuRight = offsetNavRight ? 'flex-last' : '';
       var buttonClasses = cn(buttonMenuRight, classNameButton, {
         'navbar-toggler-icon p-3 my-auto cursor-pointer': !classNameButton
       });
-      var OffsetMenuAnimated = animationPush ? React.createElement(
+      var OffsetMenuAnimated = offsetNavPush ? React.createElement(
         OffsetNavPush,
         {
-          className: 'offset-header-navbar',
+          className: 'offset-navigation-bar',
           active: this.state.show,
           bgColor: offsetNavBgColor,
-          'menu-right': menuRight,
-          'animation-push': animationPush,
+          right: offsetNavRight,
+          push: offsetNavPush,
+          top: offsetNavTop,
           menuClose: noOverlay && menuClose,
           dismiss: this.handleClick,
-          innerRef: function innerRef(offsetNav) {
-            _this2.offsetNav = offsetNav;
+          show: offsetNavShow,
+          innerRef: function innerRef(offsetNavRef) {
+            _this2.offsetNav = offsetNavRef;
           }
         },
         children
       ) : React.createElement(
         OffsetNavSlide,
         {
-          className: 'offset-header-navbar',
+          className: 'offset-navigation-bar',
           active: this.state.show,
           bgColor: offsetNavBgColor,
-          'menu-right': menuRight,
-          'animation-push': animationPush,
+          right: offsetNavRight,
+          push: offsetNavPush,
+          top: offsetNavTop,
           menuClose: noOverlay && menuClose,
           dismiss: this.handleClick,
-          innerRef: function innerRef(offsetNav) {
-            _this2.offsetNav = offsetNav;
+          show: offsetNavShow,
+          innerRef: function innerRef(offsetNavRef) {
+            _this2.offsetNav = offsetNavRef;
           }
         },
         children
@@ -2230,9 +2869,13 @@ NavigationBarUnstyled.propTypes = {
   fixed: PropTypes.string,
   sticky: PropTypes.string,
   bgColor: PropTypes.string,
-  offsetNavBgColor: PropTypes.string,
-  'menu-right': PropTypes.bool,
-  'animation-push': PropTypes.bool
+  offsetNav: PropTypes.shape({
+    show: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    bgColor: PropTypes.string,
+    top: PropTypes.string,
+    right: PropTypes.bool,
+    push: PropTypes.bool
+  })
 };
 var NavigationBar = styled(NavigationBarUnstyled).withConfig({
   displayName: 'NavigationBar'
@@ -2254,7 +2897,7 @@ var PageWrapperUnstyled = function (_React$Component) {
   createClass(PageWrapperUnstyled, [{
     key: 'render',
     value: function render() {
-      var _omit = omit(this.props, ['theme']),
+      var _omit = lodash_omit$1(this.props, ['theme']),
           className = _omit.className,
           children = _omit.children,
           attributes = objectWithoutProperties(_omit, ['className', 'children']);
