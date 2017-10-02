@@ -2573,7 +2573,7 @@ var defaultProps$2$1 = {
   active: false,
   dismiss: null,
   menuClose: false,
-  bgColor: 'primary',
+  bgColor: null,
   right: false,
   push: false,
   top: null,
@@ -2874,7 +2874,7 @@ NavigationBarUnstyled.propTypes = {
 var NavigationBar = styled(NavigationBarUnstyled).withConfig({
   displayName: 'NavigationBar'
 })(['', ''], function (props) {
-  return '\n    z-index:  ' + ifElse(props.top, 'calc(' + props.theme.navigationBar['$zindex-overlay'] + ' + 5)', 'calc(' + props.theme.navigationBar['$zindex-overlay'] + ' - 10)') + ';\n    &.fixed-header-' + props.fixed + ' {\n      position: fixed;\n      ' + props.fixed + ': 0;\n    }\n  ';
+  return '\n    z-index:  ' + ifElse(props.offsetNav.top, 'calc(' + props.theme.navigationBar['$zindex-overlay'] + ' + 15)', 'calc(' + props.theme.navigationBar['$zindex-overlay'] + ' - 10)') + ';\n    &.fixed-header-' + props.fixed + ' {\n      position: fixed;\n      ' + props.fixed + ': 0;\n    }\n  ';
 });
 NavigationBar.defaultProps = defaultProps;
 

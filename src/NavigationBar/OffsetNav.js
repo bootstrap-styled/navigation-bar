@@ -20,7 +20,7 @@ export const defaultProps = {
   active: false,
   dismiss: null,
   menuClose: false,
-  bgColor: 'primary',
+  bgColor: null,
   right: false,
   push: false,
   top: null,
