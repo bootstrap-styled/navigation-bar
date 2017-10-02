@@ -1,6 +1,6 @@
 {
   "name": "navigation-bar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library navigation-bar description",
   "main": "lib/index.js",
   "jsnext:main": "dist/navigation-bar.es.js",
