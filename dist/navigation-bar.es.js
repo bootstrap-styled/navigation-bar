@@ -2869,11 +2869,7 @@ NavigationBarUnstyled.propTypes = {
 var NavigationBar = styled(NavigationBarUnstyled).withConfig({
   displayName: 'NavigationBar'
 })(['', ''], function (props) {
-<<<<<<< Updated upstream
-  return '\n    z-index:  ' + ifElse(props.top, 'calc(' + props.theme.navigationBar['$zindex-overlay'] + ' + 5', 'calc(' + props.theme.navigationBar['$zindex-overlay'] + ' - 10') + ';\n    &.fixed-header-' + props.fixed + ' {\n      position: fixed;\n      ' + props.fixed + ': 0;\n    }\n  ';
-=======
   return '\n    z-index:  ' + ifElse(props.top, 'calc(' + props.theme.navigationBar['$zindex-overlay'] + ' + 5)', 'calc(' + props.theme.navigationBar['$zindex-overlay'] + ' - 10)') + ';\n    &.fixed-header-' + props.fixed + ' {\n      position: fixed;\n      ' + props.fixed + ': 0;\n    }\n  ';
->>>>>>> Stashed changes
 });
 NavigationBar.defaultProps = defaultProps;
 
