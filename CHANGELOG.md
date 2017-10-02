@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2017-10-02
+
+- Fixed minor css mistake.
+
 ## [1.0.0] - 2017-10-02
 
 - Placed all props related to `OffsetNav` into their own `offsetNav: prop.shape`.
