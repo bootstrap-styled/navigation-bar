@@ -202,7 +202,7 @@ class NavigationBarUnstyled extends React.Component {
 
 const NavigationBar = styled(NavigationBarUnstyled)`
   ${(props) => `
-    z-index:  ${ifElse(props.offsetNav.top, `calc(${props.theme.navigationBar['$zindex-overlay']} + 5)`, `calc(${props.theme.navigationBar['$zindex-overlay']} - 10)`)};
+    z-index:  ${ifElse(props.offsetNav.top, `calc(${props.theme.navigationBar['$zindex-overlay']} + 15)`, `calc(${props.theme.navigationBar['$zindex-overlay']} - 10)`)};
     &.fixed-header-${props.fixed} {
       position: fixed;
       ${props.fixed}: 0;
