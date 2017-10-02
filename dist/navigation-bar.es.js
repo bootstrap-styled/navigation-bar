@@ -2175,6 +2175,7 @@ exports.default = new UnitUtils();
 module.exports = exports['default'];
 });
 var unitUtils$1 = unwrapExports$1(unitUtils);
+<<<<<<< HEAD
 var defaultProps$6 = {
   '$grid-breakpoints': {
     xs: '0',
@@ -2251,6 +2252,8 @@ var breakpoints = {
   between: mediaBreakpointBetween,
   only: mediaBreakpointOnly
 };
+=======
+>>>>>>> b2ed0776525156cb10b203829b25f740321d4892
 var defaultProps$8 = {
   '$enable-transitions': true
 };
@@ -2264,9 +2267,12 @@ function transition() {
   }
   return '';
 }
+<<<<<<< HEAD
 function ifElse(conditions, returnTrue, returnFalse) {
   return conditions ? returnTrue : returnFalse;
 }
+=======
+>>>>>>> b2ed0776525156cb10b203829b25f740321d4892
 var parseTransition_1 = createCommonjsModule$1(function (module, exports) {
 'use strict';
 Object.defineProperty(exports, "__esModule", {
@@ -2585,7 +2591,11 @@ var OffsetNavUnstyled = function (_React$Component) {
   createClass(OffsetNavUnstyled, [{
     key: 'render',
     value: function render() {
+<<<<<<< HEAD
       var _omit = lodash_omit$1(this.props, ['theme', 'push', 'top']),
+=======
+      var _omit = lodash_omit$1(this.props, ['theme', 'elementWidth', 'animation-push']),
+>>>>>>> b2ed0776525156cb10b203829b25f740321d4892
           className = _omit.className,
           children = _omit.children,
           active = _omit.active,
@@ -2768,17 +2778,24 @@ var NavigationBarUnstyled = function (_React$Component) {
           bgColor = _omit.bgColor,
           offsetNav = _omit.offsetNav,
           shadowHeader = _omit.shadowHeader,
+<<<<<<< HEAD
           attributesTemp = objectWithoutProperties(_omit, ['className', 'children', 'cssModule', 'button', 'noOverlay', 'menuClose', 'nav-top', 'light', 'inverse', 'fixed', 'sticky', 'bgColor', 'offsetNav', 'shadowHeader']);
+=======
+          attributesTemp = objectWithoutProperties(_omit, ['className', 'children', 'cssModule', 'button', 'noOverlay', 'menuClose', 'nav-top', 'menu-right', 'animation-push', 'light', 'inverse', 'fixed', 'sticky', 'bgColor', 'offsetNavBgColor', 'shadowHeader']);
+>>>>>>> b2ed0776525156cb10b203829b25f740321d4892
       var _omit2 = lodash_omit$1(attributesTemp, ['onClick']),
           attributes = objectWithoutProperties(_omit2, []);
       var ButtonToggle = button.component,
           classNameButton = button.className,
           restButton = objectWithoutProperties(button, ['component', 'className']);
+<<<<<<< HEAD
       var offsetNavShow = offsetNav.show,
           offsetNavBgColor = offsetNav.bgColor,
           offsetNavTop = offsetNav.top,
           offsetNavRight = offsetNav.right,
           offsetNavPush = offsetNav.push;
+=======
+>>>>>>> b2ed0776525156cb10b203829b25f740321d4892
       var cssClasses = cn('d-flex', 'justify-content-between', 'w-100', className, (_cn = {
         'navbar-light': light,
         'navbar-inverse': inverse
