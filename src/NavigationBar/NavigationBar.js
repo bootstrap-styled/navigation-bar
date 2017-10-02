@@ -12,6 +12,7 @@ import cn from 'classnames';
 import omit from 'lodash.omit';
 import mapToCssModules from 'map-to-css-modules';
 import { Button, Header, makeTheme } from 'bootstrap-styled';
+import { ifElse } from 'bootstrap-styled-mixins';
 import { theme as themeNavigationBar } from './theme';
 import OffsetNavPush from './OffsetNavPush';
 import OffsetNavSlide from './OffsetNavSlide';
@@ -23,6 +24,13 @@ export const defaultProps = {
   button: {
     component: Button,
     className: null,
+  },
+  offsetNav: {
+    show: null,
+    bgColor: null,
+    top: null,
+    right: false,
+    push: false,
   },
   noOverlay: false,
   menuClose: false,
@@ -36,9 +44,6 @@ export const defaultProps = {
   fixed: null,
   sticky: null,
   bgColor: null,
-  offsetNavBgColor: null,
-  'menu-right': false,
-  'animation-push': false,
   theme,
 };
 
@@ -63,17 +68,21 @@ class NavigationBarUnstyled extends React.Component {
     fixed: PropTypes.string,
     sticky: PropTypes.string,
     bgColor: PropTypes.string,
-    offsetNavBgColor: PropTypes.string,
-    'menu-right': PropTypes.bool,
-    'animation-push': PropTypes.bool,
-  }
+    offsetNav: PropTypes.shape({
+      show: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+      bgColor: PropTypes.string,
+      top: PropTypes.string,
+      right: PropTypes.bool,
+      push: PropTypes.bool,
+    }),
+  };
 
   state = {
     show: false,
   };
 
   componentDidMount() {
-    const { 'animation-push': animationPush, 'menu-right': menuRight } = this.props;
+    const { push: animationPush, right: menuRight } = this.props.offsetNav;
     const wrapper = document.getElementById('wrapper');
     //  menu-push animation
     if (animationPush && wrapper) {
@@ -82,7 +91,8 @@ class NavigationBarUnstyled extends React.Component {
   }
 
   handleClick = (e) => {
-    const { onClick, 'animation-push': animationPush } = this.props;
+    const { onClick } = this.props;
+    const { push: animationPush } = this.props.offsetNav;
     const wrapper = document.getElementById('wrapper');
     if (onClick) {
       onClick(e);
@@ -105,14 +115,12 @@ class NavigationBarUnstyled extends React.Component {
       noOverlay,
       menuClose,
       'nav-top': navTop,
-      'menu-right': menuRight,
-      'animation-push': animationPush,
       light,
       inverse,
       fixed,
       sticky,
       bgColor,
-      offsetNavBgColor,
+      offsetNav,
       shadowHeader,
       ...attributesTemp
     } = omit(this.props, ['theme']);
@@ -127,6 +135,14 @@ class NavigationBarUnstyled extends React.Component {
       ...restButton
     } = button;
 
+    const {
+      show: offsetNavShow,
+      bgColor: offsetNavBgColor,
+      top: offsetNavTop,
+      right: offsetNavRight,
+      push: offsetNavPush,
+    } = offsetNav;
+
     const cssClasses = cn('d-flex', 'justify-content-between', 'w-100', className, {
       'navbar-light': light,
       'navbar-inverse': inverse,
@@ -135,35 +151,37 @@ class NavigationBarUnstyled extends React.Component {
       [`sticky-${sticky}`]: sticky,
     });
 
-    const buttonMenuRight = menuRight ? 'flex-last' : '';
+    const buttonMenuRight = offsetNavRight ? 'flex-last' : '';
 
     const buttonClasses = cn(buttonMenuRight, classNameButton, {
       'navbar-toggler-icon p-3 my-auto cursor-pointer': !classNameButton,
     });
 
-    const OffsetMenuAnimated = animationPush ? (
+    const OffsetMenuAnimated = offsetNavPush ? (
       <OffsetNavPush
-        className="offset-header-navbar"
+        className="offset-navigation-bar"
         active={this.state.show}
         bgColor={offsetNavBgColor}
-        menu-right={menuRight}
-        animation-push={animationPush}
+        right={offsetNavRight}
+        push={offsetNavPush}
+        top={offsetNavTop}
         menuClose={noOverlay && menuClose}
         dismiss={this.handleClick}
-        innerRef={(offsetNav) => { this.offsetNav = offsetNav; }}
+        show={offsetNavShow}
       >
         {children}
       </OffsetNavPush>
     ) : (
       <OffsetNavSlide
-        className="offset-header-navbar"
+        className="offset-navigation-bar"
         active={this.state.show}
         bgColor={offsetNavBgColor}
-        menu-right={menuRight}
-        animation-push={animationPush}
+        right={offsetNavRight}
+        push={offsetNavPush}
+        top={offsetNavTop}
         menuClose={noOverlay && menuClose}
         dismiss={this.handleClick}
-        innerRef={(offsetNav) => { this.offsetNav = offsetNav; }}
+        show={offsetNavShow}
       >
         {children}
       </OffsetNavSlide>
@@ -184,7 +202,7 @@ class NavigationBarUnstyled extends React.Component {
 
 const NavigationBar = styled(NavigationBarUnstyled)`
   ${(props) => `
-    z-index: calc(${props.theme.navigationBar['$zindex-overlay']} - 10);
+    z-index:  ${ifElse(props.top, `calc(${props.theme.navigationBar['$zindex-overlay']} + 5`, `calc(${props.theme.navigationBar['$zindex-overlay']} - 10`)};
     &.fixed-header-${props.fixed} {
       position: fixed;
       ${props.fixed}: 0;

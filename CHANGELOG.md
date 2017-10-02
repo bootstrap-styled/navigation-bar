@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0] - 2017-10-02
+
+- Placed all props related to `OffsetNav` into their own `offsetNav: prop.shape`.
+- Added proptypes to `OffsetNav`:
+  - `show` to display the `OffsetMenu` from a breaking-point and upwards.
+  - `top` to display the `OffsetMenu` that can be manually positioned from the Y axis.
+  - Renamed `animation-push` and `menu-right` to `push` and `right`.
+  
 ## [0.0.5] - 2017-09-30
 
 - Replaced className `navbar` on `Header` to `d-flex`. 

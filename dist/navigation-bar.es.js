@@ -555,27 +555,6 @@ function mapToCssModules(className, cssModule) {
   }).join(' ');
 }
 
-var theme$1 = makeTheme$1();
-function makeTheme$1() {
-  var userTheme = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var newTheme = { navigationBar: {} };
-  var u = userTheme;
-  newTheme.navigationBar['$zindex-overlay'] = u.navigationBar && u.navigationBar['$zindex-overlay'] ? u.navigationBar['$zindex-overlay'] : '2050';
-  newTheme.navigationBar['$menu-offset-width'] = u.navigationBar && u.navigationBar['$menu-offset-width'] ? u.navigationBar['$menu-offset-width'] : '220px';
-  newTheme.navigationBar['$menu-offset-nav-bg-color'] = u.navigationBar && u.navigationBar['$menu-offset-nav-bg-color'] ? u.navigationBar['$menu-offset-nav-bg-color'] : 'white';
-  newTheme.navigationBar['$zindex-overlay'] = u.navigationBar && u.navigationBar['$zindex-overlay'] ? u.navigationBar['$zindex-overlay'] : '2050';
-  newTheme.navigationBar['$menu-offset-width'] = u.navigationBar && u.navigationBar['$menu-offset-width'] ? u.navigationBar['$menu-offset-width'] : '220px';
-  newTheme.navigationBar['$menu-offset-nav-box-shadow'] = u.navigationBar && u.navigationBar['$menu-offset-nav-box-shadow'] ? u.navigationBar['$menu-offset-nav-box-shadow'] : 'rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px';
-  newTheme.navigationBar['$menu-offset-nav-transition'] = u.navigationBar && u.navigationBar['$menu-offset-nav-transition'] ? u.navigationBar['$menu-offset-nav-transition'] : '.3s ease';
-  newTheme.navigationBar['$menu-offset-nav-box-shadow'] = u.navigationBar && u.navigationBar['$menu-offset-nav-box-shadow'] ? u.navigationBar['$menu-offset-nav-box-shadow'] : 'rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px';
-  newTheme.navigationBar['$menu-offset-nav-transition'] = u.navigationBar && u.navigationBar['$menu-offset-nav-transition'] ? u.navigationBar['$menu-offset-nav-transition'] : '.3s ease';
-  newTheme.navigationBar['$zindex-overlay'] = u.navigationBar && u.navigationBar['$zindex-overlay'] ? u.navigationBar['$zindex-overlay'] : '2050';
-  newTheme.navigationBar['$overlay-bg'] = u.navigationBar && u.navigationBar['$overlay-bg'] ? u.navigationBar['$overlay-bg'] : 'rgba(0, 0, 0, 0.3)';
-  newTheme.navigationBar['$menu-offset-width'] = u.navigationBar && u.navigationBar['$menu-offset-width'] ? u.navigationBar['$menu-offset-width'] : '220px';
-  newTheme.navigationBar['$menu-offset-nav-transition'] = u.navigationBar && u.navigationBar['$menu-offset-nav-transition'] ? u.navigationBar['$menu-offset-nav-transition'] : '.3s ease';
-  return newTheme;
-}
-
 function unwrapExports$1 (x) {
 	return x && x.__esModule ? x['default'] : x;
 }
@@ -2175,6 +2154,82 @@ exports.default = new UnitUtils();
 module.exports = exports['default'];
 });
 var unitUtils$1 = unwrapExports$1(unitUtils);
+var defaultProps$6 = {
+  '$grid-breakpoints': {
+    xs: '0',
+    sm: '576px',
+    md: '768px',
+    lg: '992px',
+    xl: '1200px'
+  }
+};
+function breakpointNext(name) {
+  var breakpoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultProps$6['$grid-breakpoints'];
+  var breakpointNames = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : Object.keys(breakpoints);
+  var n = breakpointNames.indexOf(name);
+  if (n !== -1 && n + 1 < breakpointNames.length) {
+    return breakpointNames[n + 1];
+  }
+  return null;
+}
+function breakpointMin(name) {
+  var breakpoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultProps$6['$grid-breakpoints'];
+  var min = breakpoints[name];
+  return min !== '0' ? min : null;
+}
+function breakpointMax(name) {
+  var breakpoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultProps$6['$grid-breakpoints'];
+  var next = breakpointNext(name, breakpoints);
+  if (next) {
+    var min = unitUtils$1.rmUnit(breakpointMin(next, breakpoints), unitUtils$1.UNIT.PX);
+    return (min - 1).toString() + unitUtils$1.UNIT.PX;
+  }
+  return null;
+}
+function mediaBreakpointUp(name) {
+  var breakpoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultProps$6['$grid-breakpoints'];
+  var content = arguments[2];
+  var min = breakpointMin(name, breakpoints);
+  if (min) {
+    return '\n      @media (min-width: ' + min + ') {\n        ' + content + '\n      }\n    ';
+  }
+  return '\n    ' + content + '\n  ';
+}
+function mediaBreakpointDown(name) {
+  var breakpoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultProps$6['$grid-breakpoints'];
+  var content = arguments[2];
+  var max = breakpointMax(name, breakpoints);
+  if (max) {
+    return '\n      @media (max-width: ' + max + ') {\n        ' + content + '\n      }\n    ';
+  }
+  return '\n    ' + content + '\n  ';
+}
+function mediaBreakpointBetween(lower, upper) {
+  var breakpoints = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : defaultProps$6['$grid-breakpoints'];
+  var content = arguments[3];
+  var min = breakpointMin(lower, breakpoints);
+  var max = breakpointMax(upper, breakpoints);
+  if (min && max) {
+    return '\n      @media (min-width: ' + min + ') and (max-width: ' + max + ') {\n        ' + content + '\n      }\n    ';
+  } else if (min) {
+    return '\n      @media (min-width: ' + min + ') {\n        ' + content + '\n      }\n    ';
+  } else if (max) {
+    return '\n      @media (max-width: ' + max + ') {\n        ' + content + '\n      }\n    ';
+  }
+  return '\n    ' + content + '\n  ';
+}
+function mediaBreakpointOnly(name) {
+  var breakpoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultProps$6['$grid-breakpoints'];
+  var content = arguments[2];
+  return mediaBreakpointBetween(name, name, breakpoints, content);
+}
+var breakpoints = {
+  defaultProps: defaultProps$6,
+  up: mediaBreakpointUp,
+  down: mediaBreakpointDown,
+  between: mediaBreakpointBetween,
+  only: mediaBreakpointOnly
+};
 var defaultProps$8 = {
   '$enable-transitions': true
 };
@@ -2187,6 +2242,9 @@ function transition() {
     return '\n      transition: ' + args.join(' ') + ';\n    ';
   }
   return '';
+}
+function ifElse(conditions, returnTrue, returnFalse) {
+  return conditions ? returnTrue : returnFalse;
 }
 var parseTransition_1 = createCommonjsModule$1(function (module, exports) {
 'use strict';
@@ -2263,6 +2321,27 @@ var transition$2 = {
   fade: fade,
   collapse: collapse
 };
+
+var theme$1 = makeTheme$1();
+function makeTheme$1() {
+  var userTheme = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var newTheme = { navigationBar: {} };
+  var u = userTheme;
+  newTheme.navigationBar['$zindex-overlay'] = u.navigationBar && u.navigationBar['$zindex-overlay'] ? u.navigationBar['$zindex-overlay'] : '2050';
+  newTheme.navigationBar['$menu-offset-width'] = u.navigationBar && u.navigationBar['$menu-offset-width'] ? u.navigationBar['$menu-offset-width'] : '220px';
+  newTheme.navigationBar['$menu-offset-nav-bg-color'] = u.navigationBar && u.navigationBar['$menu-offset-nav-bg-color'] ? u.navigationBar['$menu-offset-nav-bg-color'] : 'white';
+  newTheme.navigationBar['$zindex-overlay'] = u.navigationBar && u.navigationBar['$zindex-overlay'] ? u.navigationBar['$zindex-overlay'] : '2050';
+  newTheme.navigationBar['$menu-offset-width'] = u.navigationBar && u.navigationBar['$menu-offset-width'] ? u.navigationBar['$menu-offset-width'] : '220px';
+  newTheme.navigationBar['$menu-offset-nav-box-shadow'] = u.navigationBar && u.navigationBar['$menu-offset-nav-box-shadow'] ? u.navigationBar['$menu-offset-nav-box-shadow'] : 'rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px';
+  newTheme.navigationBar['$menu-offset-nav-transition'] = u.navigationBar && u.navigationBar['$menu-offset-nav-transition'] ? u.navigationBar['$menu-offset-nav-transition'] : '.3s ease';
+  newTheme.navigationBar['$menu-offset-nav-box-shadow'] = u.navigationBar && u.navigationBar['$menu-offset-nav-box-shadow'] ? u.navigationBar['$menu-offset-nav-box-shadow'] : 'rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px';
+  newTheme.navigationBar['$menu-offset-nav-transition'] = u.navigationBar && u.navigationBar['$menu-offset-nav-transition'] ? u.navigationBar['$menu-offset-nav-transition'] : '.3s ease';
+  newTheme.navigationBar['$zindex-overlay'] = u.navigationBar && u.navigationBar['$zindex-overlay'] ? u.navigationBar['$zindex-overlay'] : '2050';
+  newTheme.navigationBar['$overlay-bg'] = u.navigationBar && u.navigationBar['$overlay-bg'] ? u.navigationBar['$overlay-bg'] : 'rgba(0, 0, 0, 0.3)';
+  newTheme.navigationBar['$menu-offset-width'] = u.navigationBar && u.navigationBar['$menu-offset-width'] ? u.navigationBar['$menu-offset-width'] : '220px';
+  newTheme.navigationBar['$menu-offset-nav-transition'] = u.navigationBar && u.navigationBar['$menu-offset-nav-transition'] ? u.navigationBar['$menu-offset-nav-transition'] : '.3s ease';
+  return newTheme;
+}
 
 var asyncGenerator = function () {
   function AwaitValue(value) {
@@ -2490,8 +2569,10 @@ var defaultProps$2$1 = {
   dismiss: null,
   menuClose: false,
   bgColor: 'primary',
-  'menu-right': false,
-  'animation-push': false,
+  right: false,
+  push: false,
+  top: null,
+  show: null,
   cssModule: null,
   theme: theme$2
 };
@@ -2504,7 +2585,7 @@ var OffsetNavUnstyled = function (_React$Component) {
   createClass(OffsetNavUnstyled, [{
     key: 'render',
     value: function render() {
-      var _omit = lodash_omit$1(this.props, ['theme', 'elementWidth', 'animation-push']),
+      var _omit = lodash_omit$1(this.props, ['theme', 'push', 'top']),
           className = _omit.className,
           children = _omit.children,
           active = _omit.active,
@@ -2512,15 +2593,18 @@ var OffsetNavUnstyled = function (_React$Component) {
           menuClose = _omit.menuClose,
           bgColor = _omit.bgColor,
           cssModule = _omit.cssModule,
-          menuRight = _omit['menu-right'],
-          attributes = objectWithoutProperties(_omit, ['className', 'children', 'active', 'dismiss', 'menuClose', 'bgColor', 'cssModule', 'menu-right']);
-      var menuDirectionClassNames = menuRight ? 'menu-right' : 'menu-left';
+          right = _omit.right,
+          show = _omit.show,
+          attributes = objectWithoutProperties(_omit, ['className', 'children', 'active', 'dismiss', 'menuClose', 'bgColor', 'cssModule', 'right', 'show']);
+      var menuDirectionClassNames = right ? 'menu-right' : 'menu-left';
       var cssClasses = cn(className, menuDirectionClassNames, defineProperty({}, 'bg-' + bgColor, bgColor));
       return React.createElement(
         'div',
         _extends({
           className: mapToCssModules(cn(cssClasses, { active: active }), cssModule)
-        }, attributes),
+        }, attributes, {
+          show: show
+        }),
         menuClose && React.createElement(Close, { 'aria-label': 'Close', onDismiss: dismiss }),
         children
       );
@@ -2537,27 +2621,29 @@ OffsetNavUnstyled.propTypes = {
   menuClose: PropTypes.bool,
   theme: PropTypes.object,
   bgColor: PropTypes.string,
-  'menu-right': PropTypes.bool,
-  'animation-push': PropTypes.bool,
+  top: PropTypes.string,
+  right: PropTypes.bool,
+  push: PropTypes.bool,
+  show: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   cssModule: PropTypes.object
 };
 var OffsetNav = styled(OffsetNavUnstyled).withConfig({
   displayName: 'OffsetNav'
 })(['', ''], function (props) {
-  return '\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    width: ' + props.theme.navigationBar['$menu-offset-width'] + ';\n    height: 100%;\n    background-color: ' + props.theme.navigationBar['$menu-offset-nav-bg-color'] + ';\n    z-index: calc(' + props.theme.navigationBar['$zindex-overlay'] + ' + 10);\n  ';
+  return '\n    position: fixed;\n    top: ' + (props.top ? props.top + 'px;' : '0;') + '\n    bottom: 0;\n    width: ' + props.theme.navigationBar['$menu-offset-width'] + ';\n    height: 100%;\n    background-color: ' + props.theme.navigationBar['$menu-offset-nav-bg-color'] + ';\n    z-index: calc(' + props.theme.navigationBar['$zindex-overlay'] + ' + 10);\n  ';
 });
 OffsetNav.defaultProps = defaultProps$2$1;
 
 var OffsetNavPush = styled(OffsetNav).withConfig({
   displayName: 'OffsetNavPush'
 })(['', ''], function (props) {
-  return '\n    ' + boxShadow(props.theme['$enable-shadows'], props.theme.navigationBar['$menu-offset-nav-box-shadow']) + '\n    &.menu-left {\n      left: -' + props.theme.navigationBar['$menu-offset-width'] + ';\n      ' + transition(props.theme['$enable-transitions'], props.theme.navigationBar['$menu-offset-nav-transition']) + '\n      &.active {\n        left: 0;\n      }\n    }\n    \n    &.menu-right {\n      right: -' + props.theme.navigationBar['$menu-offset-width'] + ';\n      ' + transition(props.theme['$enable-transitions'], props.theme.navigationBar['$menu-offset-nav-transition']) + '\n      &.active {\n        right: 0;\n      }\n    }\n  ';
+  return '\n    ' + boxShadow(props.theme['$enable-shadows'], props.theme.navigationBar['$menu-offset-nav-box-shadow']) + '\n    &.menu-left {\n      // if showMenu is true, then it shows the menu from xs-xl. If showMenu is set with a string such as md, it will only be show from breakpoint md and upwards.\n      ' + ifElse(props.show, props.show === 'xs' ? 'left: 0;' : 'left: -' + props.theme.navigationBar['$menu-offset-width'] + '; ' + breakpoints.up(props.show, props.theme['$grid-breakpoints'], 'left: 0;'), 'left: -' + props.theme.navigationBar['$menu-offset-width'] + ';') + '\n      ' + transition(props.theme['$enable-transitions'], props.theme.navigationBar['$menu-offset-nav-transition']) + '\n      &.active {\n        left: 0;\n      }\n    }\n    \n    &.menu-right {\n      ' + ifElse(props.show, props.show === 'xs' ? 'right: 0;' : 'right: -' + props.theme.navigationBar['$menu-offset-width'] + '; ' + breakpoints.up(props.show, props.theme['$grid-breakpoints'], 'right: 0;'), 'right: -' + props.theme.navigationBar['$menu-offset-width'] + ';') + '\n      ' + transition(props.theme['$enable-transitions'], props.theme.navigationBar['$menu-offset-nav-transition']) + '\n      &.active {\n        right: 0;\n      }\n    }\n  ';
 });
 
 var OffsetNavSlide = styled(OffsetNav).withConfig({
   displayName: 'OffsetNavSlide'
 })(['', ''], function (props) {
-  return '\n    ' + transition(props.theme['$enable-transitions'], props.theme.navigationBar['$menu-offset-nav-transition']) + '\n    ' + boxShadow(props.theme['$enable-shadows'], props.theme.navigationBar['$menu-offset-nav-box-shadow']) + '  \n    &.menu-left {\n      left: 0;\n      transform: translateX(-100%);\n      &.active {\n        transform: translateX(0);\n      }\n    }\n    \n    &.menu-right {\n      right: 0;\n      transform: translateX(100%);\n      &.active {\n        transform: translateX(0);\n      }\n    }\n\n  ';
+  return '\n    ' + transition(props.theme['$enable-transitions'], props.theme.navigationBar['$menu-offset-nav-transition']) + '\n    ' + boxShadow(props.theme['$enable-shadows'], props.theme.navigationBar['$menu-offset-nav-box-shadow']) + '  \n    &.menu-left {\n      left: 0;\n      // if showMenu is true, then it shows the menu from xs-xl. If showMenu is set with a string such as md, it will only be show from breakpoint md and upwards.\n      ' + ifElse(props.show, props.show === 'xs' ? 'transform: translateX(0);' : 'transform: translateX(-100%); ' + breakpoints.up(props.show, props.theme['$grid-breakpoints'], 'transform: translateX(0);'), 'transform: translateX(-100%);') + '\n      \n      &.active {\n        transform: translateX(0);\n      }\n    }\n    \n    &.menu-right {\n      right: 0;\n      ' + ifElse(props.show, props.show === 'xs' ? 'transform: translateX(0);' : 'transform: translateX(100%); ' + breakpoints.up(props.show, props.theme['$grid-breakpoints'], 'transform: translateX(0);'), 'transform: translateX(100%);') + '\n      &.active {\n        transform: translateX(0);\n      }\n    }\n\n  ';
 });
 
 var theme$3 = makeTheme(theme$1);
@@ -2606,6 +2692,13 @@ var defaultProps = {
     component: Button,
     className: null
   },
+  offsetNav: {
+    show: null,
+    bgColor: null,
+    top: null,
+    right: false,
+    push: false
+  },
   noOverlay: false,
   menuClose: false,
   onClick: null,
@@ -2618,9 +2711,6 @@ var defaultProps = {
   fixed: null,
   sticky: null,
   bgColor: null,
-  offsetNavBgColor: null,
-  'menu-right': false,
-  'animation-push': false,
   theme: theme$$1
 };
 var NavigationBarUnstyled = function (_React$Component) {
@@ -2635,9 +2725,8 @@ var NavigationBarUnstyled = function (_React$Component) {
     return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = NavigationBarUnstyled.__proto__ || Object.getPrototypeOf(NavigationBarUnstyled)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       show: false
     }, _this.handleClick = function (e) {
-      var _this$props = _this.props,
-          onClick = _this$props.onClick,
-          animationPush = _this$props['animation-push'];
+      var onClick = _this.props.onClick;
+      var animationPush = _this.props.offsetNav.push;
       var wrapper = document.getElementById('wrapper');
       if (onClick) {
         onClick(e);
@@ -2651,9 +2740,9 @@ var NavigationBarUnstyled = function (_React$Component) {
   createClass(NavigationBarUnstyled, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _props = this.props,
-          animationPush = _props['animation-push'],
-          menuRight = _props['menu-right'];
+      var _props$offsetNav = this.props.offsetNav,
+          animationPush = _props$offsetNav.push,
+          menuRight = _props$offsetNav.right;
       var wrapper = document.getElementById('wrapper');
       if (animationPush && wrapper) {
         menuRight ? wrapper.classList.toggle('right') : wrapper.classList.toggle('left');
@@ -2672,57 +2761,58 @@ var NavigationBarUnstyled = function (_React$Component) {
           noOverlay = _omit.noOverlay,
           menuClose = _omit.menuClose,
           navTop = _omit['nav-top'],
-          menuRight = _omit['menu-right'],
-          animationPush = _omit['animation-push'],
           light = _omit.light,
           inverse = _omit.inverse,
           fixed = _omit.fixed,
           sticky = _omit.sticky,
           bgColor = _omit.bgColor,
-          offsetNavBgColor = _omit.offsetNavBgColor,
+          offsetNav = _omit.offsetNav,
           shadowHeader = _omit.shadowHeader,
-          attributesTemp = objectWithoutProperties(_omit, ['className', 'children', 'cssModule', 'button', 'noOverlay', 'menuClose', 'nav-top', 'menu-right', 'animation-push', 'light', 'inverse', 'fixed', 'sticky', 'bgColor', 'offsetNavBgColor', 'shadowHeader']);
+          attributesTemp = objectWithoutProperties(_omit, ['className', 'children', 'cssModule', 'button', 'noOverlay', 'menuClose', 'nav-top', 'light', 'inverse', 'fixed', 'sticky', 'bgColor', 'offsetNav', 'shadowHeader']);
       var _omit2 = lodash_omit$1(attributesTemp, ['onClick']),
           attributes = objectWithoutProperties(_omit2, []);
       var ButtonToggle = button.component,
           classNameButton = button.className,
           restButton = objectWithoutProperties(button, ['component', 'className']);
+      var offsetNavShow = offsetNav.show,
+          offsetNavBgColor = offsetNav.bgColor,
+          offsetNavTop = offsetNav.top,
+          offsetNavRight = offsetNav.right,
+          offsetNavPush = offsetNav.push;
       var cssClasses = cn('d-flex', 'justify-content-between', 'w-100', className, (_cn = {
         'navbar-light': light,
         'navbar-inverse': inverse
       }, defineProperty(_cn, 'bg-' + bgColor, bgColor), defineProperty(_cn, 'fixed-header-' + fixed, fixed), defineProperty(_cn, 'sticky-' + sticky, sticky), _cn));
-      var buttonMenuRight = menuRight ? 'flex-last' : '';
+      var buttonMenuRight = offsetNavRight ? 'flex-last' : '';
       var buttonClasses = cn(buttonMenuRight, classNameButton, {
         'navbar-toggler-icon p-3 my-auto cursor-pointer': !classNameButton
       });
-      var OffsetMenuAnimated = animationPush ? React.createElement(
+      var OffsetMenuAnimated = offsetNavPush ? React.createElement(
         OffsetNavPush,
         {
-          className: 'offset-header-navbar',
+          className: 'offset-navigation-bar',
           active: this.state.show,
           bgColor: offsetNavBgColor,
-          'menu-right': menuRight,
-          'animation-push': animationPush,
+          right: offsetNavRight,
+          push: offsetNavPush,
+          top: offsetNavTop,
           menuClose: noOverlay && menuClose,
           dismiss: this.handleClick,
-          innerRef: function innerRef(offsetNav) {
-            _this2.offsetNav = offsetNav;
-          }
+          show: offsetNavShow
         },
         children
       ) : React.createElement(
         OffsetNavSlide,
         {
-          className: 'offset-header-navbar',
+          className: 'offset-navigation-bar',
           active: this.state.show,
           bgColor: offsetNavBgColor,
-          'menu-right': menuRight,
-          'animation-push': animationPush,
+          right: offsetNavRight,
+          push: offsetNavPush,
+          top: offsetNavTop,
           menuClose: noOverlay && menuClose,
           dismiss: this.handleClick,
-          innerRef: function innerRef(offsetNav) {
-            _this2.offsetNav = offsetNav;
-          }
+          show: offsetNavShow
         },
         children
       );
@@ -2768,14 +2858,18 @@ NavigationBarUnstyled.propTypes = {
   fixed: PropTypes.string,
   sticky: PropTypes.string,
   bgColor: PropTypes.string,
-  offsetNavBgColor: PropTypes.string,
-  'menu-right': PropTypes.bool,
-  'animation-push': PropTypes.bool
+  offsetNav: PropTypes.shape({
+    show: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+    bgColor: PropTypes.string,
+    top: PropTypes.string,
+    right: PropTypes.bool,
+    push: PropTypes.bool
+  })
 };
 var NavigationBar = styled(NavigationBarUnstyled).withConfig({
   displayName: 'NavigationBar'
 })(['', ''], function (props) {
-  return '\n    z-index: calc(' + props.theme.navigationBar['$zindex-overlay'] + ' - 10);\n    &.fixed-header-' + props.fixed + ' {\n      position: fixed;\n      ' + props.fixed + ': 0;\n    }\n  ';
+  return '\n    z-index:  ' + ifElse(props.top, 'calc(' + props.theme.navigationBar['$zindex-overlay'] + ' + 5', 'calc(' + props.theme.navigationBar['$zindex-overlay'] + ' - 10') + ';\n    &.fixed-header-' + props.fixed + ' {\n      position: fixed;\n      ' + props.fixed + ': 0;\n    }\n  ';
 });
 NavigationBar.defaultProps = defaultProps;
 

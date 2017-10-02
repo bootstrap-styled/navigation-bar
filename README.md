@@ -27,25 +27,34 @@ navigation-bar npm package.
 
 **props**:
 
-| Name               | Type      | Default                                        | Description                                                       |
-|--------------------|-----------|------------------------------------------------|-------------------------------------------------------------------|
-| `noOverlay`        | bool      | false                                          | disables Overlay                                                  |
-| `menuClose`        | bool      | flase                                          | enables a Close button in the OffsetNav                           |
-| `shadowHeader`     | bool      | false                                          | enables box-shadow on NavigationBar                               |
-| `light`            | bool      | false                                          | enables dark font                                                 |
-| `inverse`          | bool      | false                                          | enables clear font                                                |
-| `fixed`            | string    | null                                           | enables fixed position(top or bottom)                             |
-| `sticky`           | string    | null                                           | enables sticky position(top or bottom / unstable due to browsers) |
-| `bgColor`          | string    | null                                           | sets NavigationBar background as one the main brand colors        |
-| `offsetNavBgColor` | string    | null                                           | sets OffsetNav background as one the main brand colors            |
-| `animation-push`   | bool      | false                                          | enables push animation                                            |
-| `menu-rigth`       | bool      | false                                          | switches the OffsetMenu and MenuButton to the other side          |
-| `button`           | shape     | n/a                                            | allows to set props to a custom MenuButton                        |
-| `button.component` | component | Button                                         | allows setting of custom MenuButton                               |
-| `button.className` | string    | navbar-toggler-icon p-3 my-auto cursor-pointer | allows setting of className for MenuButton                        |
-| `nav-top`          | node      | null                                           | content for NavigationBar                                         |
-| `children`         | node      | null                                           | content for OffsetNav                                             |
-
+    className: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
+    theme: PropTypes.object,
+    onClick: PropTypes.func,
+    shadowHeader: PropTypes.bool,
+    noOverlay: PropTypes.bool,
+    menuClose: PropTypes.bool,
+    cssModule: PropTypes.object,
+    button: PropTypes.shape({
+      component: PropTypes.component,
+      className: PropTypes.string,
+    }),
+    'nav-top': PropTypes.node,
+    light: PropTypes.bool,
+    inverse: PropTypes.bool,
+    fixed: PropTypes.string,
+    sticky: PropTypes.string,
+    bgColor: PropTypes.string,
+    offsetNav: PropTypes.shape({
+      show: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+      ]),
+      bgColor: PropTypes.string,
+      top: PropTypes.string,
+      right: PropTypes.bool,
+      push: PropTypes.bool,
+    }),
 
 **theme**:
 
@@ -65,30 +74,37 @@ navigation-bar npm package.
 import NavigationBar from 'navigation-bar';
 
 <NavigationBar
-  animation-push
-  menu-right
-  menuClose
-  noOverlay
   fixed="top"
-  className="flex-lg-column p-0"
+  className="flex-lg-column flex-row"
   button={{
     component: MenuButton,
     className: 'd-lg-none mr-lg-5 mr-3 my-auto btn-primary',
   }}
+  offsetNav={{
+    right: true,
+    show: 'lg',
+    bgColor: 'inverse',
+    top: '70',
+  }}
   nav-top={(
-    <div>
+    <ContentMenuWrapper className="d-flex justify-content-between">
       <A href="#home"><Img alt="Responsive image" src="rs-logo-white.png" className="logo-home my-2" /></A>
       <Nav className="d-lg-flex d-none my-auto">
-        <NavItem>
-          <NavLink>home</NavLink>
-        </NavItem>
+        <MenuNavLink href="#services" text="services" />
+        <MenuNavLink href="#methodologies" text="méthodologies" />
+        <MenuNavLink href="#why-us" text="why us" />
+        <MenuNavLink href="#technologies" text="technologies" />
+        <MenuNavLink href="#contact" text="contact" />
       </Nav>
-    </div>
+    </ContentMenuWrapper>
   )}
 >
   <ListGroup>
-    <ListGroupItem>home</ListGroupItem>
-    <ListGroupItem>services</ListGroupItem>
+    <MenuOffsetLink href="#services" text="services" />
+    <MenuOffsetLink href="#methodologies" text="méthodologies" />
+    <MenuOffsetLink href="#why-us" text="why us" />
+    <MenuOffsetLink href="#technologies" text="technologies" />
+    <MenuOffsetLink href="#contact" text="contact" />
   </ListGroup>
 </NavigationBar>
 ```
