@@ -4,7 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [?NEXT?] - ????-??-??
 
-- TODO
+- Write documentation.
+- Create menu `react-styleguidist`.
+- Fix delete `userTheme` when using `makeTheme`.
+- Using `/lib` instead of `/dist` for our libs.
 
 ## [1.0.3] - 2018-05-15
 

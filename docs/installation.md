@@ -1,3 +1,3 @@
 ```bash
-$ npm install git+$CI_REPOSITORY_URL#$PACKAGE_VERSION --save
+$ npm install $PACKAGE_NAME --save --registry https://npm.kopaxgroup.com
 ```

@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 import omit from 'lodash.omit';
-import { transitionUtils } from 'bootstrap-styled-mixins';
+import { transitionUtils } from 'bootstrap-styled-mixins/lib';
 import { makeTheme } from 'bootstrap-styled';
 import { theme as themeNavigationBar } from './theme';
 

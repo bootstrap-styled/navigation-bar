@@ -10,8 +10,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 import omit from 'lodash.omit';
-import mapToCssModules from 'map-to-css-modules';
-import { makeTheme, Close } from 'bootstrap-styled';
+import mapToCssModules from 'map-to-css-modules/lib';
+import { makeTheme } from 'bootstrap-styled/lib/theme';
+import Close from 'bootstrap-styled/lib/Close';
 import { theme as themeNavigationBar } from './theme';
 
 const theme = makeTheme(themeNavigationBar);
