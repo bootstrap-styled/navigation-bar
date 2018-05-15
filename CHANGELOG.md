@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [?NEXT?] - ????-??-??
 
+- TODO
+
+## [1.0.3] - 2018-05-15
+
 - Upgrade many deps.
 - Upgrade to 9.8 rolup-umd configuration.
 
