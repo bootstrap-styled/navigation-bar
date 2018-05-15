@@ -18,7 +18,7 @@ const theme = makeTheme(themeNavigationBar);
 export const defaultProps = {
   theme,
 };
-
+// eslint-disable-next-line react/prefer-stateless-function
 class PageWrapperUnstyled extends React.Component {
   static defaultProps = defaultProps;
   static propTypes = {

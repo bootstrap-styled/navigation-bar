@@ -29,6 +29,7 @@ export const defaultProps = {
   theme,
 };
 
+// eslint-disable-next-line react/prefer-stateless-function
 class OffsetNavUnstyled extends React.Component {
   static defaultProps = defaultProps;
   static propTypes = {

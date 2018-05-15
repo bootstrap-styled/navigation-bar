@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [?NEXT?] - ????-??-??
+
+- Upgrade many deps.
+- Upgrade to 9.8 rolup-umd configuration.
+
 ## [1.0.2] - 2017-10-02
 
 - Fixed minor css mistake for `z-index`.

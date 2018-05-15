@@ -18,7 +18,7 @@ export const defaultProps = {
   active: false,
   theme,
 };
-
+// eslint-disable-next-line react/prefer-stateless-function
 class OverlayUnstyled extends React.Component {
   static defaultProps = defaultProps;
   static propTypes = {
