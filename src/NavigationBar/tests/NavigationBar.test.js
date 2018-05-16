@@ -10,7 +10,7 @@ import NavigationBar, { defaultProps } from '../NavigationBar';
 const children = (<h1>Test</h1>);
 const navTopContent = (<span>Nav Top Content Test</span>);
 
-describe('<NavigationBar />', () => {
+describe.skip('<NavigationBar />', () => {
   let theme;
   let props;
 

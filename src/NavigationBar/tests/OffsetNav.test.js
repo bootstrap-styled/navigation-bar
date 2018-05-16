@@ -8,7 +8,7 @@ import OffsetNav, { defaultProps } from '../OffsetNav';
 
 const children = (<h1>Test</h1>);
 
-describe('<OffsetNav />', () => {
+describe.skip('<OffsetNav />', () => {
   let theme;
   let props;
 

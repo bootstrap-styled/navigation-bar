@@ -10,7 +10,7 @@ import OffsetNavPush from '../OffsetNavPush';
 
 const children = (<h1>Test</h1>);
 
-describe('<OffsetNavPush />', () => {
+describe.skip('<OffsetNavPush />', () => {
   let theme;
   let props;
 

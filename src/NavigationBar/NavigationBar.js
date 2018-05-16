@@ -13,14 +13,11 @@ import omit from 'lodash.omit';
 import mapToCssModules from 'map-to-css-modules';
 import Button from 'bootstrap-styled/lib/Button';
 import Header from 'bootstrap-styled/lib/Header';
-import { makeTheme } from 'bootstrap-styled/lib/theme';
-import { ifElse } from 'bootstrap-styled-mixins/lib';
-import { theme as themeNavigationBar } from './theme';
+import ifElse from 'bootstrap-styled-mixins/lib/conditional';
+import theme from './theme';
 import OffsetNavPush from './OffsetNavPush';
 import OffsetNavSlide from './OffsetNavSlide';
 import Overlay from './Overlay';
-
-const theme = makeTheme(themeNavigationBar);
 
 export const defaultProps = {
   button: {
