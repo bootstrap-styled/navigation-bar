@@ -29,6 +29,11 @@
       ]
     },
     {
+      "name": "UI components",
+      "content": "docs/ui.md",
+      "components": "src/**/*.js"
+    },
+    {
       "name": "FAQ",
       "content": "docs/faq.md"
     },
