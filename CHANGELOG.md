@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## [?NEXT?] - ????-??-??
 
+- Add dependencies `exports-loader@^0.7.0` and update `react-dom` to `@^16.3.2` and `styled-components` to `@^3.2.6`.
 - Write documentation.
 - Create menu `react-styleguidist`.
 - Fix delete `userTheme` when using `makeTheme`.
