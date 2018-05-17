@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [?NEXT?] - ????-??-??
+
+- Add dependencies `exports-loader@^0.7.0` and update `react-dom` to `@^16.3.2` and `styled-components` to `@^3.2.6`.
+- Write documentation.
+- Create menu `react-styleguidist`.
+- Fix delete `userTheme` when using `makeTheme`.
+- Using `/lib` instead of `/dist` for our libs.
+
+## [1.0.3] - 2018-05-15
+
+- Upgrade many deps.
+- Upgrade to 9.8 rolup-umd configuration.
+
 ## [1.0.2] - 2017-10-02
 
 - Fixed minor css mistake for `z-index`.

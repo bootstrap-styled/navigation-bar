@@ -1,4 +1,4 @@
-image: kopaxgroup/node7-jdk8-sonarscanner2:latest
+image: kopaxgroup/node10-jdk8-flyway4-sonarscanner2-docker17-debian
 
 variables:
   GIT_STRATEGY: none
@@ -30,67 +30,35 @@ before_script:
   - git checkout ${CI_COMMIT_SHA}
 
   # const
+  - export PACKAGE_NAME=$(node -p "require('./package.json').name")
   - export PACKAGE_VERSION=$(node -p "require('./package.json').version")
   - export SONAR_VERSION=${PACKAGE_VERSION}-b${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME}
+  - export NODE_VERSION=$(node --version)
+  - export NPM_VERSION=$(npm --version)
 
   # logging
   - npm --version
   - node --version
+  - npx rollup-umd-scripts --version
   - echo "package version $PACKAGE_VERSION"
 
   # commit message
   - git config --global user.email "contact@kopaxgroup.com"
   - git config --global user.name "Gitlab-CI"
 
-#after_script:
-#  - rm secrets
-
-## To enable npm publish:
-# 1. Add the npm token on gitlab.
-# 2. Install package publish-ci: npm install --save-dev publish-ci
-# 3. Add script '"ci-publish": "ci-publish"' to package.json
-# 4. Un comment stage 'publish' and job 'publish' from this file
-# 5. Use README.md as external readme and extract the private part into README_INTERNAL.md
-
 stages:
   - build
   - test
   - release
-#  - publish
+  - publish
+  - deploy
 
 # Job: Build
-build_dev:
-  stage: build
-  script:
-    - npm install
-    - npm run build
-    - du -h dist/*.min.js
-    # release dist and lib
-    - git add dist/ lib/
-    - git commit -m "new release dist and lib" || echo "no change detected"
-    - git push origin HEAD:${CI_COMMIT_REF_NAME}
-  cache:
-    key: ${CI_BUILD_REF_NAME}
-    paths:
-      - node_modules/
-  artifacts:
-    when: on_success
-    name: "${CI_PROJECT_PATH}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME}"
-    untracked: true
-    expire_in: 3 mins
-    paths:
-      - .
-  only:
-    - dev
-  tags:
-    - docker
-
 build:
   stage: build
   script:
     - npm install
     - npm run build
-    - du -h dist/*.min.js
   cache:
     key: ${CI_BUILD_REF_NAME}
     paths:
@@ -102,25 +70,13 @@ build:
     expire_in: 1 hour
     paths:
       - .
-  except:
+  only:
     - dev
+    - master
   tags:
     - docker
 
 # Job: Test
-test_dev:
-  stage: test
-  coverage: '/All files[^|]*\|\s*[\d.]*\s*\|\s*[\d.]*\s*\|\s*[\d.]*\s*\|\s*([\d.]*)\s*\|\s*/'
-  script:
-    - npm run test
-    - sonar-scanner -Dsonar.host.url=${SONAR_URL} -Dsonar.login=${SONAR_LOGIN} -Dsonar.branch=${CI_COMMIT_REF_NAME} -Dsonar.projectVersion=${SONAR_VERSION}
-  dependencies:
-    - build_dev
-  only:
-    - dev
-  tags:
-    - docker
-
 test:
   stage: test
   coverage: '/All files[^|]*\|\s*[\d.]*\s*\|\s*[\d.]*\s*\|\s*[\d.]*\s*\|\s*([\d.]*)\s*\|\s*/'
@@ -138,15 +94,35 @@ test:
 release:
   stage: release
   script:
-    # create branch for release version
+    # update release date
     - git checkout -b ${PACKAGE_VERSION}
+    - sed -i 's/????-??-??/'`date +%Y-%m-%d`'/g' CHANGELOG.md
+    - sed -i "s/?NEXT?/v$PACKAGE_VERSION/g" CHANGELOG.md
+    - git add CHANGELOG.md
+    - git commit -m "Set release date in CHANGELOG.md"
     - git push origin ${PACKAGE_VERSION}
     # tag version
     - git tag -a -m "new version ${PACKAGE_VERSION}" ${PACKAGE_VERSION}
     - git push --tags
     # prepare next dev version
     - git checkout dev
-    - npm version patch -m "preparing next version %s"
+    - npm run build:clean
+    - git reset HEAD --hard
+    - git pull origin dev
+    # again update release date for dev branch
+    - sed -i 's/????-??-??/'`date +%Y-%m-%d`'/g' CHANGELOG.md
+    - sed -i "s/?NEXT?/v$PACKAGE_VERSION/g" CHANGELOG.md
+    - git add CHANGELOG.md
+    - git commit -m "Set release date in CHANGELOG.md"
+    # add next release
+    - VERSION=$(npm version patch -m "preparing next version %s")
+    - PATTERN="All notable changes to this project will be documented in this file"
+    - sed -i "/$PATTERN/a- TODO":" write changelog before preparing next tag" CHANGELOG.md
+    - sed -i "/$PATTERN/G" CHANGELOG.md
+    - sed -i "/$PATTERN/a## [?NEXT?] - ????-??-??" CHANGELOG.md
+    - sed -i "/$PATTERN/G" CHANGELOG.md
+    - git add CHANGELOG.md
+    - git commit -m "Add todo next version $VERSION in CHANGELOG.md"
     - git push origin HEAD:dev
   dependencies:
     - build
@@ -155,15 +131,43 @@ release:
   tags:
     - docker
 
-## Job: Publish
-#publish:
-#  stage: publish
-#  script:
-#    - git checkout -b ${PACKAGE_VERSION}
-#    - npm run ci-publish || true
-#  dependencies:
-#    - build
-#  only:
-#    - master
-#  tags:
-#    - docker
+# Job: Publish
+publish:
+  stage: publish
+  script:
+    - git fetch --all
+    - git checkout ${PACKAGE_VERSION}
+    - git reset HEAD --hard
+    - npm run ci-publish || echo true
+  dependencies:
+    - build
+  only:
+    - master
+  tags:
+    - docker
+
+# Pages
+pages:
+  stage: deploy
+  script:
+    # capability of redeploying an old documentation without triggering all the pipeline
+    - npm install
+    # Replace variables
+    - npx rollup-umd-scripts doc variable PACKAGE_NAME=${PACKAGE_NAME}
+    - npx rollup-umd-scripts doc variable PACKAGE_PEERS="$(npx rollup-umd-scripts peer npm-install-cmd)"
+    - npx rollup-umd-scripts doc variable PACKAGE_VERSION=${PACKAGE_VERSION}
+    - npx rollup-umd-scripts doc variable NODE_VERSION=${NODE_VERSION}
+    - npx rollup-umd-scripts doc variable NPM_VERSION=${NPM_VERSION}
+    - npx rollup-umd-scripts doc variable CI_REPOSITORY_URL=${REPOSITORY_SSH_URL}
+    - npx rollup-umd-scripts doc variable CI_PROJECT_URL=${CI_PROJECT_URL}
+    - npx rollup-umd-scripts doc variable CI_PROJECT_NAMESPACE=${CI_PROJECT_NAMESPACE}
+    - npx rollup-umd-scripts doc variable CI_PROJECT_NAME=${CI_PROJECT_NAME}
+    - npx rollup-umd-scripts doc variable IMG_SHIELD_PUBLISHING=$(npx rollup-umd-scripts publish status --badge)
+    - npm run styleguide:build
+  artifacts:
+    paths:
+    - public
+  only:
+    - master
+  tags:
+    - docker

@@ -10,11 +10,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 import omit from 'lodash.omit';
-import mapToCssModules from 'map-to-css-modules';
-import { makeTheme, Close } from 'bootstrap-styled';
-import { theme as themeNavigationBar } from './theme';
-
-const theme = makeTheme(themeNavigationBar);
+import mapToCssModules from 'map-to-css-modules/lib';
+import Close from 'bootstrap-styled/lib/Close';
+import theme from './theme';
 
 export const defaultProps = {
   active: false,
@@ -29,6 +27,7 @@ export const defaultProps = {
   theme,
 };
 
+// eslint-disable-next-line react/prefer-stateless-function
 class OffsetNavUnstyled extends React.Component {
   static defaultProps = defaultProps;
   static propTypes = {
