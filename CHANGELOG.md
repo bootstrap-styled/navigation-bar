@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [?NEXT?] - ????-??-??
+
+- TODO: write changelog before preparing next tag
+
 ## [v1.1.3] - 2018-05-17
 
 - Add dependencies `exports-loader@^0.7.0` and update `react-dom` to `@^16.3.2` and `styled-components` to `@^3.2.6`.
