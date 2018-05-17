@@ -4,7 +4,6 @@ const { config } = require('rollup-documentation/lib/styleguide.config');
 module.exports = {
   ...config,
   require: [path.resolve(__dirname, 'styleguide/setup.js')],
-  skipComponentsWithoutExample: true,
   showCode: false,
   showUsage: true,
 };

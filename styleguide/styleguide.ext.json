@@ -15,23 +15,22 @@
       "content": "docs/prerequisite.md"
     },
     {
-      "name": "Getting started",
-      "content": "docs/getting-started.md",
-      "sections": [
-        {
-          "name": "Installation",
-          "content": "docs/installation.md"
-        },
-        {
-          "name": "Configuration",
-          "content": "docs/configuration.md"
-        }
-      ]
+      "name": "Installation",
+      "content": "docs/installation.md"
     },
     {
-      "name": "UI components",
+      "name": "Navigation list",
       "content": "docs/ui.md",
-      "components": "src/**/*.js"
+      "sections": [
+        {
+          "name": "NavigationBar",
+          "components": "src/NavigationBar/{NavigationBar,PageWrapper}.js"
+        },
+        {
+          "name": "NavigationStyleguide",
+          "components": "src/NavigationStyleguide/NavigationStyleguide.js"
+        }
+      ]
     },
     {
       "name": "FAQ",

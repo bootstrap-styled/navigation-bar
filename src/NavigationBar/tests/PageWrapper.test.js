@@ -9,7 +9,7 @@ import PageWrapper, { defaultProps } from '../PageWrapper';
 
 const children = (<h1>Test</h1>);
 
-describe.skip('<PageWrapper />', () => {
+describe('<PageWrapper />', () => {
   let theme;
   let props;
 

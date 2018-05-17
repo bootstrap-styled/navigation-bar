@@ -4,13 +4,13 @@
 
 import { mount } from 'enzyme';
 import React from 'react';
-import { BootstrapProvider, Button } from 'bootstrap-styled';
+import { BootstrapProvider, Button } from 'bootstrap-styled/lib';
 import NavigationBar, { defaultProps } from '../NavigationBar';
 
 const children = (<h1>Test</h1>);
 const navTopContent = (<span>Nav Top Content Test</span>);
 
-describe.skip('<NavigationBar />', () => {
+describe('<NavigationBar />', () => {
   let theme;
   let props;
 

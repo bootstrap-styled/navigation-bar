@@ -42,6 +42,9 @@ class PageWrapperUnstyled extends React.Component {
   }
 }
 
+/**
+ * TODO: write props documentation
+ */
 const PageWrapper = styled(PageWrapperUnstyled)`
   ${(props) => `
     position: relative;
@@ -64,5 +67,6 @@ const PageWrapper = styled(PageWrapperUnstyled)`
 
 PageWrapper.defaultProps = defaultProps;
 
+/** @component */
 export default PageWrapper;
 

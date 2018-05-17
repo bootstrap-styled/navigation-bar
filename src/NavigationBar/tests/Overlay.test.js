@@ -7,7 +7,7 @@ import React from 'react';
 import { BootstrapProvider } from 'bootstrap-styled/lib';
 import Overlay, { defaultProps } from '../Overlay';
 
-describe.skip('<Overlay />', () => {
+describe('<Overlay />', () => {
   let theme;
   let props;
 

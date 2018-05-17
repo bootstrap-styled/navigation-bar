@@ -1,7 +1,7 @@
 {
   "name": "navigation-bar",
   "version": "1.0.3",
-  "description": "Library navigation-bar description",
+  "description": "is a set of navigation for browser made with and for bootsrap-styled",
   "main": "lib/index.js",
   "jsnext:main": "dist/navigation-bar.es.js",
   "module": "dist/navigation-bar.es.js",
@@ -28,7 +28,8 @@
     "prepublish": "npm run build",
     "lint-staged": "lint-staged",
     "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
+    "styleguide:build": "styleguidist build",
+    "ci-publish": "ci-publish"
   },
   "repository": {
     "type": "git",
@@ -172,7 +173,8 @@
     "rollup-watch": "^4.3.1",
     "sinon": "^2.3.2",
     "styled-components": "^3.2.6",
-    "toctoc": "^0.2.3"
+    "toctoc": "^0.2.3",
+    "ci-publish": "^1.3.1"
   },
   "jest": {
     "roots": [
@@ -219,13 +221,13 @@
     "registry": "https://npm.kopaxgroup.com"
   },
   "dependencies": {
-    "bootstrap-styled-utils": "^1.0.2",
-    "bootstrap-styled-mixins": "^1.0.4",
-    "lodash.omit": "^4.5.0",
-    "prop-types": "^15.6.1",
     "bootstrap-styled": "^1.6.5",
+    "bootstrap-styled-mixins": "^1.0.4",
+    "bootstrap-styled-utils": "^1.0.2",
     "classnames": "^2.2.5",
-    "map-to-css-modules": "^1.0.6"
+    "lodash.omit": "^4.5.0",
+    "map-to-css-modules": "^1.0.6",
+    "prop-types": "^15.6.1"
   },
   "peerDependencies": {
     "react": "^16.3.2",

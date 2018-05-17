@@ -10,7 +10,7 @@ import OffsetNavSlide from '../OffsetNavSlide';
 
 const children = (<h1>Test</h1>);
 
-describe.skip('<OffsetNavSlide />', () => {
+describe('<OffsetNavSlide />', () => {
   let theme;
   let props;
 

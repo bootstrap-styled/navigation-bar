@@ -50,42 +50,15 @@ stages:
   - build
   - test
   - release
-#  - publish
+  - publish
   - deploy
 
 # Job: Build
-build_dev:
-  stage: build
-  script:
-    - npm install
-    - npm run build
-    - du -h dist/*.min.js
-    # release dist and lib
-    - git add dist/ lib/
-    - git commit -m "new release dist and lib" || echo "no change detected"
-    - git push origin HEAD:${CI_COMMIT_REF_NAME}
-  cache:
-    key: ${CI_BUILD_REF_NAME}
-    paths:
-      - node_modules/
-  artifacts:
-    when: on_success
-    name: "${CI_PROJECT_PATH}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME}"
-    untracked: true
-    expire_in: 3 mins
-    paths:
-      - .
-  only:
-    - dev
-  tags:
-    - docker
-
 build:
   stage: build
   script:
     - npm install
     - npm run build
-    - du -h dist/*.min.js
   cache:
     key: ${CI_BUILD_REF_NAME}
     paths:
@@ -98,24 +71,12 @@ build:
     paths:
       - .
   only:
+    - dev
     - master
   tags:
     - docker
 
 # Job: Test
-test_dev:
-  stage: test
-  coverage: '/All files[^|]*\|\s*[\d.]*\s*\|\s*[\d.]*\s*\|\s*[\d.]*\s*\|\s*([\d.]*)\s*\|\s*/'
-  script:
-    - npm run test
-    - sonar-scanner -Dsonar.host.url=${SONAR_URL} -Dsonar.login=${SONAR_LOGIN} -Dsonar.branch=${CI_COMMIT_REF_NAME} -Dsonar.projectVersion=${SONAR_VERSION}
-  dependencies:
-    - build_dev
-  only:
-    - dev
-  tags:
-    - docker
-
 test:
   stage: test
   coverage: '/All files[^|]*\|\s*[\d.]*\s*\|\s*[\d.]*\s*\|\s*[\d.]*\s*\|\s*([\d.]*)\s*\|\s*/'
@@ -170,7 +131,20 @@ release:
   tags:
     - docker
 
-## Job: !PUBLISH
+# Job: Publish
+publish:
+  stage: publish
+  script:
+    - git fetch --all
+    - git checkout ${PACKAGE_VERSION}
+    - git reset HEAD --hard
+    - npm run ci-publish || echo true
+  dependencies:
+    - build
+  only:
+    - master
+  tags:
+    - docker
 
 # Pages
 pages:

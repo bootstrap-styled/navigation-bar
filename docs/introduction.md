@@ -9,7 +9,7 @@
 
 [![image](https://user-images.githubusercontent.com/1866564/38087911-2f85c6e2-3384-11e8-9383-676504307e3f.png)]($CI_PROJECT_URL)
 
-$PACKAGE_NAME package is TODO.
+$PACKAGE_NAME is a set of navigation for browser made with and for bootsrap-styled.
 
 ```html
 <strong>Contribute to improve our documentation, it support HTML, React and Markdown!</strong>
