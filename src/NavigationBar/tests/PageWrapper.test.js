@@ -4,7 +4,7 @@
 
 import { mount } from 'enzyme';
 import React from 'react';
-import { BootstrapProvider } from 'bootstrap-styled';
+import { BootstrapProvider } from 'bootstrap-styled/lib';
 import PageWrapper, { defaultProps } from '../PageWrapper';
 
 const children = (<h1>Test</h1>);

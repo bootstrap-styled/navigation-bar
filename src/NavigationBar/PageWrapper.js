@@ -10,15 +10,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import omit from 'lodash.omit';
-import { makeTheme } from 'bootstrap-styled';
-import { theme as themeNavigationBar } from './theme';
-
-const theme = makeTheme(themeNavigationBar);
+import theme from './theme';
 
 export const defaultProps = {
   theme,
 };
-
+// eslint-disable-next-line react/prefer-stateless-function
 class PageWrapperUnstyled extends React.Component {
   static defaultProps = defaultProps;
   static propTypes = {
@@ -45,6 +42,9 @@ class PageWrapperUnstyled extends React.Component {
   }
 }
 
+/**
+ * TODO: write props documentation
+ */
 const PageWrapper = styled(PageWrapperUnstyled)`
   ${(props) => `
     position: relative;
@@ -67,5 +67,6 @@ const PageWrapper = styled(PageWrapperUnstyled)`
 
 PageWrapper.defaultProps = defaultProps;
 
+/** @component */
 export default PageWrapper;
 

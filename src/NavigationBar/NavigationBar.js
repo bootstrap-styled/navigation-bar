@@ -11,14 +11,13 @@ import styled from 'styled-components';
 import cn from 'classnames';
 import omit from 'lodash.omit';
 import mapToCssModules from 'map-to-css-modules';
-import { Button, Header, makeTheme } from 'bootstrap-styled';
-import { ifElse } from 'bootstrap-styled-mixins';
-import { theme as themeNavigationBar } from './theme';
+import Button from 'bootstrap-styled/lib/Button';
+import Header from 'bootstrap-styled/lib/Header';
+import { ifElse } from 'bootstrap-styled-mixins/lib/conditional';
+import theme from './theme';
 import OffsetNavPush from './OffsetNavPush';
 import OffsetNavSlide from './OffsetNavSlide';
 import Overlay from './Overlay';
-
-const theme = makeTheme(themeNavigationBar);
 
 export const defaultProps = {
   button: {
@@ -200,6 +199,10 @@ class NavigationBarUnstyled extends React.Component {
   }
 }
 
+
+/**
+ * TODO: write props documentation
+ */
 const NavigationBar = styled(NavigationBarUnstyled)`
   ${(props) => `
     z-index:  ${ifElse(props.offsetNav.top, `calc(${props.theme.navigationBar['$zindex-overlay']} + 15)`, `calc(${props.theme.navigationBar['$zindex-overlay']} - 10)`)};
@@ -211,4 +214,6 @@ const NavigationBar = styled(NavigationBarUnstyled)`
 `;
 
 NavigationBar.defaultProps = defaultProps;
+
+/** @component */
 export default NavigationBar;
