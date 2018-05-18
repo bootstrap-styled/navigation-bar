@@ -6,9 +6,13 @@ All notable changes to this project will be documented in this file.
 
 - TODO: write changelog before preparing next tag
 
+## [v1.1.6] - 2018-05-18
+
+- Fix `makeTheme`.
+
 ## [v1.1.5] - 2018-05-18
 
-- TODO: write changelog before preparing next tag
+- Fix `makeTheme`.
 
 ## [v1.1.4] - 2018-05-18
 
