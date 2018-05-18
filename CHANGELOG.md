@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## [?NEXT?] - ????-??-??
 
-- TODO: write changelog before preparing next tag
+- Fix `makeTheme`.
 
 ## [v1.1.3] - 2018-05-17
 

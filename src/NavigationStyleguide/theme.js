@@ -1,6 +1,6 @@
 export function makeTheme(userTheme = { navigationStyleguide: {} }) {
   const newTheme = { navigationStyleguide: {} };
-  const v = newTheme.navigationStyleguide;
+  const v = newTheme.navigationStyleguide || {};
   const u = userTheme.navigationStyleguide;
 
   // navigationStyleguide
