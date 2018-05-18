@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [?NEXT?] - ????-??-??
+## [v1.1.5] - 2018-05-18
 
 - TODO: write changelog before preparing next tag
 
