@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [?NEXT?] - ????-??-??
+
+- Fix `makeTheme` styleguide.
+
 ## [v1.1.5] - 2018-05-18
 
 - Fix `makeTheme`.

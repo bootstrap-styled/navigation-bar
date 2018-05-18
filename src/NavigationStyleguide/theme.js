@@ -1,7 +1,7 @@
 export function makeTheme(userTheme = { navigationStyleguide: {} }) {
   const newTheme = { navigationStyleguide: {} };
-  const v = newTheme.navigationStyleguide || {};
-  const u = userTheme.navigationStyleguide;
+  const v = newTheme.navigationStyleguide;
+  const u = userTheme.navigationStyleguide || {};
 
   // navigationStyleguide
   v['$nav-styleguide-color'] = u['$nav-styleguide-color'] || '#fff';
