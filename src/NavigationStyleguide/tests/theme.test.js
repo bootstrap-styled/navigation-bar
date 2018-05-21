@@ -1,14 +1,12 @@
-import theme, { makeTheme } from '../theme';
+import { makeTheme } from '../theme';
 
 describe('makeTheme', () => {
   it('should use default values', () => {
-    expect(makeTheme()).toEqual(theme);
-  });
-  it('should use custom values', () => {
-    const customTheme = {
+    const defaultTheme = {
       navigationStyleguide: {
         '$nav-styleguide-height': '100%',
         '$nav-styleguide-color': '#fff',
+        '$nav-styleguide-hover-color': '#898989',
         '$nav-styleguide-bg-color': '#ce4953',
         '$nav-styleguide-border': '#e8e8e8 solid',
         '$nav-styleguide-top': 0,
@@ -37,6 +35,12 @@ describe('makeTheme', () => {
         },
       },
     };
-    expect(makeTheme(customTheme)).toEqual(customTheme);
+    expect(makeTheme(defaultTheme)).toEqual(defaultTheme);
+  });
+  it('should create scope', () => {
+    const customTheme = {
+      '$nav-styleguide-height': '100%',
+    };
+    expect(typeof makeTheme(customTheme).navigationStyleguide).toEqual('object');
   });
 });

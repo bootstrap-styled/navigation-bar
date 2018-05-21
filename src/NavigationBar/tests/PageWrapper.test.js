@@ -22,7 +22,7 @@ describe('<PageWrapper />', () => {
 
   it('should render an Overlay', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <PageWrapper {...props} />
       </BootstrapProvider>
     );
