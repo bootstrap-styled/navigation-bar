@@ -23,7 +23,7 @@ describe('<OffsetNavPush />', () => {
 
   it('should render an OffsetNavPush', () => {
     const renderedComponent = shallow(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...props}>
           <OffsetNavPush>
             {children}
@@ -35,7 +35,7 @@ describe('<OffsetNavPush />', () => {
   });
   it('should render an OffsetNavPush with show xs', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { offsetNav: { show: 'xs', push: true } })} >
           {children}
         </NavigationBar>

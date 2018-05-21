@@ -19,7 +19,7 @@ describe('<NavigationStyleguide />', () => {
 
   it('should render an NavigationBar', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationStyleguide {...props} />
       </BootstrapProvider>
     );
@@ -27,7 +27,7 @@ describe('<NavigationStyleguide />', () => {
   });
   it('should render a NavigationStyleguide with children', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationStyleguide {...props}>
           {children}
         </NavigationStyleguide>
