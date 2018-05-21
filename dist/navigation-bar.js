@@ -4295,6 +4295,7 @@
 	    navigationStyleguide: {
 	      '$nav-styleguide-height': '100%',
 	      '$nav-styleguide-color': '#000',
+	      '$nav-styleguide-hover-color': '#898989',
 	      '$nav-styleguide-bg-color': '#ce4953',
 	      '$nav-styleguide-border': '#e8e8e8 solid',
 	      '$nav-styleguide-top': 0,
@@ -4330,6 +4331,7 @@
 	    navigationStyleguide: propTypes.shape({
 	      '$nav-styleguide-height': propTypes.string,
 	      '$nav-styleguide-color': propTypes.string,
+	      '$nav-styleguide-hover-color': propTypes.string,
 	      '$nav-styleguide-bg-color': propTypes.string,
 	      '$nav-styleguide-border': propTypes.string,
 	      '$nav-styleguide-top': propTypes.number,
@@ -4360,7 +4362,7 @@
 	var NavigationStyleguide = styled(NavigationStyleguideUnstyled).withConfig({
 	  displayName: 'NavigationStyleguide'
 	})(['  ', ''], function (props) {
-	  return '\n    &.navigation {\n      height: ' + props.theme.navigationStyleguide['$nav-styleguide-height'] + ';\n      color: ' + props.theme.navigationStyleguide['$nav-styleguide-color'] + ';\n      background-color: ' + props.theme.navigationStyleguide['$nav-styleguide-bg-color'] + ';\n      border: ' + props.theme.navigationStyleguide['$nav-styleguide-border'] + ';\n      border-width: ' + props.theme.navigationStyleguide['$nav-styleguide-border-width'] + ';\n      top: ' + props.theme.navigationStyleguide['$nav-styleguide-top'] + ';\n      left: ' + props.theme.navigationStyleguide['$nav-styleguide-left'] + ';\n      bottom: ' + props.theme.navigationStyleguide['$nav-styleguide-bottom'] + ';\n      overflow: ' + props.theme.navigationStyleguide['$nav-styleguide-overflow'] + ';\n      width: ' + props.theme.navigationStyleguide['$nav-styleguide-width'].md + ' !important;\n      borderWidth: ' + props.theme.navigationStyleguide['$nav-styleguide-border-width'].md + ';\n      position: ' + props.theme.navigationStyleguide['$nav-styleguide-position'].md + ';\n      text-align: ' + props.theme.navigationStyleguide['$nav-styleguide-text-align'].md + ';\n    }\n    ' + bp.down('sm', props.theme.navigationStyleguide['$grid-breakpoints'], '\n      &.navigation {\n        position: ' + props.theme.navigationStyleguide['$nav-styleguide-position'].sm + ';\n        width: ' + props.theme.navigationStyleguide['$nav-styleguide-width'].sm + ' !important;\n        border-width: ' + props.theme.navigationStyleguide['$nav-styleguide-border-width'].sm + ';\n        padding-bottom: ' + props.theme.navigationStyleguide['$nav-styleguide-padding-bottom'].sm + ';\n        text-align: ' + props.theme.navigationStyleguide['$nav-styleguide-text-align'].sm + ';\n      }\n      &.navigation ul {\n        padding-left: 0;\n      }\n    ') + '\n    &.navigation ul {\n      list-style-type: ' + props.theme.navigationStyleguide['$nav-styleguide-list-style-type'] + ';\n      padding-left: 15px;\n    }\n ';
+	  return '\n    &.navigation {\n      height: ' + props.theme.navigationStyleguide['$nav-styleguide-height'] + ';\n      color: ' + props.theme.navigationStyleguide['$nav-styleguide-color'] + ';\n      background-color: ' + props.theme.navigationStyleguide['$nav-styleguide-bg-color'] + ';\n      border: ' + props.theme.navigationStyleguide['$nav-styleguide-border'] + ';\n      border-width: ' + props.theme.navigationStyleguide['$nav-styleguide-border-width'] + ';\n      top: ' + props.theme.navigationStyleguide['$nav-styleguide-top'] + ';\n      left: ' + props.theme.navigationStyleguide['$nav-styleguide-left'] + ';\n      bottom: ' + props.theme.navigationStyleguide['$nav-styleguide-bottom'] + ';\n      overflow: ' + props.theme.navigationStyleguide['$nav-styleguide-overflow'] + ';\n      width: ' + props.theme.navigationStyleguide['$nav-styleguide-width'].md + ' !important;\n      borderWidth: ' + props.theme.navigationStyleguide['$nav-styleguide-border-width'].md + ';\n      position: ' + props.theme.navigationStyleguide['$nav-styleguide-position'].md + ';\n      text-align: ' + props.theme.navigationStyleguide['$nav-styleguide-text-align'].md + ';\n    }\n    ' + bp.down('sm', props.theme.navigationStyleguide['$grid-breakpoints'], '\n      &.navigation {\n        position: ' + props.theme.navigationStyleguide['$nav-styleguide-position'].sm + ';\n        width: ' + props.theme.navigationStyleguide['$nav-styleguide-width'].sm + ' !important;\n        border-width: ' + props.theme.navigationStyleguide['$nav-styleguide-border-width'].sm + ';\n        padding-bottom: ' + props.theme.navigationStyleguide['$nav-styleguide-padding-bottom'].sm + ';\n        text-align: ' + props.theme.navigationStyleguide['$nav-styleguide-text-align'].sm + ';\n      }\n      &.navigation ul {\n        padding-left: 0;\n      }\n    ') + '\n    &.navigation ul {\n      list-style-type: ' + props.theme.navigationStyleguide['$nav-styleguide-list-style-type'] + ';\n      padding-left: 15px;\n      &a {\n        ' + hover_3(props.theme['$enable-hover-media-query'], '\n          color: ' + props.theme['$nav-styleguide-hover-color'] + ';\n        ') + '\n      }\n    }\n ';
 	});
 	NavigationStyleguide.defaultProps = defaultProps$4;
 	NavigationStyleguide.propTypes = propTypes$1;
@@ -4372,6 +4374,7 @@
 	  var u = userTheme.navigationStyleguide || {};
 	  v['$nav-styleguide-height'] = u['$nav-styleguide-height'] || '100%';
 	  v['$nav-styleguide-color'] = u['$nav-styleguide-color'] || '#fff';
+	  v['$nav-styleguide-hover-color'] = u['$nav-styleguide-hover-color'] || '#898989';
 	  v['$nav-styleguide-bg-color'] = u['$nav-styleguide-bg-color'] || '#F5F5F5';
 	  v['$nav-styleguide-border'] = u['$nav-styleguide-border'] || '#e8e8e8 solid';
 	  v['$nav-styleguide-top'] = u['$nav-styleguide-top'] || 0;
