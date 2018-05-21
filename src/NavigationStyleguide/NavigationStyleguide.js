@@ -17,9 +17,9 @@ export const defaultProps = {
   theme: {
     navigationStyleguide: {
       '$nav-styleguide-height': '100%',
-      '$nav-styleguide-color': '#000',
+      '$nav-styleguide-color': '#444444',
       '$nav-styleguide-hover-color': '#898989',
-      '$nav-styleguide-bg-color': '#ce4953',
+      '$nav-styleguide-bg-color': '#F5F5F5',
       '$nav-styleguide-border': '#e8e8e8 solid',
       '$nav-styleguide-top': 0,
       '$nav-styleguide-left': 0,
@@ -106,7 +106,6 @@ const NavigationStyleguide = styled(NavigationStyleguideUnstyled)`
   ${(props) => `
     &.navigation {
       height: ${props.theme.navigationStyleguide['$nav-styleguide-height']};
-      color: ${props.theme.navigationStyleguide['$nav-styleguide-color']};
       background-color: ${props.theme.navigationStyleguide['$nav-styleguide-bg-color']};
       border: ${props.theme.navigationStyleguide['$nav-styleguide-border']};
       border-width: ${props.theme.navigationStyleguide['$nav-styleguide-border-width']};
@@ -135,11 +134,13 @@ const NavigationStyleguide = styled(NavigationStyleguideUnstyled)`
     &.navigation ul {
       list-style-type: ${props.theme.navigationStyleguide['$nav-styleguide-list-style-type']};
       padding-left: 15px;
-      &a {
-        ${hoverFocus(props.theme['$enable-hover-media-query'], `
-          color: ${props.theme['$nav-styleguide-hover-color']};
-        `)}
-      }
+    }
+    & a {
+      color: ${props.theme.navigationStyleguide['$nav-styleguide-color']};
+      ${hoverFocus(props.theme['$enable-hover-media-query'], `
+        color: ${props.theme.navigationStyleguide['$nav-styleguide-hover-color']};
+        text-decoration: none;
+      `)}
     }
  `}
 `;
