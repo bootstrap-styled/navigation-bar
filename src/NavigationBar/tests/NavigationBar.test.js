@@ -128,7 +128,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar with a fixed bottom position', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { fixed: 'bottom' })} />
       </BootstrapProvider>
     );
