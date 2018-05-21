@@ -15,23 +15,34 @@ import bp from 'bootstrap-styled-mixins/lib/breakpoints';
 export const defaultProps = {
   theme: {
     navigationStyleguide: {
+      '$nav-styleguide-height': '100%',
       '$nav-styleguide-color': '#fff',
       '$nav-styleguide-bg-color': '#ce4953',
-      '$nav-styleguide-border': 'none',
+      '$nav-styleguide-border': '#e8e8e8 solid',
       '$nav-styleguide-top': 0,
       '$nav-styleguide-left': 0,
       '$nav-styleguide-bottom': 0,
       '$nav-styleguide-overflow': 'auto',
       '$nav-styleguide-list-style-type': 'none',
-      '$nav-styleguide-padding-bottom-sm': 4,
-      '$nav-styleguide-position-sm': 'static',
-      '$nav-styleguide-width-sm': '100%',
-      '$nav-styleguide-border-width-sm': '1px 0px 0px 0px',
-      '$nav-styleguide-text-align-sm': 'center',
-      '$nav-styleguide-position-md': 'fixed',
-      '$nav-styleguide-width-md': '150px',
-      '$nav-styleguide-text-align-md': 'left',
-      '$nav-styleguide-border-width-md': '0px 1px 0px 0px',
+      '$nav-styleguide-padding-bottom': {
+        sm: 4,
+      },
+      '$nav-styleguide-position': {
+        sm: 'static',
+        md: 'fixed',
+      },
+      '$nav-styleguide-width': {
+        sm: '100%',
+        md: '150px',
+      },
+      '$nav-styleguide-border-width': {
+        sm: '1px 0px 0px 0px',
+        md: '0px 1px 0px 0px',
+      },
+      '$nav-styleguide-text-align': {
+        sm: 'center',
+        md: 'left',
+      },
     },
   },
 };
@@ -44,6 +55,7 @@ export const propTypes = {
   /** Theme variables. Can be: */
   theme: PropTypes.shape({
     navigationStyleguide: PropTypes.shape({
+      '$nav-styleguide-height': PropTypes.string,
       '$nav-styleguide-color': PropTypes.string,
       '$nav-styleguide-bg-color': PropTypes.string,
       '$nav-styleguide-border': PropTypes.string,
@@ -52,15 +64,11 @@ export const propTypes = {
       '$nav-styleguide-bottom': PropTypes.number,
       '$nav-styleguide-overflow': PropTypes.string,
       '$nav-styleguide-list-style-type': PropTypes.string,
-      '$nav-styleguide-padding-bottom-sm': PropTypes.number,
-      '$nav-styleguide-position-sm': PropTypes.string,
-      '$nav-styleguide-width-sm': PropTypes.string,
-      '$nav-styleguide-border-width-sm': PropTypes.string,
-      '$nav-styleguide-text-align-sm': PropTypes.string,
-      '$nav-styleguide-position-md': PropTypes.string,
-      '$nav-styleguide-width-md': PropTypes.string,
-      '$nav-styleguide-text-align-md': PropTypes.string,
-      '$nav-styleguide-border-width-md': PropTypes.string,
+      '$nav-styleguide-padding-bottom': PropTypes.object,
+      '$nav-styleguide-position': PropTypes.object,
+      '$nav-styleguide-width': PropTypes.object,
+      '$nav-styleguide-border-width': PropTypes.object,
+      '$nav-styleguide-text-align': PropTypes.object,
     }),
   }),
   /**
@@ -98,23 +106,24 @@ const NavigationStyleguide = styled(NavigationStyleguideUnstyled)`
       color: ${props.theme.navigationStyleguide['$nav-styleguide-color']};
       background-color: ${props.theme.navigationStyleguide['$nav-styleguide-bg-color']};
       border: ${props.theme.navigationStyleguide['$nav-styleguide-border']};
+      border-width: ${props.theme.navigationStyleguide['$nav-styleguide-border-width']};
       top: ${props.theme.navigationStyleguide['$nav-styleguide-top']};
       left: ${props.theme.navigationStyleguide['$nav-styleguide-left']};
       bottom: ${props.theme.navigationStyleguide['$nav-styleguide-bottom']};
       overflow: ${props.theme.navigationStyleguide['$nav-styleguide-overflow']};
-      width: ${props.theme.navigationStyleguide['$nav-styleguide-width-md']} !important;
-      borderWidth: ${props.theme.navigationStyleguide['$nav-styleguide-border-width-md']};
-      position: ${props.theme.navigationStyleguide['$nav-styleguide-position-md']};
-      text-align: ${props.theme.navigationStyleguide['$nav-styleguide-text-align-md']};
+      width: ${props.theme.navigationStyleguide['$nav-styleguide-width'].md} !important;
+      borderWidth: ${props.theme.navigationStyleguide['$nav-styleguide-border-width'].md};
+      position: ${props.theme.navigationStyleguide['$nav-styleguide-position'].md};
+      text-align: ${props.theme.navigationStyleguide['$nav-styleguide-text-align'].md};
     }
     ${bp.down('sm', props.theme.navigationStyleguide['$grid-breakpoints'],
     `
       &.navigation {
-        position: ${props.theme.navigationStyleguide['$nav-styleguide-position-sm']};
-        width: ${props.theme.navigationStyleguide['$nav-styleguide-width-sm']} !important;
-        border-width: ${props.theme.navigationStyleguide['$nav-styleguide-border-width-sm']};
-        padding-bottom: ${props.theme.navigationStyleguide['$nav-styleguide-padding-bottom-sm']};
-        text-align: ${props.theme.navigationStyleguide['$nav-styleguide-text-align-sm']};
+        position: ${props.theme.navigationStyleguide['$nav-styleguide-position'].sm};
+        width: ${props.theme.navigationStyleguide['$nav-styleguide-width'].sm} !important;
+        border-width: ${props.theme.navigationStyleguide['$nav-styleguide-border-width'].sm};
+        padding-bottom: ${props.theme.navigationStyleguide['$nav-styleguide-padding-bottom'].sm};
+        text-align: ${props.theme.navigationStyleguide['$nav-styleguide-text-align'].sm};
       }
       &.navigation ul {
         padding-left: 0;
