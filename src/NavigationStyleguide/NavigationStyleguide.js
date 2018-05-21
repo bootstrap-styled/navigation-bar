@@ -16,7 +16,7 @@ export const defaultProps = {
   theme: {
     navigationStyleguide: {
       '$nav-styleguide-height': '100%',
-      '$nav-styleguide-color': '#fff',
+      '$nav-styleguide-color': '#000',
       '$nav-styleguide-bg-color': '#ce4953',
       '$nav-styleguide-border': '#e8e8e8 solid',
       '$nav-styleguide-top': 0,
@@ -102,7 +102,7 @@ NavigationStyleguideUnstyled.propTypes = propTypes;
 const NavigationStyleguide = styled(NavigationStyleguideUnstyled)` 
   ${(props) => `
     &.navigation {
-      height: 100%;
+      height: ${props.theme.navigationStyleguide['$nav-styleguide-height']};
       color: ${props.theme.navigationStyleguide['$nav-styleguide-color']};
       background-color: ${props.theme.navigationStyleguide['$nav-styleguide-bg-color']};
       border: ${props.theme.navigationStyleguide['$nav-styleguide-border']};
