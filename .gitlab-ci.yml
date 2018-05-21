@@ -4,28 +4,13 @@ variables:
   GIT_STRATEGY: none
 
 before_script:
-  # Install ssh-agent if not already installed, it is required by Docker.
-  # (change apt-get to yum if you use a CentOS-based image)
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-
-  # Run ssh-agent (inside the build environment)
   - eval $(ssh-agent -s)
-
-  # Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
   - ssh-add <(echo "$SSH_PRIVATE_KEY")
-
-  # For Docker builds disable host key checking. Be aware that by adding that
-  # you are suspectible to man-in-the-middle attacks.
-  # WARNING: Use this only with the Docker executor, if you use it with shell
-  # you will overwrite your user's SSH config.
   - mkdir -p ~/.ssh
   - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-  # In order to properly check the server's host key, assuming you created the
-  # SSH_SERVER_HOSTKEYS variable previously, uncomment the following two lines
-  # instead.
-  # - mkdir -p ~/.ssh
-  # - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
-  # clone with ssh
+
+  # clone
   - "[[ ! -e '.git/config' ]] && git clone ${REPOSITORY_SSH_URL} ."
   - git checkout ${CI_COMMIT_SHA}
 
@@ -50,7 +35,6 @@ stages:
   - build
   - test
   - release
-  - publish
   - deploy
 
 # Job: Build
@@ -76,6 +60,7 @@ build:
   tags:
     - docker
 
+
 # Job: Test
 test:
   stage: test
@@ -86,6 +71,32 @@ test:
   dependencies:
     - build
   only:
+    - dev
+    - master
+  tags:
+
+node:8:
+  image: node:8
+  stage: test
+  dependencies:
+    - build
+  script:
+    - npm test
+  only:
+    - dev
+    - master
+  tags:
+    - docker
+
+node:9:
+  image: node:9
+  stage: test
+  dependencies:
+    - build
+  script:
+    - npm test
+  only:
+    - dev
     - master
   tags:
     - docker
@@ -94,36 +105,11 @@ test:
 release:
   stage: release
   script:
-    # update release date
-    - git checkout -b ${PACKAGE_VERSION}
-    - sed -i 's/????-??-??/'`date +%Y-%m-%d`'/g' CHANGELOG.md
-    - sed -i "s/?NEXT?/v$PACKAGE_VERSION/g" CHANGELOG.md
-    - git add CHANGELOG.md
-    - git commit -m "Set release date in CHANGELOG.md"
-    - git push origin ${PACKAGE_VERSION}
-    # tag version
-    - git tag -a -m "new version ${PACKAGE_VERSION}" ${PACKAGE_VERSION}
-    - git push --tags
-    # prepare next dev version
-    - git checkout dev
-    - npm run build:clean
-    - git reset HEAD --hard
-    - git pull origin dev
-    # again update release date for dev branch
-    - sed -i 's/????-??-??/'`date +%Y-%m-%d`'/g' CHANGELOG.md
-    - sed -i "s/?NEXT?/v$PACKAGE_VERSION/g" CHANGELOG.md
-    - git add CHANGELOG.md
-    - git commit -m "Set release date in CHANGELOG.md"
-    # add next release
-    - VERSION=$(npm version patch -m "preparing next version %s")
-    - PATTERN="All notable changes to this project will be documented in this file"
-    - sed -i "/$PATTERN/a- TODO":" write changelog before preparing next tag" CHANGELOG.md
-    - sed -i "/$PATTERN/G" CHANGELOG.md
-    - sed -i "/$PATTERN/a## [?NEXT?] - ????-??-??" CHANGELOG.md
-    - sed -i "/$PATTERN/G" CHANGELOG.md
-    - git add CHANGELOG.md
-    - git commit -m "Add todo next version $VERSION in CHANGELOG.md"
-    - git push origin HEAD:dev
+    - npx semantic-release
+    # Will push package.json next version if semantic-release do release
+    - '[ -z "$(git status --porcelain)" ] || git add package.json package-lock.json'
+    - '[ -z "$(git status --porcelain)" ] || git commit -m "chore(release): $(node -p "require(\"./package.json\").version") [skip ci]"'
+    - 'git pull origin dev && git push origin HEAD:dev || echo Nothing to release.'
   dependencies:
     - build
   only:
@@ -131,17 +117,19 @@ release:
   tags:
     - docker
 
-# Job: Publish
-publish:
-  stage: publish
+# Job declination
+declination:
+  stage: declination
   script:
-    - git fetch --all
-    - git checkout ${PACKAGE_VERSION}
-    - git reset HEAD --hard
-    - npm run ci-publish || echo true
+    - git fetch --tags && git checkout package-lock.json
+    - '[ "$CI_COMMIT_REF_NAME" = "dev" ] && PACKAGE_VERSION=v${PACKAGE_VERSION}'
+    - '[ "$CI_COMMIT_REF_NAME" = "master" ] && PACKAGE_VERSION=$(git describe --tags | awk -F "-" "{print $1}")'
+    - git checkout refs/tags/${PACKAGE_VERSION}
+    - ./node_modules/rollup-umd-scripts/internals/declination/create ${PACKAGE_VERSION}
   dependencies:
     - build
   only:
+    - dev
     - master
   tags:
     - docker
@@ -150,7 +138,10 @@ publish:
 pages:
   stage: deploy
   script:
-    # capability of redeploying an old documentation without triggering all the pipeline
+    - git fetch --tags
+    - PACKAGE_VERSION=$(git describe --tags | awk -F '-' '{print $1}')
+    - git checkout refs/tags/${PACKAGE_VERSION}
+    - PACKAGE_VERSION=$(node -p "require('./package.json').version")
     - npm install
     # Replace variables
     - npx rollup-umd-scripts doc variable PACKAGE_NAME=${PACKAGE_NAME}
