@@ -28,7 +28,7 @@ describe('<OffsetNav />', () => {
 
   it('should render an OffsetNav', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <OffsetNav {...props} />
       </BootstrapProvider>
     );
@@ -36,7 +36,7 @@ describe('<OffsetNav />', () => {
   });
   it('should render an OffsetNav with an activable active prop', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <OffsetNav {...Object.assign(props, { active: true })} />
       </BootstrapProvider>
     );
@@ -44,7 +44,7 @@ describe('<OffsetNav />', () => {
   });
   it('should render an OffsetNav with a Close Button', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <OffsetNav {...Object.assign(props, { menuClose: true })} />
       </BootstrapProvider>
     );
@@ -52,7 +52,7 @@ describe('<OffsetNav />', () => {
   });
   it('should render an OffsetNav with a Close Button that calls an onDismiss function', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <OffsetNav {...Object.assign(props, { menuClose: true })} />
       </BootstrapProvider>
     );
@@ -62,7 +62,7 @@ describe('<OffsetNav />', () => {
   });
   it('should render an OffsetNav with a bgColor props', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <OffsetNav {...Object.assign(props, { bgColor: 'primary' })} />
       </BootstrapProvider>
     );
@@ -70,7 +70,7 @@ describe('<OffsetNav />', () => {
   });
   it('should render an OffsetNav with a right props', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <OffsetNav {...Object.assign(props, { right: true })} />
       </BootstrapProvider>
     );
@@ -78,7 +78,7 @@ describe('<OffsetNav />', () => {
   });
   it('should render an OffsetNav with a animation-push props', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <OffsetNav {...Object.assign(props, { push: true })} />
       </BootstrapProvider>
     );
@@ -86,7 +86,7 @@ describe('<OffsetNav />', () => {
   });
   it('should render an OffsetNav with a show props', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <OffsetNav {...Object.assign(props, { show: 'md' })} />
       </BootstrapProvider>
     );

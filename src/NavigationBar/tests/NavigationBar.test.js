@@ -45,7 +45,7 @@ describe('<NavigationBar />', () => {
 
   it('should render an NavigationBar', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...props} />
       </BootstrapProvider>
     );
@@ -53,7 +53,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar without an Overlay', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { noOverlay: true })} />
       </BootstrapProvider>
     );
@@ -61,7 +61,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar with a close button in the OffsetNav when menuClose and noOverlay are active', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { menuClose: true, noOverlay: true })} />
       </BootstrapProvider>
     );
@@ -69,7 +69,7 @@ describe('<NavigationBar />', () => {
   });
   it('should not render an NavigationBar with a close button in the OffsetNav when menuClose is true and noOverlay is false', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { menuClose: true })} />
       </BootstrapProvider>
     );
@@ -77,7 +77,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar with an onClick that triggers the OffsetNav', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...props} />
       </BootstrapProvider>
     );
@@ -88,7 +88,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar with a boxShadow around its header', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { shadowHeader: true })} />
       </BootstrapProvider>
     );
@@ -96,7 +96,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar with a content in the nav-top', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { 'nav-top': navTopContent })} />
       </BootstrapProvider>
     );
@@ -104,7 +104,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar with a navbar-light className', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { light: true })} />
       </BootstrapProvider>
     );
@@ -112,7 +112,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar with a navbar-inverse className', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { inverse: true })} />
       </BootstrapProvider>
     );
@@ -120,7 +120,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar with a fixed top position', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { fixed: 'top' })} />
       </BootstrapProvider>
     );
@@ -128,7 +128,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar with a fixed bottom position', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { fixed: 'bottom' })} />
       </BootstrapProvider>
     );
@@ -136,7 +136,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar with a sticky top position', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { sticky: 'top' })} />
       </BootstrapProvider>
     );
@@ -144,7 +144,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar with a sticky bottom position', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { sticky: 'bottom' })} />
       </BootstrapProvider>
     );
@@ -152,7 +152,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar with a background color', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { bgColor: 'primary' })} />
       </BootstrapProvider>
     );
@@ -160,7 +160,7 @@ describe('<NavigationBar />', () => {
   });
   it('should render an NavigationBar with an animation slide by default', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...props} />
       </BootstrapProvider>
     );
@@ -168,7 +168,7 @@ describe('<NavigationBar />', () => {
   });
   it('should pass a bgColor to the OffsetNav props', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { offsetNav: { bgColor: 'primary' } })} />
       </BootstrapProvider>
     );
@@ -176,7 +176,7 @@ describe('<NavigationBar />', () => {
   });
   it('should pass a top to the OffsetNav props', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { offsetNav: { top: '50px' } })} />
       </BootstrapProvider>
     );
@@ -184,7 +184,7 @@ describe('<NavigationBar />', () => {
   });
   it('should pass a right to the OffsetNav props', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { offsetNav: { right: true } })} />
       </BootstrapProvider>
     );
@@ -192,7 +192,7 @@ describe('<NavigationBar />', () => {
   });
   it('should pass a push to the OffsetNav props and set it ot OffsetNavPush', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { offsetNav: { push: true } })} />
       </BootstrapProvider>
     );
@@ -200,7 +200,7 @@ describe('<NavigationBar />', () => {
   });
   it('should pass a string to show to the OffsetNav props', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...Object.assign(props, { offsetNav: { show: 'md' } })} />
       </BootstrapProvider>
     );

@@ -11,16 +11,16 @@ Open isolated mode in order to see menu.
   <NavigationStyleguide style={styles}>
     <Ul>
       <Li>
-        <A color="white" href="javascript:void(0);" alt="not a link">one</A>
+        <A href="javascript:void(0);" alt="not a link">one</A>
       </Li>
       <Li>
-        <A color="white" href="javascript:void(0);" alt="not a link">two</A>
+        <A href="javascript:void(0);" alt="not a link">two</A>
       </Li>
       <Li>
-        <A color="white" href="javascript:void(0);" alt="not a link">three</A>
+        <A href="javascript:void(0);" alt="not a link">three</A>
       </Li>
       <Li>
-        <A color="white" href="javascript:void(0);" alt="not a link">four</A>
+        <A href="javascript:void(0);" alt="not a link">four</A>
       </Li>
     </Ul>
   </NavigationStyleguide>
