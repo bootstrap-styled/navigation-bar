@@ -39,10 +39,10 @@
     "url": "https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/issues"
   },
   "files": [
-    "CODE_OF_CONDUCT.md",
     "dist",
     "lib",
-    "src"
+    "README.md",
+    "package.json"
   ],
   "keywords": [
     "bootstrap-styled"
