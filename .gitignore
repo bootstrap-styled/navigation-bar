@@ -8,5 +8,3 @@ coverage/
 /reports
 /test-report.xml
 jest_0
-/lib
-/dist
