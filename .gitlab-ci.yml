@@ -117,23 +117,6 @@ release:
   tags:
     - docker
 
-# Job declination
-declination:
-  stage: declination
-  script:
-    - git fetch --tags && git checkout package-lock.json
-    - '[ "$CI_COMMIT_REF_NAME" = "dev" ] && PACKAGE_VERSION=v${PACKAGE_VERSION}'
-    - '[ "$CI_COMMIT_REF_NAME" = "master" ] && PACKAGE_VERSION=$(git describe --tags | awk -F "-" "{print $1}")'
-    - git checkout refs/tags/${PACKAGE_VERSION}
-    - ./node_modules/rollup-umd-scripts/internals/declination/create ${PACKAGE_VERSION}
-  dependencies:
-    - build
-  only:
-    - dev
-    - master
-  tags:
-    - docker
-
 # Pages
 pages:
   stage: deploy
