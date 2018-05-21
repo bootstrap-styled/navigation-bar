@@ -6,6 +6,7 @@ export function makeTheme(userTheme = { navigationStyleguide: {} }) {
   // navigationStyleguide
   v['$nav-styleguide-height'] = u['$nav-styleguide-height'] || '100%';
   v['$nav-styleguide-color'] = u['$nav-styleguide-color'] || '#fff';
+  v['$nav-styleguide-hover-color'] = u['$nav-styleguide-hover-color'] || '#898989';
   v['$nav-styleguide-bg-color'] = u['$nav-styleguide-bg-color'] || '#F5F5F5';
   v['$nav-styleguide-border'] = u['$nav-styleguide-border'] || '#e8e8e8 solid';
   v['$nav-styleguide-top'] = u['$nav-styleguide-top'] || 0;

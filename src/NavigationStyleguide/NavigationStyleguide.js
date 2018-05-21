@@ -11,12 +11,14 @@ import cn from 'classnames';
 import omit from 'lodash.omit';
 import mapToCssModules from 'map-to-css-modules/lib';
 import bp from 'bootstrap-styled-mixins/lib/breakpoints';
+import { hoverFocus } from 'bootstrap-styled-mixins/lib/hover';
 
 export const defaultProps = {
   theme: {
     navigationStyleguide: {
       '$nav-styleguide-height': '100%',
       '$nav-styleguide-color': '#000',
+      '$nav-styleguide-hover-color': '#898989',
       '$nav-styleguide-bg-color': '#ce4953',
       '$nav-styleguide-border': '#e8e8e8 solid',
       '$nav-styleguide-top': 0,
@@ -57,6 +59,7 @@ export const propTypes = {
     navigationStyleguide: PropTypes.shape({
       '$nav-styleguide-height': PropTypes.string,
       '$nav-styleguide-color': PropTypes.string,
+      '$nav-styleguide-hover-color': PropTypes.string,
       '$nav-styleguide-bg-color': PropTypes.string,
       '$nav-styleguide-border': PropTypes.string,
       '$nav-styleguide-top': PropTypes.number,
@@ -132,6 +135,11 @@ const NavigationStyleguide = styled(NavigationStyleguideUnstyled)`
     &.navigation ul {
       list-style-type: ${props.theme.navigationStyleguide['$nav-styleguide-list-style-type']};
       padding-left: 15px;
+      &a {
+        ${hoverFocus(props.theme['$enable-hover-media-query'], `
+          color: ${props.theme['$nav-styleguide-hover-color']};
+        `)}
+      }
     }
  `}
 `;
