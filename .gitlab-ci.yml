@@ -1,14 +1,17 @@
 image: kopaxgroup/node10-jdk8-flyway4-sonarscanner2-docker17-debian
 
-variables:
-  GIT_STRATEGY: none
-
 before_script:
-  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-  - eval $(ssh-agent -s)
-  - ssh-add <(echo "$SSH_PRIVATE_KEY")
-  - mkdir -p ~/.ssh
-  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  # Use SSH if a SSH_PRIVATE_KEY is configured
+  - '[[ -v "SSH_PRIVATE_KEY" ]] && GIT_STRATEGY=none'
+  - '[[ -v "SSH_PRIVATE_KEY" ]] && { which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y ) }'
+  - '[[ -v "SSH_PRIVATE_KEY" ]] && eval $(ssh-agent -s)'
+  - '[[ -v "SSH_PRIVATE_KEY" ]] && ssh-add <(echo "$SSH_PRIVATE_KEY")'
+  - '[[ -v "SSH_PRIVATE_KEY" ]] && mkdir -p ~/.ssh'
+  - '[[ -v "SSH_PRIVATE_KEY" ]] && [[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+  # commit message
+  - git config --global user.email "contact@kopaxgroup.com"
+  - git config --global user.name "Gitlab-CI"
 
   # clone
   - "[[ ! -e '.git/config' ]] && git clone ${REPOSITORY_SSH_URL} ."
@@ -24,12 +27,10 @@ before_script:
   # logging
   - npm --version
   - node --version
-  - npx rollup-umd-scripts --version
   - echo "package version $PACKAGE_VERSION"
 
-  # commit message
-  - git config --global user.email "contact@kopaxgroup.com"
-  - git config --global user.name "Gitlab-CI"
+  # env
+  - "[[ \"$(npx rollup-umd-scripts publish status)\" = \"protected\" ]] && [[ -v \"NPM_TOKEN_PRIVATE\" ]] && NPM_TOKEN=${NPM_TOKEN_PRIVATE}"
 
 stages:
   - build
@@ -54,12 +55,8 @@ build:
     expire_in: 1 hour
     paths:
       - .
-  only:
-    - dev
-    - master
   tags:
     - docker
-
 
 # Job: Test
 test:
@@ -67,12 +64,10 @@ test:
   coverage: '/All files[^|]*\|\s*[\d.]*\s*\|\s*[\d.]*\s*\|\s*[\d.]*\s*\|\s*([\d.]*)\s*\|\s*/'
   script:
     - npm run test
-    - sonar-scanner -Dsonar.host.url=${SONAR_URL} -Dsonar.login=${SONAR_LOGIN} -Dsonar.branch=${CI_COMMIT_REF_NAME} -Dsonar.projectVersion=${SONAR_VERSION}
+    # we skip that command for tags, they do not use SSH_PRIVATE_KEY nor any of the sonar env
+    - '[[ -v "SSH_PRIVATE_KEY" ]] && sonar-scanner -Dsonar.host.url="${SONAR_URL}" -Dsonar.login="${SONAR_LOGIN}" -Dsonar.branch="${CI_COMMIT_REF_NAME}" -Dsonar.projectVersion="${SONAR_VERSION}" || true'
   dependencies:
     - build
-  only:
-    - dev
-    - master
   tags:
     - docker
 
@@ -106,11 +101,16 @@ node:9:
 release:
   stage: release
   script:
+    # if it's transitive, then it means we are publishing to public
+    - '[ "$(npx rollup-umd-scripts publish status)" = "transitive" ] && exit 0'
     - npx semantic-release
-    # Will push package.json next version if semantic-release do release
-    - '[ -z "$(git status --porcelain)" ] || git add package.json package-lock.json'
-    - '[ -z "$(git status --porcelain)" ] || git commit -m "chore(release): $(node -p "require(\"./package.json\").version") [skip ci]"'
-    - 'git pull origin dev && git push origin HEAD:dev || echo Nothing to release.'
+    # Will trigger the doc build using the newly created tag
+    - '[[ -f ~/release_version ]] && RELEASE_VERSION=v$(cat ~/release_version) || exit 0'
+    - 'JSON_RES=$(curl -f -sS -X POST -H "PRIVATE-TOKEN: ${GITLAB_TOKEN:-$GL_TOKEN}" -F description=ci-auto-created https://module.kopaxgroup.com/api/v4/projects/${CI_PROJECT_ID}/triggers)'
+    - TRIGGER_TOKEN=$(echo $JSON_RES | jq -r '.token') && TRIGGER_ID=$(echo $JSON_RES | jq -r '.id')
+    - sleep 3s
+    - 'curl -f -o /dev/null -S -X POST -F token=${TRIGGER_TOKEN} -F ref=${RELEASE_VERSION} https://module.kopaxgroup.com/api/v4/projects/${CI_PROJECT_ID}/trigger/pipeline'
+    - 'curl -f -S -X DELETE -H "PRIVATE-TOKEN: ${GITLAB_TOKEN:-$GL_TOKEN}" "https://module.kopaxgroup.com/api/v4/projects/${CI_PROJECT_ID}/triggers/${TRIGGER_ID}"'
   dependencies:
     - build
   only:
@@ -122,10 +122,6 @@ release:
 pages:
   stage: deploy
   script:
-    - git fetch --tags
-    - PACKAGE_VERSION=$(git describe --tags | awk -F '-' '{print $1}')
-    - git checkout refs/tags/${PACKAGE_VERSION}
-    - PACKAGE_VERSION=$(node -p "require('./package.json').version")
     - npm install
     # Replace variables
     - npx rollup-umd-scripts doc variable PACKAGE_NAME=${PACKAGE_NAME}
@@ -143,6 +139,6 @@ pages:
     paths:
     - public
   only:
-    - master
+    - tags
   tags:
     - docker

@@ -1,6 +1,6 @@
 {
-  "name": "navigation-bar",
-  "version": "1.1.7",
+  "name": "@yeutech/navigation-bar",
+  "version": "1.2.0",
   "description": "is a set of navigation for browser made with and for bootstrap-styled",
   "main": "lib/index.js",
   "jsnext:main": "dist/navigation-bar.es.js",
@@ -116,9 +116,12 @@
     }
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^2.0.2",
+    "@semantic-release/exec": "^2.2.4",
+    "@semantic-release/git": "^5.0.0",
     "@semantic-release/gitlab": "^2.1.4",
     "@semantic-release/gitlab-config": "^2.0.0",
-    "@semantic-release/npm": "^3.2.5",
+    "@semantic-release/npm": "^3.3.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
@@ -179,8 +182,9 @@
     "rollup-plugin-visualizer": "^0.5.0",
     "rollup-umd-scripts": "^0.4.2",
     "rollup-watch": "^4.3.1",
+    "semantic-release": "^15.5.0",
     "sinon": "^2.3.2",
-    "styled-components": "^3.2.6",
+    "styled-components": "^3.3.0",
     "toctoc": "^0.2.3"
   },
   "jest": {
@@ -236,27 +240,47 @@
   "peerDependencies": {
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "styled-components": "^3.2.6"
+    "styled-components": "^3.3.0"
   },
   "publishConfig": {
+    "tag": "latest",
     "registry": "https://npm.kopaxgroup.com"
   },
   "release": {
     "branch": "master",
-    "extends": "@semantic-release/gitlab-config",
-    "npmPublish": true,
+    "success": false,
+    "fail": false,
+    "npmPublish": false,
     "verifyConditions": [
+      "@semantic-release/changelog",
       "@semantic-release/npm",
+      "@semantic-release/git",
       {
         "path": "@semantic-release/gitlab",
         "gitlabUrl": "https://module.kopaxgroup.com"
       }
     ],
     "prepare": [
-      "@semantic-release/npm"
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "dist/**/*.{js|es}",
+          "lib/**/*.js",
+          "CHANGELOG.md",
+          "README.md",
+          "LICENSE.md"
+        ]
+      }
     ],
     "publish": [
       "@semantic-release/npm",
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "echo ${nextRelease.version} > ~/release_version"
+      },
       {
         "path": "@semantic-release/gitlab",
         "gitlabUrl": "https://module.kopaxgroup.com"
