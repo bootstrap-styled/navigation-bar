@@ -1,6 +1,6 @@
 {
   "name": "@yeutech/navigation-bar",
-  "version": "1.2.0",
+  "version": "0.0.0-development",
   "description": "is a set of navigation for browser made with and for bootstrap-styled",
   "main": "lib/index.js",
   "jsnext:main": "dist/navigation-bar.es.js",
@@ -246,11 +246,12 @@
     "tag": "latest",
     "registry": "https://npm.kopaxgroup.com"
   },
+  "private": false,
   "release": {
     "branch": "master",
     "success": false,
     "fail": false,
-    "npmPublish": false,
+    "npmPublish": true,
     "verifyConditions": [
       "@semantic-release/changelog",
       "@semantic-release/npm",
