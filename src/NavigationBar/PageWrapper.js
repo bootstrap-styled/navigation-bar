@@ -17,12 +17,12 @@ export const defaultProps = {
 };
 // eslint-disable-next-line react/prefer-stateless-function
 class PageWrapperUnstyled extends React.Component {
-  static defaultProps = defaultProps;
   static propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string.isRequired,
     theme: PropTypes.object,
   }
+  static defaultProps = defaultProps;
 
   render() {
     const {

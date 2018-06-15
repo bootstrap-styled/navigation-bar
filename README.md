@@ -25,7 +25,6 @@ navigation-bar is a set of navigation for browser made with and for bootstrap-st
   
 ## Documentation
 
-  - View [Markdown documentation](docs)
   - View navigation-bar [HTML documentation](https://bootstrap-styled.yeutech.com/navigation-bar) *(require access)*
   - View rollup-umd [HTML documentation](https://dev-tools.yeutech.com/rollup-umd) *(require access)*
 

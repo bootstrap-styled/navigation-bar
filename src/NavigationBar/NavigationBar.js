@@ -47,7 +47,6 @@ export const defaultProps = {
 };
 
 class NavigationBarUnstyled extends React.Component {
-  static defaultProps = defaultProps;
   static propTypes = {
     className: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
@@ -75,6 +74,7 @@ class NavigationBarUnstyled extends React.Component {
       push: PropTypes.bool,
     }),
   };
+  static defaultProps = defaultProps;
 
   state = {
     show: false,

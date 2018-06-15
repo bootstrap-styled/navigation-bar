@@ -29,7 +29,6 @@ export const defaultProps = {
 
 // eslint-disable-next-line react/prefer-stateless-function
 class OffsetNavUnstyled extends React.Component {
-  static defaultProps = defaultProps;
   static propTypes = {
     className: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
@@ -44,6 +43,7 @@ class OffsetNavUnstyled extends React.Component {
     show: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
     cssModule: PropTypes.object,
   }
+  static defaultProps = defaultProps;
 
   render() {
     const {

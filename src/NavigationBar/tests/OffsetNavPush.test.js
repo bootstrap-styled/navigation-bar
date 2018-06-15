@@ -4,7 +4,7 @@
 
 import { shallow, mount } from 'enzyme';
 import React from 'react';
-import { BootstrapProvider } from 'bootstrap-styled/lib';
+import { BootstrapProvider } from 'bootstrap-styled-provider';
 import NavigationBar, { defaultProps } from '../NavigationBar';
 import OffsetNavPush from '../OffsetNavPush';
 

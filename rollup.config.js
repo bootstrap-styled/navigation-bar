@@ -22,12 +22,21 @@ const output = prod ? [
   {
     name: pkg.name, exports: 'named', globals, file: `dist/${pkg.name}.min.js`, format: 'umd', sourcemap: true,
   },
+  {
+    name: pkg.name, exports: 'named', globals, file: `dist/${pkg.name}.cjs.min.js`, format: 'cjs', sourcemap: true,
+  },
+  {
+    name: pkg.name, exports: 'named', globals, file: `dist/${pkg.name}.esm.js`, format: 'es', sourcemap: true,
+  },
 ] : [
   {
     name: pkg.name, exports: 'named', globals, file: `dist/${pkg.name}.js`, format: 'umd', sourcemap: true,
   },
   {
-    name: pkg.name, exports: 'named', globals, file: `dist/${pkg.name}.es.js`, format: 'es', sourcemap: true,
+    name: pkg.name, exports: 'named', globals, file: `dist/${pkg.name}.cjs.js`, format: 'cjs', sourcemap: true,
+  },
+  {
+    name: pkg.name, exports: 'named', globals, file: `dist/${pkg.name}.esm.js`, format: 'es', sourcemap: true,
   },
 ];
 
