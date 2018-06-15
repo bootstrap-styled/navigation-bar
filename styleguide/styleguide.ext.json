@@ -5,6 +5,10 @@
     "**/*.spec.{js,jsx,ts,tsx}",
     "**/*.d.ts"
   ],
+  "ribbon": {
+    "url": "https://module.kopaxgroup.com/bootstrap-styled/navigation-bar",
+    "text": "Fork us on GitLab"
+  },
   "sections": [
     {
       "name": "Introduction",
