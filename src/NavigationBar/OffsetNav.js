@@ -10,25 +10,25 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 import omit from 'lodash.omit';
-import mapToCssModules from 'map-to-css-modules';
-import { makeTheme, Close } from 'bootstrap-styled';
-import { theme as themeNavigationBar } from './theme';
-
-const theme = makeTheme(themeNavigationBar);
+import mapToCssModules from 'map-to-css-modules/lib';
+import Close from 'bootstrap-styled/lib/Close';
+import theme from './theme';
 
 export const defaultProps = {
   active: false,
   dismiss: null,
   menuClose: false,
-  bgColor: 'primary',
-  'menu-right': false,
-  'animation-push': false,
+  bgColor: null,
+  right: false,
+  push: false,
+  top: null,
+  show: null,
   cssModule: null,
   theme,
 };
 
+// eslint-disable-next-line react/prefer-stateless-function
 class OffsetNavUnstyled extends React.Component {
-  static defaultProps = defaultProps;
   static propTypes = {
     className: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
@@ -37,10 +37,13 @@ class OffsetNavUnstyled extends React.Component {
     menuClose: PropTypes.bool,
     theme: PropTypes.object,
     bgColor: PropTypes.string,
-    'menu-right': PropTypes.bool,
-    'animation-push': PropTypes.bool,
+    top: PropTypes.string,
+    right: PropTypes.bool,
+    push: PropTypes.bool,
+    show: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
     cssModule: PropTypes.object,
   }
+  static defaultProps = defaultProps;
 
   render() {
     const {
@@ -51,11 +54,12 @@ class OffsetNavUnstyled extends React.Component {
       menuClose,
       bgColor,
       cssModule,
-      'menu-right': menuRight,
+      right,
+      show,
       ...attributes
-    } = omit(this.props, ['theme', 'elementWidth', 'animation-push']);
+    } = omit(this.props, ['theme', 'push', 'top']);
 
-    const menuDirectionClassNames = menuRight ? 'menu-right' : 'menu-left';
+    const menuDirectionClassNames = right ? 'menu-right' : 'menu-left';
 
     const cssClasses = cn(className, menuDirectionClassNames, {
       [`bg-${bgColor}`]: bgColor,
@@ -65,6 +69,7 @@ class OffsetNavUnstyled extends React.Component {
       <div
         className={mapToCssModules(cn(cssClasses, { active }), cssModule)}
         {...attributes}
+        show={show}
       >
         {menuClose && <Close aria-label="Close" onDismiss={dismiss} />}
         {children}
@@ -76,7 +81,7 @@ class OffsetNavUnstyled extends React.Component {
 const OffsetNav = styled(OffsetNavUnstyled)`
   ${(props) => `
     position: fixed;
-    top: 0;
+    top: ${props.top ? `${props.top}px;` : '0;'}
     bottom: 0;
     width: ${props.theme.navigationBar['$menu-offset-width']};
     height: 100%;

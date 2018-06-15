@@ -2,9 +2,9 @@
  * Testing our OffsetNavPush component
  */
 
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
-import { BootstrapProvider } from 'bootstrap-styled';
+import { BootstrapProvider } from 'bootstrap-styled-provider';
 import NavigationBar, { defaultProps } from '../NavigationBar';
 import OffsetNavPush from '../OffsetNavPush';
 
@@ -18,13 +18,12 @@ describe('<OffsetNavPush />', () => {
     theme = defaultProps.theme;
     props = Object.assign(defaultProps, {
       children,
-      'animation-push': true,
     });
   });
 
   it('should render an OffsetNavPush', () => {
     const renderedComponent = shallow(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...props}>
           <OffsetNavPush>
             {children}
@@ -33,5 +32,15 @@ describe('<OffsetNavPush />', () => {
       </BootstrapProvider>
     );
     expect(renderedComponent.find('OffsetNavPush').length).toEqual(1);
+  });
+  it('should render an OffsetNavPush with show xs', () => {
+    const renderedComponent = mount(
+      <BootstrapProvider theme={theme} injectGlobal={false}>
+        <NavigationBar {...Object.assign(props, { offsetNav: { show: 'xs', push: true } })} >
+          {children}
+        </NavigationBar>
+      </BootstrapProvider>
+    );
+    expect(renderedComponent.find('OffsetNavPush').props().show).toEqual('xs');
   });
 });

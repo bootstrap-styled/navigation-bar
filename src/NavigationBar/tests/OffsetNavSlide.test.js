@@ -2,9 +2,9 @@
  * Testing our OffsetNavSlide component
  */
 
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
-import { BootstrapProvider } from 'bootstrap-styled';
+import { BootstrapProvider } from 'bootstrap-styled-provider';
 import NavigationBar, { defaultProps } from '../NavigationBar';
 import OffsetNavSlide from '../OffsetNavSlide';
 
@@ -23,7 +23,7 @@ describe('<OffsetNavSlide />', () => {
 
   it('should render an OffsetNavSlide', () => {
     const renderedComponent = shallow(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <NavigationBar {...props}>
           <OffsetNavSlide>
             {children}
@@ -32,5 +32,15 @@ describe('<OffsetNavSlide />', () => {
       </BootstrapProvider>
     );
     expect(renderedComponent.find('OffsetNavSlide').length).toEqual(1);
+  });
+  it('should render an OffsetNavPush with show xs', () => {
+    const renderedComponent = mount(
+      <BootstrapProvider theme={theme} injectGlobal={false}>
+        <NavigationBar {...Object.assign(props, { offsetNav: { show: 'xs' } })} >
+          {children}
+        </NavigationBar>
+      </BootstrapProvider>
+    );
+    expect(renderedComponent.find('OffsetNavSlide').props().show).toEqual('xs');
   });
 });

@@ -4,7 +4,7 @@
 
 import { mount } from 'enzyme';
 import React from 'react';
-import { BootstrapProvider } from 'bootstrap-styled';
+import { BootstrapProvider } from 'bootstrap-styled-provider';
 import PageWrapper, { defaultProps } from '../PageWrapper';
 
 const children = (<h1>Test</h1>);
@@ -22,7 +22,7 @@ describe('<PageWrapper />', () => {
 
   it('should render an Overlay', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <PageWrapper {...props} />
       </BootstrapProvider>
     );

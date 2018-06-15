@@ -1,11 +1,8 @@
-import { makeTheme, theme } from '../theme';
+import { makeTheme } from '../theme';
 
 describe('makeTheme', () => {
-  it('should use default values', () => {
-    expect(makeTheme()).toEqual(theme);
-  });
   it('should use custom values', () => {
-    const customTheme = {
+    const defaultTheme = {
       navigationBar: {
         '$zindex-overlay': '2050',
         '$menu-offset-width': '220px',
@@ -15,6 +12,12 @@ describe('makeTheme', () => {
         '$overlay-bg': 'rgba(0, 0, 0, 0.3)',
       },
     };
-    expect(makeTheme(customTheme)).toEqual(customTheme);
+    expect(makeTheme(defaultTheme)).toEqual(defaultTheme);
+  });
+  it('should create scope', () => {
+    const customTheme = {
+      '$zindex-overlay': '2050',
+    };
+    expect(typeof makeTheme(customTheme).navigationBar).toEqual('object');
   });
 });

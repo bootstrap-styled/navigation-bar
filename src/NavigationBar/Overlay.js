@@ -8,24 +8,22 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 import omit from 'lodash.omit';
-import { transitionUtils } from 'bootstrap-styled-mixins';
-import { makeTheme } from 'bootstrap-styled';
-import { theme as themeNavigationBar } from './theme';
-
-const theme = makeTheme(themeNavigationBar);
+import transitionUtils from 'bootstrap-styled-mixins/lib/utilities/transition';
+import theme from './theme';
 
 export const defaultProps = {
   active: false,
   theme,
 };
 
+// eslint-disable-next-line react/prefer-stateless-function
 class OverlayUnstyled extends React.Component {
-  static defaultProps = defaultProps;
   static propTypes = {
     className: PropTypes.string.isRequired,
     active: PropTypes.bool,
     theme: PropTypes.object,
   }
+  static defaultProps = defaultProps;
 
   render() {
     const {

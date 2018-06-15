@@ -4,7 +4,7 @@
 
 import { mount } from 'enzyme';
 import React from 'react';
-import { BootstrapProvider } from 'bootstrap-styled';
+import { BootstrapProvider } from 'bootstrap-styled-provider';
 import Overlay, { defaultProps } from '../Overlay';
 
 describe('<Overlay />', () => {
@@ -20,7 +20,7 @@ describe('<Overlay />', () => {
 
   it('should render an Overlay', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <Overlay {...props} />
       </BootstrapProvider>
     );
@@ -28,7 +28,7 @@ describe('<Overlay />', () => {
   });
   it('should render an Overlay without an active props', () => {
     const renderedComponent = mount(
-      <BootstrapProvider theme={theme}>
+      <BootstrapProvider theme={theme} injectGlobal={false}>
         <Overlay {...Object.assign(props, { active: true })} />
       </BootstrapProvider>
     );
