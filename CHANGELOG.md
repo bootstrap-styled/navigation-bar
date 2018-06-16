@@ -1,3 +1,10 @@
+## [1.3.4](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.3.3...v1.3.4) (2018-06-16)
+
+
+### Bug Fixes
+
+* **dependencies:** Update to bs 1.7.0 ([2906b2d](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/2906b2d))
+
 ## [1.3.3](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.3.2...v1.3.3) (2018-06-15)
 
 
