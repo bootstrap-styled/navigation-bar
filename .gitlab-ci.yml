@@ -26,6 +26,7 @@ build:
     paths:
       - .
   only:
+    - tags
     - dev
     - master
   tags:
@@ -40,6 +41,7 @@ test:
   dependencies:
     - build
   only:
+    - tags
     - dev
     - master
   tags:
