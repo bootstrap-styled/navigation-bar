@@ -1,3 +1,10 @@
+## [1.3.5](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.3.4...v1.3.5) (2018-06-16)
+
+
+### Bug Fixes
+
+* **doc:** repair build ([c8dd4e9](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/c8dd4e9))
+
 ## [1.3.4](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.3.3...v1.3.4) (2018-06-16)
 
 
