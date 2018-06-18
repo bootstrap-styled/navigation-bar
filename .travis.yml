@@ -1,0 +1,92 @@
+language: node_js
+sudo: required
+dist: trusty
+
+# Blocklist
+branches:
+  except:
+    - gh-pages # will be deployed to, no need to build it
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+    - npm install -g npm
+    # const
+    - export PACKAGE_NAME=$(node -p "require('./package.json').name")
+    - export PACKAGE_VERSION=$(node -p "require('./package.json').version")
+    - export NODE_VERSION=$(node --version)
+    - export NPM_VERSION=$(npm --version)
+
+    # logging
+    - npm --version || echo npm not installed
+    - node --version|| echo node not installed
+    - echo "package version $PACKAGE_VERSION"
+
+stages:
+  - build
+  - test
+  - release
+  - deploy
+
+jobs:
+  include:
+
+    # Job: Build
+    - stage: build
+      if: branch IN (dev, master)
+      node_js:
+        - lts/*
+        - 10
+        - 8
+      script:
+        - npm run build
+    # Job: Test
+    - stage: test
+      if: branch IN (dev, master)
+      node_js:
+        - lts/*
+        - 10
+        - 8
+      script:
+        - npm run test
+
+    # Job: Release
+    - stage: release
+      if: branch = master
+      node_js:
+        - lts/*
+      skip_cleanup: true
+      script:
+        - npx semantic-release
+
+    # Job: Page
+    - stage: deploy
+      if: branch = master
+      node_js:
+        - lts/*
+      script:
+        - git fetch --tags
+        - PACKAGE_VERSION=$(git describe --tags | awk -F '-' '{print $1}')
+        - git checkout refs/tags/${PACKAGE_VERSION}
+        - PACKAGE_VERSION=$(node -p "require('./package.json').version")
+        - npm install
+        # Replace variables
+        - npx rollup-umd-scripts doc variable PACKAGE_NAME=${PACKAGE_NAME}
+        - npx rollup-umd-scripts doc variable PACKAGE_PEERS="$(npx rollup-umd-scripts peer npm-install-cmd)"
+        - npx rollup-umd-scripts doc variable PACKAGE_VERSION=${PACKAGE_VERSION}
+        - npx rollup-umd-scripts doc variable NODE_VERSION=${NODE_VERSION}
+        - npx rollup-umd-scripts doc variable NPM_VERSION=${NPM_VERSION}
+        - npx rollup-umd-scripts doc variable CI_REPOSITORY_URL="https://github.com/${TRAVIS_REPO_SLUG}.git"
+        - npx rollup-umd-scripts doc variable CI_PROJECT_URL="https://github.com/${TRAVIS_REPO_SLUG}.git"
+        - npx rollup-umd-scripts doc variable CI_PROJECT_NAMESPACE=$(echo $TRAVIS_REPO_SLUG | awk -F '/' '{print $1}')
+        - npx rollup-umd-scripts doc variable CI_PROJECT_NAME=$(echo $TRAVIS_REPO_SLUG | awk -F '/' '{print $2}')
+        - npx rollup-umd-scripts doc variable IMG_SHIELD_PUBLISHING=$(npx rollup-umd-scripts publish status --badge)
+        - npm run styleguide:build
+      deploy:
+        - provider: pages
+          skip_cleanup: true
+          github_token: $GH_TOKEN  # Set in the settings page of your repository, as a secure variable
+          keep_history: true
+          local_dir: public/
