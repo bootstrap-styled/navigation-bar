@@ -116,7 +116,6 @@
     "@semantic-release/gitlab": "^2.1.4",
     "@semantic-release/gitlab-config": "^2.0.0",
     "@semantic-release/npm": "^3.3.1",
-    "@yeutech/rollup-documentation": "^2.3.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
