@@ -249,6 +249,10 @@
     "npmPublish": true,
     "verifyConditions": [
       "@semantic-release/changelog",
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "node node_modules/rollup-umd-scripts/bin/scripts-ci transitive verify"
+      },
       "@semantic-release/npm",
       "@semantic-release/git",
       {
@@ -258,6 +262,10 @@
     ],
     "prepare": [
       "@semantic-release/changelog",
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "node node_modules/rollup-umd-scripts/bin/scripts-ci transitive prepare"
+      },
       "@semantic-release/npm",
       {
         "path": "@semantic-release/git",
@@ -275,7 +283,7 @@
       "@semantic-release/npm",
       {
         "path": "@semantic-release/exec",
-        "cmd": "echo ${nextRelease.version} > ~/release_version"
+        "cmd": "node node_modules/rollup-umd-scripts/bin/scripts-ci transitive release ${nextRelease.version}"
       },
       {
         "path": "@semantic-release/gitlab",
