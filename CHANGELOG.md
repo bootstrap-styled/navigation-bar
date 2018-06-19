@@ -1,3 +1,10 @@
+## [1.3.10](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.3.9...v1.3.10) (2018-06-19)
+
+
+### Bug Fixes
+
+* **scripts:** update to version 0.13.23 ([1d05ec9](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/1d05ec9))
+
 ## [1.3.9](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.3.8...v1.3.9) (2018-06-19)
 
 
