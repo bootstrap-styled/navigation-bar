@@ -1,3 +1,25 @@
+## [1.3.6](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.3.5...v1.3.6) (2018-06-19)
+
+
+### Bug Fixes
+
+* **ci:** skip release ([983d5ea](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/983d5ea))
+* **ci:** using transitive script through semantic-release/exec ([c159f35](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/c159f35))
+* **release:** set to public ([f77da73](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/f77da73))
+* **scripts:** update to version 0.13.10 ([ac7c94d](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/ac7c94d))
+* **scripts:** update to version 0.13.11 ([3953707](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/3953707))
+* **scripts:** update to version 0.13.12 ([a0cdb82](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/a0cdb82))
+* **scripts:** update to version 0.13.13 ([dad2454](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/dad2454))
+* **scripts:** update to version 0.13.14 ([fbfbf88](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/fbfbf88))
+* **scripts:** update to version 0.13.15 ([4de07ac](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/4de07ac))
+* **scripts:** update to version 0.13.16 ([4c802c7](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/4c802c7))
+* **scripts:** update to version 0.13.4 ([b36a423](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/b36a423))
+* **scripts:** update to version 0.13.5 ([38bd748](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/38bd748))
+* **scripts:** update to version 0.13.6 ([a58055c](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/a58055c))
+* **scripts:** update to version 0.13.7 ([d0e5dbe](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/d0e5dbe))
+* **scripts:** update to version 0.13.8 ([3e87987](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/3e87987))
+* **scripts:** update to version 0.13.9 ([3b5e928](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/3b5e928))
+
 ## [1.3.5](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.3.4...v1.3.5) (2018-06-16)
 
 
