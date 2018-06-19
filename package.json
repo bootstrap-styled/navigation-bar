@@ -173,7 +173,7 @@
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-uglify": "^3.0.0",
     "rollup-plugin-visualizer": "^0.5.0",
-    "rollup-umd-scripts": "^0.13.29",
+    "rollup-umd-scripts": "^0.13.30",
     "rollup-watch": "^4.3.1",
     "semantic-release": "^15.5.2",
     "sinon": "^2.3.2",
@@ -298,5 +298,21 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "scope": "bootstrap-styled"
+  "transitive": {
+    "name": "navigation-bar",
+    "scope": "bootstrap-styled",
+    "homepage": "https://bootstrap-styled.github.io/navigation-bar",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/bootstrap-styled/navigation-bar.git"
+    },
+    "bugs": {
+      "url": "https://github.com/bootstrap-styled/navigation-bar/issues"
+    },
+    "publishConfig": {
+      "access": "public",
+      "registry": "https://registry.npmjs.org"
+    },
+    "scopedName": "@bootstrap-styled/navigation-bar"
+  }
 }
