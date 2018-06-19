@@ -83,6 +83,8 @@ jobs:
         - npx rollup-umd-scripts doc variable CI_PROJECT_NAMESPACE=$(echo $TRAVIS_REPO_SLUG | awk -F '/' '{print $1}')
         - npx rollup-umd-scripts doc variable CI_PROJECT_NAME=$(echo $TRAVIS_REPO_SLUG | awk -F '/' '{print $2}')
         - npx rollup-umd-scripts doc variable IMG_SHIELD_PUBLISHING=$(npx rollup-umd-scripts publish status --badge)
+        - npx rollup-umd-scripts doc add-section -n 'Code of conduct' -a 'FAQ' -c 'CODE_OF_CONDUCT.md' -f
+        - npx rollup-umd-scripts doc add-section -n 'Changelog' -a 'Code of conduct' -c 'CHANGELOG.md' -f
         - npm run styleguide:build
       deploy:
         - provider: pages
