@@ -2,7 +2,7 @@ language: node_js
 sudo: required
 dist: trusty
 
-# Blocklist
+# Block list
 branches:
   except:
     - gh-pages # will be deployed to, no need to build it
