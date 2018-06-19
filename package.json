@@ -1,6 +1,6 @@
 {
   "name": "@yeutech/navigation-bar",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "navigation-bar is a set of navigation for browser made with and for bootstrap-styled",
   "main": "lib/index.js",
   "jsnext:main": "dist/@yeutech/navigation-bar.esm.js",
