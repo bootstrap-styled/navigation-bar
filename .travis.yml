@@ -37,18 +37,18 @@ jobs:
     - stage: build
       if: branch IN (dev, master)
       node_js:
-        - lts/*
-        - 10
-        - 8
+        - 'lts/*'
+        - '10'
+        - '8'
       script:
         - npm run build
     # Job: Test
     - stage: test
       if: branch IN (dev, master)
       node_js:
-        - lts/*
-        - 10
-        - 8
+        - 'lts/*'
+        - '10'
+        - '8'
       script:
         - npm run test
 
@@ -56,7 +56,7 @@ jobs:
     - stage: release
       if: branch = master
       node_js:
-        - lts/*
+        - 'lts/*'
       skip_cleanup: true
       script:
         - npx semantic-release
@@ -65,7 +65,7 @@ jobs:
     - stage: deploy
       if: branch = master
       node_js:
-        - lts/*
+        - 'lts/*'
       script:
         - git fetch --tags
         - PACKAGE_VERSION=$(git describe --tags | awk -F '-' '{print $1}')
