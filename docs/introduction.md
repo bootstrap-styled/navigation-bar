@@ -1,12 +1,3 @@
-[![build status]($CI_PROJECT_URL/badges/v$PACKAGE_VERSION/build.svg)]($CI_PROJECT_URL/commits/v$PACKAGE_VERSION)
-[![coverage report]($CI_PROJECT_URL/badges/v$PACKAGE_VERSION/coverage.svg)]($CI_PROJECT_URL/commits/v$PACKAGE_VERSION)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![Build Status](https://travis-ci.org/bootstrap-styled/navigation-bar.svg?branch=master)](https://travis-ci.org/bootstrap-styled/navigation-bar) ![image](https://img.shields.io/badge/version-$PACKAGE_VERSION-green.svg) [![npm Version](https://img.shields.io/npm/v/@bootstrap-styled/navigation-bar.svg?style=flat)](https://www.npmjs.com/package/@bootstrap-styled/navigation-bar) [![License](https://img.shields.io/npm/l/@bootstrap-styled/navigation-bar.svg?style=flat)](https://www.npmjs.com/package/@bootstrap-styled/navigation-bar) [![NPM monthly downloads](https://img.shields.io/npm/dm/@bootstrap-styled/navigation-bar.svg?style=flat)](https://npmjs.org/package/@bootstrap-styled/navigation-bar) [![NPM total downloads](https://img.shields.io/npm/dt/@bootstrap-styled/navigation-bar.svg?style=flat)](https://npmjs.org/package/@bootstrap-styled/navigation-bar) [![npm Version](https://img.shields.io/node/v/@bootstrap-styled/navigation-bar.svg?style=flat)](https://www.npmjs.com/package/@bootstrap-styled/navigation-bar) [![Module formats](https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20esm-green.svg?style=flat)](https://www.npmjs.com/package/@bootstrap-styled/navigation-bar)
 
-![image](https://img.shields.io/badge/version-$PACKAGE_VERSION-green.svg)
-![image](https://img.shields.io/badge/node-$NODE_VERSION-brightgreen.svg)
-![image](https://img.shields.io/badge/npm-$NPM_VERSION-red.svg)
-![image](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
-![image]($IMG_SHIELD_PUBLISHING)
-
-$PACKAGE_NAME is a set of navigation for browser made with and for [bootstrap-styled](https://bootstrap-styled.yeutech.com).
+is a set of navigation for browser made with and for bootstrap-styled
