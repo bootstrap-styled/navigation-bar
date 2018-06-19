@@ -18,7 +18,6 @@ before_install:
     - export PACKAGE_VERSION=$(node -p "require('./package.json').version")
     - export NODE_VERSION=$(node --version)
     - export NPM_VERSION=$(npm --version)
-
     # logging
     - npm --version || echo npm not installed
     - node --version|| echo node not installed
