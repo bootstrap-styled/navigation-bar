@@ -1,11 +1,11 @@
 {
-  "name": "navigation-bar",
+  "name": "@yeutech/navigation-bar",
   "version": "0.0.0-development",
   "description": "navigation-bar is a set of navigation for browser made with and for bootstrap-styled",
   "main": "lib/index.js",
   "jsnext:main": "dist/@yeutech/navigation-bar.esm.js",
   "module": "dist/@yeutech/navigation-bar.esm.js",
-  "homepage": "https://bootstrap-styled.github.io/navigation-bar",
+  "homepage": "https://bootstrap-styled.yeutech.com/navigation-bar",
   "browserslist": [
     "IE >= 9",
     "last 2 versions"
@@ -33,10 +33,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bootstrap-styled/navigation-bar.git"
+    "url": "https://module.kopaxgroup.com/bootstrap-styled/navigation-bar.git"
   },
   "bugs": {
-    "url": "https://github.com/bootstrap-styled/navigation-bar/issues"
+    "url": "https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/issues"
   },
   "keywords": [
     "bootstrap-styled"
@@ -173,7 +173,7 @@
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-uglify": "^3.0.0",
     "rollup-plugin-visualizer": "^0.5.0",
-    "rollup-umd-scripts": "^0.13.28",
+    "rollup-umd-scripts": "^0.13.29",
     "rollup-watch": "^4.3.1",
     "semantic-release": "^15.5.2",
     "sinon": "^2.3.2",
@@ -238,8 +238,7 @@
   },
   "publishConfig": {
     "tag": "latest",
-    "registry": "https://registry.npmjs.org",
-    "access": "public"
+    "registry": "https://npm.kopaxgroup.com"
   },
   "private": false,
   "release": {
