@@ -13,3 +13,6 @@ npx rollup-umd-scripts doc variable \
   CLI_HELP="$(npx rollup-umd-scripts help)" \
   DECLINATION_LIST="$(npx rollup-umd-scripts declination list --with-link)" \
   IMG_SHIELD_PUBLISHING=$(npx rollup-umd-scripts publish status --badge)
+
+npx rollup-umd-scripts doc add-section -n 'Code of conduct' -a 'FAQ' -c 'CODE_OF_CONDUCT.md' -f
+npx rollup-umd-scripts doc add-section -n 'Changelog' -a 'Code of conduct' -c 'CHANGELOG.md' -f
