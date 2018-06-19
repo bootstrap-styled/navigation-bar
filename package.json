@@ -173,7 +173,7 @@
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-uglify": "^3.0.0",
     "rollup-plugin-visualizer": "^0.5.0",
-    "rollup-umd-scripts": "^0.13.27",
+    "rollup-umd-scripts": "^0.13.28",
     "rollup-watch": "^4.3.1",
     "semantic-release": "^15.5.2",
     "sinon": "^2.3.2",
@@ -247,11 +247,11 @@
     "fail": false,
     "npmPublish": true,
     "verifyConditions": [
-      "@semantic-release/changelog",
       {
         "path": "@semantic-release/exec",
         "cmd": "node node_modules/rollup-umd-scripts/bin/scripts-ci transitive verify"
       },
+      "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/git",
       {
@@ -260,18 +260,21 @@
       }
     ],
     "prepare": [
-      "@semantic-release/changelog",
       {
         "path": "@semantic-release/exec",
         "cmd": "node node_modules/rollup-umd-scripts/bin/scripts-ci transitive prepare"
       },
+      "@semantic-release/changelog",
       "@semantic-release/npm",
       {
         "path": "@semantic-release/git",
         "assets": [
+          "package-lock.json",
+          "npm-shrinkwrap.json",
           "package.json",
           "dist/**/*.{js|es}",
           "lib/**/*.js",
+          "docs/**/*.md",
           "CHANGELOG.md",
           "README.md",
           "LICENSE.md"
@@ -279,14 +282,14 @@
       }
     ],
     "publish": [
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "node node_modules/rollup-umd-scripts/bin/scripts-ci transitive publish ${nextRelease.version}"
+      },
       "@semantic-release/npm",
       {
         "path": "@semantic-release/gitlab",
         "gitlabUrl": "https://module.kopaxgroup.com"
-      },
-      {
-        "path": "@semantic-release/exec",
-        "cmd": "node node_modules/rollup-umd-scripts/bin/scripts-ci transitive publish ${nextRelease.version}"
       }
     ]
   },
