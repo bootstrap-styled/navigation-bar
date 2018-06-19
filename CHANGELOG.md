@@ -1,3 +1,10 @@
+## [1.6.6](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.6.5...v1.6.6) (2018-06-19)
+
+
+### Bug Fixes
+
+* **files:** remove useless files ([8cd3a9b](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/8cd3a9b))
+
 ## [1.6.5](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.6.4...v1.6.5) (2018-06-19)
 
 
