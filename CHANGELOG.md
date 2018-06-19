@@ -1,3 +1,10 @@
+## [1.6.1](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.6.0...v1.6.1) (2018-06-19)
+
+
+### Bug Fixes
+
+* **github:** release to github ([5ba3b83](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/5ba3b83))
+
 # [1.6.0](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.5.0...v1.6.0) (2018-06-19)
 
 
