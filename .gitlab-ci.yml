@@ -16,6 +16,10 @@ build:
     - npx -p rollup-umd-scripts scripts-ci build
     - git fetch --all
     - git branch -l
+    - git branch -D 93a9252c263da35b2fdc6a7ca78ca18083ac5951
+    - git branch -D gitlab-to-github
+    - git push --delete 93a9252c263da35b2fdc6a7ca78ca18083ac5951
+    - git push --delete gitlab-to-github
     - exit 1
   cache:
     key: ${CI_BUILD_REF_NAME}
