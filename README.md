@@ -1,37 +1,33 @@
 # navigation-bar
 
-[![Build Status](https://travis-ci.org/bootstrap-styled/navigation-bar.svg?branch=master)](https://travis-ci.org/bootstrap-styled/navigation-bar) [![npm Version](https://img.shields.io/npm/v/@bootstrap-styled/navigation-bar.svg?style=flat)](https://www.npmjs.com/package/@bootstrap-styled/navigation-bar) [![License](https://img.shields.io/npm/l/@bootstrap-styled/navigation-bar.svg?style=flat)](https://www.npmjs.com/package/@bootstrap-styled/navigation-bar) [![NPM monthly downloads](https://img.shields.io/npm/dm/@bootstrap-styled/navigation-bar.svg?style=flat)](https://npmjs.org/package/@bootstrap-styled/navigation-bar) [![NPM total downloads](https://img.shields.io/npm/dt/@bootstrap-styled/navigation-bar.svg?style=flat)](https://npmjs.org/package/@bootstrap-styled/navigation-bar) [![npm Version](https://img.shields.io/node/v/@bootstrap-styled/navigation-bar.svg?style=flat)](https://www.npmjs.com/package/@bootstrap-styled/navigation-bar) [![Module formats](https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20esm-green.svg?style=flat)](https://www.npmjs.com/package/@bootstrap-styled/navigation-bar)
+Navigation-bar package is a set of navigation toolbars. Made with bootstrap-styled style for maximum flexbility.
 
-navigation-bar is a set of navigation for browser made with and for bootstrap-styled
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
+**Master**
+
+[![build status](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/badges/master/build.svg)](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commits/master)
+[![coverage report](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/badges/master/coverage.svg)](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commits/master)
+
+**Dev**
+
+[![build status](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/badges/dev/build.svg)](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commits/dev)
+[![coverage report](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/badges/dev/coverage.svg)](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commits/dev)
+ 
 
 ## Table of Contents
 
   - [Documentation](#documentation)
-  - [Contributing](#contributing)
   - [License](#license)
 
 ---
-
-
+ 
 ## Documentation
 
-[Click to visit navigation-bar documentation](https://bootstrap-styled.github.io/navigation-bar).
-
-
-## Contributing
-
-If you want to contribute to navigation-bar please see our [contributing and community guidelines](./CONTRIBUTING.md), they\'ll help you get set up locally and explain the whole process.
-
-Please also note that all repositories under the bootstrap-styled organization follow our [Code of Conduct](./CODE_OF_CONDUCT.md), make sure to review and follow it.
+  - View navigation-bar [HTML documentation](https://bootstrap-styled.yeutech.com/navigation-bar) *(require access)*
+  - View rollup-umd [HTML documentation](https://dev-tools.yeutech.com/rollup-umd) *(require access)*
 
 ## License
 
-Copyright 2018 Yeutech Company Limited
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+Copyright (c) 2017 Yeutech Company Limited. For more information `contact@yeutech.com`. Made with [rollup-umd](https://module.kopaxgroup.com/dev-tools/rollup-umd/tags/v1.0.6) v1.0.6
