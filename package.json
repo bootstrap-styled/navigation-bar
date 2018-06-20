@@ -1,11 +1,11 @@
 {
-  "name": "@yeutech/navigation-bar",
+  "name": "@bootstrap-styled/navigation-bar",
   "version": "1.7.6",
   "description": "navigation-bar is a set of navigation for browser made with and for bootstrap-styled",
   "main": "lib/index.js",
   "jsnext:main": "dist/@yeutech/navigation-bar.esm.js",
   "module": "dist/@yeutech/navigation-bar.esm.js",
-  "homepage": "https://bootstrap-styled.yeutech.com/navigation-bar",
+  "homepage": "https://bootstrap-styled.github.io/navigation-bar",
   "browserslist": [
     "IE >= 9",
     "last 2 versions"
@@ -33,10 +33,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://module.kopaxgroup.com/bootstrap-styled/navigation-bar.git"
+    "url": "https://github.com/bootstrap-styled/navigation-bar.git"
   },
   "bugs": {
-    "url": "https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/issues"
+    "url": "https://github.com/bootstrap-styled/navigation-bar/issues"
   },
   "keywords": [
     "bootstrap-styled"
@@ -113,7 +113,7 @@
     "@semantic-release/changelog": "^2.0.2",
     "@semantic-release/exec": "^2.2.4",
     "@semantic-release/git": "^5.0.0",
-    "@semantic-release/gitlab": "^2.1.4",
+    "@semantic-release/github": "^4.2.17",
     "@semantic-release/npm": "^3.3.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -236,14 +236,13 @@
     "styled-components": "^3.3.2"
   },
   "publishConfig": {
+    "registry": "https://registry.npmjs.org",
     "tag": "latest",
-    "registry": "https://npm.kopaxgroup.com"
+    "access": "public"
   },
   "private": false,
   "release": {
     "branch": "master",
-    "success": false,
-    "fail": false,
     "npmPublish": true,
     "verifyConditions": [
       {
@@ -287,8 +286,49 @@
       },
       "@semantic-release/npm",
       {
-        "path": "@semantic-release/gitlab",
-        "gitlabUrl": "https://module.kopaxgroup.com"
+        "path": "@semantic-release/github",
+        "assets": [
+          {
+            "path": "package.json"
+          },
+          {
+            "path": "LICENSE.md"
+          },
+          {
+            "path": "CHANGELOG.md"
+          },
+          {
+            "path": "README.md"
+          },
+          {
+            "path": "dist/*.esm.js",
+            "label": "ES module"
+          },
+          {
+            "path": "dist/*.esm.js.map",
+            "label": "ES module source map"
+          },
+          {
+            "path": "dist/*.min.js",
+            "label": "UMD compressed"
+          },
+          {
+            "path": "dist/*.min.js.map",
+            "label": "UMD compressed source map"
+          },
+          {
+            "path": "dist/*.cjs.min.js",
+            "label": "CJS compressed"
+          },
+          {
+            "path": "dist/*.cjs.min.js.map",
+            "label": "CJS compressed source map"
+          },
+          {
+            "path": "lib/*.js",
+            "label": "CJS folder"
+          }
+        ]
       }
     ]
   },
@@ -296,22 +336,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "transitive": {
-    "name": "navigation-bar",
-    "scope": "bootstrap-styled",
-    "homepage": "https://bootstrap-styled.github.io/navigation-bar",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/bootstrap-styled/navigation-bar.git"
-    },
-    "bugs": {
-      "url": "https://github.com/bootstrap-styled/navigation-bar/issues"
-    },
-    "publishConfig": {
-      "access": "public",
-      "registry": "https://registry.npmjs.org"
-    },
-    "scopedName": "@bootstrap-styled/navigation-bar"
   }
 }
