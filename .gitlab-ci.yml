@@ -14,7 +14,6 @@ build:
   stage: build
   script:
     - npx -p rollup-umd-scripts scripts-ci build
-    - exit 1
   cache:
     key: ${CI_BUILD_REF_NAME}
     paths:
