@@ -22,7 +22,7 @@ Navigation-bar package is a set of navigation toolbars. Made with bootstrap-styl
   - [License](#license)
 
 ---
-  
+
 ## Documentation
 
   - View navigation-bar [HTML documentation](https://bootstrap-styled.yeutech.com/navigation-bar) *(require access)*
