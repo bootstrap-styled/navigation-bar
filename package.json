@@ -1,6 +1,6 @@
 {
   "name": "@yeutech/navigation-bar",
-  "version": "0.0.0-development",
+  "version": "1.7.0",
   "description": "navigation-bar is a set of navigation for browser made with and for bootstrap-styled",
   "main": "lib/index.js",
   "jsnext:main": "dist/@yeutech/navigation-bar.esm.js",
@@ -297,22 +297,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "transitive": {
-    "name": "navigation-bar",
-    "scope": "bootstrap-styled",
-    "homepage": "https://bootstrap-styled.github.io/navigation-bar",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/bootstrap-styled/navigation-bar.git"
-    },
-    "bugs": {
-      "url": "https://github.com/bootstrap-styled/navigation-bar/issues"
-    },
-    "publishConfig": {
-      "access": "public",
-      "registry": "https://registry.npmjs.org"
-    },
-    "scopedName": "@bootstrap-styled/navigation-bar"
   }
 }
