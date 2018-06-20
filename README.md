@@ -14,7 +14,7 @@ Navigation-bar package is a set of navigation toolbars. Made with bootstrap-styl
 
 [![build status](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/badges/dev/build.svg)](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commits/dev)
 [![coverage report](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/badges/dev/coverage.svg)](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commits/dev)
-
+ 
 
 ## Table of Contents
 
