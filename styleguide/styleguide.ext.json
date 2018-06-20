@@ -54,5 +54,9 @@
         }
       ]
     }
-  ]
+  ],
+  "ribbon": {
+    "url": "https://github.com/bootstrap-styled/navigation-bar",
+    "text": "Fork us on GitHub"
+  }
 }
