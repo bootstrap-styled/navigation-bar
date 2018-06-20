@@ -3,7 +3,7 @@ image: kopaxgroup/node10-jdk8-flyway4-sonarscanner2-docker17-debian
 before_script:
   - npx -p rollup-umd-scripts scripts-ci before-script
   - git branch -l
-  - git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)' | awk 'length($0) <39' | xargs git branch -D || true
+  - git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)' | awk 'length($0) >39' | xargs git branch -D || true
   - git branch -l
 
 stages:
