@@ -1,3 +1,10 @@
+## [1.7.15](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.7.14...v1.7.15) (2018-06-22)
+
+
+### Bug Fixes
+
+* **ci:** build ([49a6f18](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/commit/49a6f18))
+
 ## [1.7.14](https://module.kopaxgroup.com/bootstrap-styled/navigation-bar/compare/v1.7.13...v1.7.14) (2018-06-20)
 
 
