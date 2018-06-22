@@ -13,6 +13,7 @@ navigation-bar is a set of navigation for browser made with and for bootstrap-st
 
 ---
 
+
 ## Documentation
 
 [Click to visit navigation-bar documentation](https://bootstrap-styled.github.io/navigation-bar).
