@@ -45,9 +45,9 @@ jobs:
     - stage: test
       if: branch IN (dev, master)
       node_js:
-        - 'lts/*'
+        # - 'lts/*'
         - '10'
-        - '8'
+        # - '8'
       script:
         - npm run test
 
