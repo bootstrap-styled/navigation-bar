@@ -36,8 +36,8 @@ jobs:
     - stage: build
       if: branch IN (dev, master)
       node_js:
-       - 'lts/*'
-       # - '10'
+       # - 'lts/*'
+       - '10'
        # - '8'
       script:
         - npm run build
@@ -45,8 +45,8 @@ jobs:
     - stage: test
       if: branch IN (dev, master)
       node_js:
-        - 'lts/*'
-        # - '10'
+        # - 'lts/*'
+        - '10'
         # - '8'
       script:
         - npm run test
