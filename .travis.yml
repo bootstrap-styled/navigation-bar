@@ -22,7 +22,10 @@ before_install:
     - npm --version || echo npm not installed
     - node --version|| echo node not installed
     - echo "package version $PACKAGE_VERSION"
-    # - npm cache clean --force
+    - npm install node
+    - nvm use node
+    - node --version
+    - npm --version
     - npm install
     - ls /
     - ls /home/travis
@@ -48,8 +51,8 @@ jobs:
     - stage: build
       if: branch IN (dev, master)
       node_js:
-       - 'lts/*'
-       # - '10'
+       # - 'lts/*'
+       - '10'
        # - '8'
       script:
         - npm install
@@ -58,8 +61,8 @@ jobs:
     - stage: test
       if: branch IN (dev, master)
       node_js:
-        - 'lts/*'
-        # - '10'
+        # - 'lts/*'
+        - '10'
         # - '8'
       script:
         - npm run test
@@ -78,7 +81,8 @@ jobs:
     - stage: deploy
       if: branch = master
       node_js:
-        - 'lts/*'
+        # - 'lts/*'
+        - '10'
       script:
         - git fetch --tags
         - PACKAGE_VERSION=$(git describe --tags | awk -F '-' '{print $1}')
