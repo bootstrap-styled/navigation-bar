@@ -15,8 +15,8 @@ before_install:
     - npm i -g npm@6.1.0
     - p=$(which npm)
     - rm $p
-    - npm -v
     - ln -s /home/travis/.nvm/versions/node/v10.1.0/bin/npm $p
+    - npm -v
     # const
     - export PACKAGE_NAME=$(node -p "require('./package.json').name")
     - export PACKAGE_VERSION=$(node -p "require('./package.json').version")
