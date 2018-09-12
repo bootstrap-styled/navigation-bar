@@ -76,8 +76,10 @@ jobs:
         - PACKAGE_VERSION=$(git describe --tags | awk -F '-' '{print $1}')
         - git checkout refs/tags/${PACKAGE_VERSION}
         - PACKAGE_VERSION=$(node -p "require('./package.json').version")
-        - npm install
+        - npm ci
+        - npm run build
         # Replace variables
+        - chmod +x ./styleguide/prepare.sh
         - ./styleguide/prepare.sh
         - npm run styleguide:build
       deploy:
