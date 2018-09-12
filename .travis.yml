@@ -12,7 +12,6 @@ cache:
     - node_modules
 
 before_install:
-    # - npm install -g npm@latest
     # const
     - export PACKAGE_NAME=$(node -p "require('./package.json').name")
     - export PACKAGE_VERSION=$(node -p "require('./package.json').version")
@@ -24,13 +23,9 @@ before_install:
     - echo "package version $PACKAGE_VERSION"
     - node --version
     - npm --version
+    - npm install -g npm@6.2.0
+    - npm --version
     - ls package-lock.json
-    - cat /home/travis/.travis/job_stages | sed '977!d'
-    - cat /home/travis/.travis/job_stages | sed '240!d'
-    - ls /home/travis/.travis/
-    - ls /home/travis/.travis/node_modules || echo true
-    - ls /home/travis/.travis/node_modules/.bin || echo true
-    - ls /home/travis/.travis/node_modules/.bin/npm || echo true
     - npm ci || cat /home/travis/.npm/_logs/*-debug.log
 
 stages:
@@ -46,7 +41,7 @@ jobs:
       if: branch IN (dev, master)
       node_js:
        # - 'lts/*'
-       - '10'
+       - '10.3'
        # - '8'
       script:
         - npm install
@@ -56,7 +51,7 @@ jobs:
       if: branch IN (dev, master)
       node_js:
         # - 'lts/*'
-        - '10'
+        - '10.3'
         # - '8'
       script:
         - npm run test
@@ -65,7 +60,8 @@ jobs:
     - stage: release
       if: branch = master
       node_js:
-        - 'lts/*'
+        # - 'lts/*'
+        - '10.3'
       skip_cleanup: true
       script:
         - npm install
@@ -76,7 +72,7 @@ jobs:
       if: branch = master
       node_js:
         # - 'lts/*'
-        - '10'
+        - '10.3'
       script:
         - git fetch --tags
         - PACKAGE_VERSION=$(git describe --tags | awk -F '-' '{print $1}')
