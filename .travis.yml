@@ -12,6 +12,7 @@ cache:
     - node_modules
 
 before_install:
+    # ugly fix because npm 6.4 was failing the ci
     - npm i -g npm@6.1.0
     - p=$(which npm)
     - rm $p
