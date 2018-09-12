@@ -23,6 +23,7 @@ before_install:
     - node --version|| echo node not installed
     - echo "package version $PACKAGE_VERSION"
     # - npm cache clean --force
+    - ls -altr
     - ls package-lock.json
     - npm ci || cat   /home/travis/.npm/_logs/*-debug.log
 
