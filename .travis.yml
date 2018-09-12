@@ -12,6 +12,7 @@ cache:
     - node_modules
 
 before_install:
+    - npm install -g npm@6.2.0
     # const
     - export PACKAGE_NAME=$(node -p "require('./package.json').name")
     - export PACKAGE_VERSION=$(node -p "require('./package.json').version")
