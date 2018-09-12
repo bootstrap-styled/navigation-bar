@@ -12,7 +12,7 @@ cache:
     - node_modules
 
 before_install:
-    # - npm install -g npm
+    - npm install -g npm
     # const
     - export PACKAGE_NAME=$(node -p "require('./package.json').name")
     - export PACKAGE_VERSION=$(node -p "require('./package.json').version")
@@ -22,6 +22,7 @@ before_install:
     - npm --version || echo npm not installed
     - node --version|| echo node not installed
     - echo "package version $PACKAGE_VERSION"
+    - ln -s $(which npm) ./node_modules/.bin/npm
 
 stages:
   - build
