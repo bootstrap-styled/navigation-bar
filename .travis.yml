@@ -21,12 +21,6 @@ before_install:
     - npm --version || echo npm not installed
     - node --version|| echo node not installed
     - echo "package version $PACKAGE_VERSION"
-    - node --version
-    - npm --version
-    - npm install -g npm@6.2.0
-    - npm --version
-    - ls package-lock.json
-    - npm ci || cat /home/travis/.npm/_logs/*-debug.log
 
 stages:
   - build
@@ -44,7 +38,6 @@ jobs:
        - '10.3'
        # - '8'
       script:
-        - npm install
         - npm run build
     # Job: Test
     - stage: test
@@ -64,7 +57,6 @@ jobs:
         - '10.3'
       skip_cleanup: true
       script:
-        - npm install
         - npx semantic-release
 
     # Job: Page
