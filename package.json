@@ -3,8 +3,8 @@
   "version": "1.8.1",
   "description": "navigation-bar is a set of navigation for browser made with and for bootstrap-styled",
   "main": "lib/index.js",
-  "jsnext:main": "dist/@yeutech/navigation-bar.esm.js",
-  "module": "dist/@yeutech/navigation-bar.esm.js",
+  "jsnext:main": "dist/@bootstrap-styled/navigation-bar.esm.js",
+  "module": "dist/@bootstrap-styled/navigation-bar.esm.js",
   "homepage": "https://bootstrap-styled.github.io/navigation-bar",
   "browserslist": [
     "IE >= 9",
