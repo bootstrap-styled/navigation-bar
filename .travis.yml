@@ -12,7 +12,7 @@ cache:
     - node_modules
 
 before_install:
-    - npm install -g npm
+    - npm install -g npm@latest
     # const
     - export PACKAGE_NAME=$(node -p "require('./package.json').name")
     - export PACKAGE_VERSION=$(node -p "require('./package.json').version")
@@ -22,7 +22,6 @@ before_install:
     - npm --version || echo npm not installed
     - node --version|| echo node not installed
     - echo "package version $PACKAGE_VERSION"
-    - echo ln -s $(which npm) ./node_modules/.bin/npm
 
 stages:
   - build
@@ -32,23 +31,22 @@ stages:
 
 jobs:
   include:
-
     # Job: Build
     - stage: build
       if: branch IN (dev, master)
       node_js:
-       # - 'lts/*'
-       - '10'
+       - 'lts/*'
+       # - '10'
        # - '8'
       script:
-        - ln -s $(which npm) ./node_modules/.bin/npm
+        - npm install
         - npm run build
     # Job: Test
     - stage: test
       if: branch IN (dev, master)
       node_js:
-        # - 'lts/*'
-        - '10'
+        - 'lts/*'
+        # - '10'
         # - '8'
       script:
         - npm run test
@@ -60,6 +58,7 @@ jobs:
         - 'lts/*'
       skip_cleanup: true
       script:
+        - npm install
         - npx semantic-release
 
     # Job: Page
@@ -74,18 +73,7 @@ jobs:
         - PACKAGE_VERSION=$(node -p "require('./package.json').version")
         - npm install
         # Replace variables
-        - npx rollup-umd-scripts doc variable PACKAGE_NAME=${PACKAGE_NAME}
-        - npx rollup-umd-scripts doc variable PACKAGE_PEERS="$(npx rollup-umd-scripts peer npm-install-cmd)"
-        - npx rollup-umd-scripts doc variable PACKAGE_VERSION=${PACKAGE_VERSION}
-        - npx rollup-umd-scripts doc variable NODE_VERSION=${NODE_VERSION}
-        - npx rollup-umd-scripts doc variable NPM_VERSION=${NPM_VERSION}
-        - npx rollup-umd-scripts doc variable CI_REPOSITORY_URL="https://github.com/${TRAVIS_REPO_SLUG}.git"
-        - npx rollup-umd-scripts doc variable CI_PROJECT_URL="https://github.com/${TRAVIS_REPO_SLUG}.git"
-        - npx rollup-umd-scripts doc variable CI_PROJECT_NAMESPACE=$(echo $TRAVIS_REPO_SLUG | awk -F '/' '{print $1}')
-        - npx rollup-umd-scripts doc variable CI_PROJECT_NAME=$(echo $TRAVIS_REPO_SLUG | awk -F '/' '{print $2}')
-        - npx rollup-umd-scripts doc variable IMG_SHIELD_PUBLISHING=$(npx rollup-umd-scripts publish status --badge)
-        - npx rollup-umd-scripts doc add-section -n 'Code of conduct' -a 'FAQ' -c 'CODE_OF_CONDUCT.md' -f
-        - npx rollup-umd-scripts doc add-section -n 'Changelog' -a 'Code of conduct' -c 'CHANGELOG.md' -f
+        - ./styleguide/prepare.sh
         - npm run styleguide:build
       deploy:
         - provider: pages
