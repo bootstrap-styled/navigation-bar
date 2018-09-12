@@ -24,7 +24,7 @@ before_install:
     - echo "package version $PACKAGE_VERSION"
     # - npm cache clean --force
     - ls package-lock.json
-    - npm ci || cat *-debug.log
+    - npm ci || cat   /home/travis/.npm/_logs/*-debug.log
 
 stages:
   - build
