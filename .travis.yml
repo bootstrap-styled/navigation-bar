@@ -28,6 +28,12 @@ before_install:
     - ls /home/travis
     - ls -altr
     - ls package-lock.json
+    - cat /home/travis/.travis/job_stages | sed '977!d'
+    - cat /home/travis/.travis/job_stages | sed '240!d'
+    - ls /home/travis/.travis/
+    - ls /home/travis/.travis/node_modules || echo true
+    - ls /home/travis/.travis/node_modules/.bin || echo true
+    - ls /home/travis/.travis/node_modules/.bin/npm || echo true
     - npm ci || cat /home/travis/.npm/_logs/*-debug.log
 
 stages:
