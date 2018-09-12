@@ -22,7 +22,9 @@ before_install:
     - npm --version || echo npm not installed
     - node --version|| echo node not installed
     - echo "package version $PACKAGE_VERSION"
-    - npm cache clean --force
+    # - npm cache clean --force
+    - ls package-lock.json
+    - npm ci || cat *-debug.log
 
 stages:
   - build
