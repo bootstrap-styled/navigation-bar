@@ -22,6 +22,7 @@ before_install:
     - npm --version || echo npm not installed
     - node --version|| echo node not installed
     - echo "package version $PACKAGE_VERSION"
+    - npm cache clean --force
 
 stages:
   - build
