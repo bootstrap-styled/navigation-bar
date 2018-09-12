@@ -222,7 +222,7 @@
   "dependencies": {
     "bootstrap-styled": "^1.7.5",
     "bootstrap-styled-mixins": "^1.0.4",
-    "bootstrap-styled-provider": "^1.1.5",
+    "bootstrap-styled-provider": "^1.1.7",
     "bootstrap-styled-utils": "^1.0.2",
     "classnames": "^2.2.5",
     "lodash.omit": "^4.5.0",
