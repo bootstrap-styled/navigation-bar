@@ -22,7 +22,6 @@ before_install:
     - npm --version || echo npm not installed
     - node --version|| echo node not installed
     - echo "package version $PACKAGE_VERSION"
-    - npm install
 
 stages:
   - build
@@ -37,9 +36,9 @@ jobs:
     - stage: build
       if: branch IN (dev, master)
       node_js:
-        - 'lts/*'
-        - '10'
-        - '8'
+       - 'lts/*'
+       # - '10'
+       # - '8'
       script:
         - npm run build
     # Job: Test
@@ -47,8 +46,8 @@ jobs:
       if: branch IN (dev, master)
       node_js:
         - 'lts/*'
-        - '10'
-        - '8'
+        # - '10'
+        # - '8'
       script:
         - npm run test
 
