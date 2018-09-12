@@ -22,8 +22,6 @@ before_install:
     - npm --version || echo npm not installed
     - node --version|| echo node not installed
     - echo "package version $PACKAGE_VERSION"
-    - npm install node
-    - nvm use node
     - node --version
     - npm --version
     - ls package-lock.json
