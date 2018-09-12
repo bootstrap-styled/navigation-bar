@@ -22,7 +22,7 @@ before_install:
     - npm --version || echo npm not installed
     - node --version|| echo node not installed
     - echo "package version $PACKAGE_VERSION"
-    - ln -s $(which npm) ./node_modules/.bin/npm
+    - echo ln -s $(which npm) ./node_modules/.bin/npm
 
 stages:
   - build
@@ -41,6 +41,7 @@ jobs:
        - '10'
        # - '8'
       script:
+        - ln -s $(which npm) ./node_modules/.bin/npm
         - npm run build
     # Job: Test
     - stage: test
