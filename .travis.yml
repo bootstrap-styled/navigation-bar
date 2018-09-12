@@ -14,9 +14,9 @@ cache:
 before_install:
     # ugly fix because npm 6.4 was failing the ci
     - npm i -g npm@6.1.0
-    # - p=$(which npm)
-    # - rm $p
-    # - ln -s /home/travis/.nvm/versions/node/v10.1.0/bin/npm $p
+    - p=$(which npm)
+    - rm $p
+    - ln -s /home/travis/.nvm/versions/node/v10.1.0/bin/npm $p
     - npm -v
     # const
     - export PACKAGE_NAME=$(node -p "require('./package.json').name")
