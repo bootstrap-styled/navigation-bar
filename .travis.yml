@@ -40,8 +40,8 @@ jobs:
     - stage: build
       if: branch IN (dev, master)
       node_js:
-       # - 'lts/*'
-       # - '10.1'
+       - 'lts/*'
+       - '10'
        - '8'
       script:
         - npm run build
@@ -59,8 +59,8 @@ jobs:
     - stage: release
       if: branch = master
       node_js:
-        # - 'lts/*'
-        # - '10.1'
+        - 'lts/*'
+        - '10'
         - '8'
       skip_cleanup: true
       script:
@@ -70,8 +70,8 @@ jobs:
     - stage: deploy
       if: branch = master
       node_js:
-        # - 'lts/*'
-        # - '10.1'
+        - 'lts/*'
+        - '10'
         - '8'
       script:
         - git fetch --tags
