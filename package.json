@@ -158,7 +158,7 @@
     "react": "^16.4.1",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.4.1",
-    "react-styleguidist": "^7.1.1",
+    "react-styleguidist": "7.1.1",
     "react-test-renderer": "^16.0.0",
     "request": "^2.87.0",
     "rimraf": "^2.6.1",
