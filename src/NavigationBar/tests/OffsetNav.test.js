@@ -3,7 +3,7 @@
  */
 import { mount } from 'enzyme';
 import React from 'react';
-import { BootstrapProvider } from 'bootstrap-styled-provider';
+import BootstrapProvider from '@bootstrap-styled/provider/lib/BootstrapProvider';
 import OffsetNav, { defaultProps } from '../OffsetNav';
 
 const children = (<h1>Test</h1>);

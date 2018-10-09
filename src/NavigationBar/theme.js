@@ -1,24 +1,16 @@
-export function makeTheme(userTheme = { navigationBar: {} }) {
-  const newTheme = { navigationBar: {} };
-  const v = newTheme.navigationBar;
-  const u = userTheme.navigationBar || {};
+import { makeScopedTheme, toMakeTheme } from 'bootstrap-styled/lib/utils';
 
-  // NavigationBar
-  v['$zindex-overlay'] = u['$zindex-overlay'] || '2050';
 
-  // OffsetNav
-  v['$menu-offset-width'] = u['$menu-offset-width'] || '220px';
-  v['$menu-offset-nav-bg-color'] = u['$menu-offset-nav-bg-color'] || 'white';
+const theme = makeScopedTheme({
+  '$zindex-overlay': '2050',
+  '$menu-offset-width': '220px',
+  '$menu-offset-nav-bg-color': 'white',
+  '$menu-offset-nav-box-shadow': 'rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px',
+  '$menu-offset-nav-transition': '.3s ease',
+  '$overlay-bg': 'rgba(0, 0, 0, 0.3)',
 
-  // Offset
-  v['$menu-offset-nav-box-shadow'] = u['$menu-offset-nav-box-shadow'] || 'rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px';
-  v['$menu-offset-nav-transition'] = u['$menu-offset-nav-transition'] || '.3s ease';
+}, 'navigationBar');
 
-  // Overlay
-  v['$overlay-bg'] = u['$overlay-bg'] || 'rgba(0, 0, 0, 0.3)';
+export const makeTheme = toMakeTheme(theme);
 
-  newTheme.navigationBar = v;
-  return { ...newTheme, ...userTheme };
-}
-
-export default makeTheme();
+export default theme;

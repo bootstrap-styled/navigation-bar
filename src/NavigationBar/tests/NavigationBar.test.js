@@ -4,8 +4,8 @@
 
 import { mount } from 'enzyme';
 import React from 'react';
-import { Button } from 'bootstrap-styled/lib';
-import { BootstrapProvider } from 'bootstrap-styled-provider';
+import Button from '@bootstrap-styled/v4/lib/Button';
+import BootstrapProvider from '@bootstrap-styled/provider/lib/BootstrapProvider';
 import NavigationBar, { defaultProps } from '../NavigationBar';
 
 const children = (<h1>Test</h1>);

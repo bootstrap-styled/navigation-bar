@@ -10,8 +10,8 @@ import styled from 'styled-components';
 import cn from 'classnames';
 import omit from 'lodash.omit';
 import mapToCssModules from 'map-to-css-modules/lib';
-import bp from 'bootstrap-styled-mixins/lib/breakpoints';
-import { hoverFocus } from 'bootstrap-styled-mixins/lib/hover';
+import bp from '@bootstrap-styled/css-mixins/lib/breakpoints';
+import { hoverFocus } from '@bootstrap-styled/css-mixins/lib/hover';
 
 export const defaultProps = {
   theme: {

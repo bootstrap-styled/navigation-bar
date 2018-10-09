@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import cn from 'classnames';
 import omit from 'lodash.omit';
 import mapToCssModules from 'map-to-css-modules/lib';
-import Close from 'bootstrap-styled/lib/Close';
+import Close from '@bootstrap-styled/v4/lib/Close';
 import theme from './theme';
 
 export const defaultProps = {
