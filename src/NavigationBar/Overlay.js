@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 import omit from 'lodash.omit';
-import transitionUtils from 'bootstrap-styled-mixins/lib/utilities/transition';
+import transitionUtils from '@bootstrap-styled/css-utils/lib/transition';
 import theme from './theme';
 
 export const defaultProps = {

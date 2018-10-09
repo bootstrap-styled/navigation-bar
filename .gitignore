@@ -4,6 +4,7 @@ tmp.json
 .DS_Store
 bundle-stats.html
 .idea/
+*.iml
 coverage/
 /reports
 /test-report.xml
