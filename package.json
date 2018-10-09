@@ -176,7 +176,8 @@
     "semantic-release": "^15.5.2",
     "sinon": "^2.3.2",
     "styled-components": "^3.3.3",
-    "toctoc": "^0.2.3"
+    "toctoc": "^0.2.3",
+    "webpack": "^4.16.1"
   },
   "jest": {
     "testURL": "http://localhost",
