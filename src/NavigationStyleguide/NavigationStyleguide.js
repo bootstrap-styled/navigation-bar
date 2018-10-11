@@ -108,13 +108,12 @@ const NavigationStyleguide = styled(NavigationStyleguideUnstyled)`
       height: ${props.theme.navigationStyleguide['$nav-styleguide-height']};
       background-color: ${props.theme.navigationStyleguide['$nav-styleguide-bg-color']};
       border: ${props.theme.navigationStyleguide['$nav-styleguide-border']};
-      border-width: ${props.theme.navigationStyleguide['$nav-styleguide-border-width']};
       top: ${props.theme.navigationStyleguide['$nav-styleguide-top']};
       left: ${props.theme.navigationStyleguide['$nav-styleguide-left']};
       bottom: ${props.theme.navigationStyleguide['$nav-styleguide-bottom']};
       overflow: ${props.theme.navigationStyleguide['$nav-styleguide-overflow']};
       width: ${props.theme.navigationStyleguide['$nav-styleguide-width'].md} !important;
-      borderWidth: ${props.theme.navigationStyleguide['$nav-styleguide-border-width'].md};
+      border-width: ${props.theme.navigationStyleguide['$nav-styleguide-border-width'].md};
       position: ${props.theme.navigationStyleguide['$nav-styleguide-position'].md};
       text-align: ${props.theme.navigationStyleguide['$nav-styleguide-text-align'].md};
     }

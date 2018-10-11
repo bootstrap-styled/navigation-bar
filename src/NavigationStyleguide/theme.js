@@ -1,38 +1,42 @@
-import { makeScopedTheme, toMakeTheme } from 'bootstrap-styled/lib/utils';
+export function makeTheme(userTheme = { navigationStyleguide: {} }) {
+  const newTheme = { navigationStyleguide: {} };
+  const v = newTheme.navigationStyleguide;
+  const u = userTheme.navigationStyleguide || {};
 
+  // navigationStyleguide
+  v['$nav-styleguide-height'] = u['$nav-styleguide-height'] || '100%';
+  v['$nav-styleguide-color'] = u['$nav-styleguide-color'] || '#444444';
+  v['$nav-styleguide-hover-color'] = u['$nav-styleguide-hover-color'] || '#898989';
+  v['$nav-styleguide-bg-color'] = u['$nav-styleguide-bg-color'] || '#F5F5F5';
+  v['$nav-styleguide-border'] = u['$nav-styleguide-border'] || '#e8e8e8 solid';
+  v['$nav-styleguide-top'] = u['$nav-styleguide-top'] || 0;
+  v['$nav-styleguide-left'] = u['$nav-styleguide-left'] || 0;
+  v['$nav-styleguide-bottom'] = u['$nav-styleguide-bottom'] || 0;
+  v['$nav-styleguide-overflow'] = u['$nav-styleguide-overflow'] || 'auto';
+  v['$nav-styleguide-list-style-type'] = u['$nav-styleguide-list-style-type'] || 'none';
 
-const theme = makeScopedTheme({
-  '$nav-styleguide-height': '100%',
-  '$nav-styleguide-color': '#444444',
-  '$nav-styleguide-hover-color': '#898989',
-  '$nav-styleguide-bg-color': '#F5F5F5',
-  '$nav-styleguide-border': '#e8e8e8 solid',
-  '$nav-styleguide-top': '0',
-  '$nav-styleguide-left': '0',
-  '$nav-styleguide-bottom': '0',
-  '$nav-styleguide-overflow': 'auto',
-  '$nav-styleguide-list-style-type': 'none',
-  '$nav-styleguide-padding-bottom': {
+  // navigationStyleguide small screen
+  v['$nav-styleguide-padding-bottom'] = u['$nav-styleguide-padding-bottom'] || {
     sm: 4,
-  },
-  '$nav-styleguide-position': {
+  };
+  v['$nav-styleguide-position'] = u['$nav-styleguide-position'] || {
     sm: 'static',
     md: 'fixed',
-  },
-  '$nav-styleguide-width': {
+  };
+  v['$nav-styleguide-width'] = u['$nav-styleguide-width'] || {
     sm: '100%',
-    md: '220px',
-  },
-  '$nav-styleguide-border-width': {
+    md: '150px',
+  };
+  v['$nav-styleguide-border-width'] = u['$nav-styleguide-border-width'] || {
     sm: '1px 0px 0px 0px',
     md: '0px 1px 0px 0px',
-  },
-  '$nav-styleguide-text-align': {
+  };
+  v['$nav-styleguide-text-align'] = u['$nav-styleguide-text-align'] || {
     sm: 'center',
     md: 'left',
-  },
-}, 'navigationStyleguide');
+  };
+  newTheme.navigationStyleguide = v;
+  return { ...userTheme, ...newTheme };
+}
 
-export const makeTheme = toMakeTheme(theme);
-
-export default theme;
+export default makeTheme();
