@@ -12,4 +12,11 @@ describe('makeTheme', () => {
     };
     expect(typeof navigationMakeTheme(customTheme).navigationStyleguide).toEqual('object');
   });
+  it('should create custom theme', () => {
+    const customTheme = {
+      '$nav-styleguide-height': '25%',
+    };
+    expect(navigationMakeTheme(customTheme).navigationStyleguide['$nav-styleguide-color']).toEqual('#444444');
+    expect(navigationMakeTheme(customTheme).navigationStyleguide['$nav-styleguide-height']).toEqual('25%');
+  });
 });
