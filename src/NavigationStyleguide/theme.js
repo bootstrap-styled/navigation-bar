@@ -1,6 +1,5 @@
 import { makeScopedTheme, toMakeScopedTheme } from 'bootstrap-styled/lib/utils';
 
-
 const theme = makeScopedTheme({
   '$nav-styleguide-height': '100%',
   '$nav-styleguide-color': '#444444',
@@ -21,7 +20,7 @@ const theme = makeScopedTheme({
   },
   '$nav-styleguide-width': {
     sm: '100%',
-    md: '150px',
+    md: '220px',
   },
   '$nav-styleguide-border-width': {
     sm: '1px 0px 0px 0px',
