@@ -223,8 +223,8 @@
     "lint-staged"
   ],
   "dependencies": {
-    "bootstrap-styled": "^1.8.0",
-    "@bootstrap-styled/v4": "^1.0.1",
+    "bootstrap-styled": "^1.8.1",
+    "@bootstrap-styled/v4": "^1.0.2",
     "@bootstrap-styled/css-mixins": "^1.0.0",
     "@bootstrap-styled/css-utils": "^1.0.0",
     "@bootstrap-styled/provider": "^1.0.2",
