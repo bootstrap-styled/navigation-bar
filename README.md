@@ -4,7 +4,6 @@
 
 navigation-bar is a set of navigation for browser made with and for bootstrap-styled
 
-
 ## Table of Contents
 
   - [Documentation](#documentation)

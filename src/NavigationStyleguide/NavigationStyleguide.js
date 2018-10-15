@@ -35,7 +35,7 @@ export const defaultProps = {
       },
       '$nav-styleguide-width': {
         sm: '100%',
-        md: '150px',
+        md: '220px',
       },
       '$nav-styleguide-border-width': {
         sm: '1px 0px 0px 0px',
