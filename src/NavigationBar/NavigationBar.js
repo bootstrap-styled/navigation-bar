@@ -189,7 +189,7 @@ class NavigationBarUnstyled extends React.Component {
     return (
       <div>
         {!noOverlay && (<Overlay active={this.state.show} onClick={this.handleClick} />)}
-        <Header className={mapToCssModules(cn(cssClasses), cssModule)} shadowHeader={shadowHeader} {...attributes} innerRef={(header) => { this.header = header; }}>
+        <Header className={mapToCssModules(cn(cssClasses), cssModule)} shadowHeader={shadowHeader} {...attributes} ref={(header) => { this.header = header; }}>
           <ButtonToggle className={buttonClasses} onClick={this.handleClick} {...restButton} />
           {navTop && (<div>{navTop}</div>)}
         </Header>
