@@ -83,9 +83,9 @@ describe('<NavigationBar />', () => {
       </BootstrapProvider>
     );
     const menuButton = renderedComponent.find('Button');
-    expect(renderedComponent.find('OffsetNav').props().active).toBe(false);
+    expect(renderedComponent.find('OffsetNavSlide').props().active).toBe(false);
     menuButton.simulate('click');
-    expect(renderedComponent.find('OffsetNav').props().active).toBe(true);
+    expect(renderedComponent.find('OffsetNavSlide').props().active).toBe(true);
   });
   it('should render an NavigationBar with a boxShadow around its header', () => {
     const renderedComponent = mount(

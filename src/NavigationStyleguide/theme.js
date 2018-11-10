@@ -1,4 +1,4 @@
-import { makeScopedTheme, toMakeScopedTheme } from 'bootstrap-styled/lib/utils';
+import { makeScopedTheme, toMakeScopedTheme } from '@bootstrap-styled/bootstrap-styled/lib/utils';
 
 const theme = makeScopedTheme({
   '$nav-styleguide-height': '100%',
