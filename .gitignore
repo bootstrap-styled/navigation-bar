@@ -4,7 +4,6 @@ tmp.json
 .DS_Store
 bundle-stats.html
 .idea/
-*.iml
 coverage/
 /reports
 /test-report.xml
@@ -14,6 +13,6 @@ dist
 /public
 /docs/cli
 /docs/declinations
-/docs/translation.md
-.npmrc
+.git-credentials
 package-lock.json
+*.iml
