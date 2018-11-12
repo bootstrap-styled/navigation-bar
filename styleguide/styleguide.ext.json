@@ -5,6 +5,7 @@
     "**/*.spec.{js,jsx,ts,tsx}",
     "**/*.d.ts"
   ],
+  "pagePerSection": true,
   "sections": [
     {
       "name": "Introduction",
@@ -33,18 +34,6 @@
       ]
     },
     {
-      "name": "FAQ",
-      "content": "docs/faq.md"
-    },
-    {
-      "name": "Code of conduct",
-      "content": "CODE_OF_CONDUCT.md"
-    },
-    {
-      "name": "Changelog",
-      "content": "CHANGELOG.md"
-    },
-    {
       "name": "Contribute",
       "content": "docs/contribute.md",
       "sections": [
@@ -61,6 +50,10 @@
           "content": "docs/release.md"
         }
       ]
+    },
+    {
+      "name": "FAQ",
+      "content": "docs/faq.md"
     }
   ],
   "ribbon": {
