@@ -3,6 +3,5 @@ const { default: createConfig } = require('@yeutech-lab/rollup-umd-documentation
 
 module.exports = createConfig({
   require: [path.resolve(__dirname, 'styleguide/setup.js')],
-  showCode: false,
-  showUsage: true,
+  usageMode: 'expand',
 });
