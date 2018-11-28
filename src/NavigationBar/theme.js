@@ -1,6 +1,5 @@
 import { makeScopedTheme, toMakeTheme } from 'bootstrap-styled/lib/utils';
 
-
 const theme = makeScopedTheme('navigationBar', {
   '$zindex-overlay': '2050',
   '$menu-offset-width': '220px',
