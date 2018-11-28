@@ -1,7 +1,6 @@
-import { makeScopedTheme, toMakeScopedTheme } from 'bootstrap-styled/lib/utils';
+import { makeScopedTheme, toMakeTheme } from 'bootstrap-styled/lib/utils';
 
-
-const theme = makeScopedTheme({
+const theme = makeScopedTheme('navigationBar', {
   '$zindex-overlay': '2050',
   '$menu-offset-width': '220px',
   '$menu-offset-nav-bg-color': 'white',
@@ -9,8 +8,8 @@ const theme = makeScopedTheme({
   '$menu-offset-nav-transition': '.3s ease',
   '$overlay-bg': 'rgba(0, 0, 0, 0.3)',
 
-}, 'navigationBar');
+});
 
-export const makeTheme = toMakeScopedTheme(theme);
+export const makeTheme = toMakeTheme(theme);
 
 export default theme;

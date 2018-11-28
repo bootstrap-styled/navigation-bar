@@ -1,6 +1,6 @@
-import { makeScopedTheme, toMakeScopedTheme } from 'bootstrap-styled/lib/utils';
+import { makeScopedTheme, toMakeTheme } from 'bootstrap-styled/lib/utils';
 
-const theme = makeScopedTheme({
+const theme = makeScopedTheme('navigationStyleguide', {
   '$nav-styleguide-height': '100%',
   '$nav-styleguide-color': '#444444',
   '$nav-styleguide-hover-color': '#898989',
@@ -30,8 +30,8 @@ const theme = makeScopedTheme({
     sm: 'center',
     md: 'left',
   },
-}, 'navigationStyleguide');
+});
 
-export const makeTheme = toMakeScopedTheme(theme);
+export const makeTheme = toMakeTheme(theme);
 
 export default theme;
