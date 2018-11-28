@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-npx rollup-umd-scripts doc variable \
+npx @rollup-umd/documentation-cli variable \
   PACKAGE_NAME=${PACKAGE_NAME} \
   PACKAGE_PEERS="$(npx rollup-umd-scripts peer npm-install-cmd)" \
   PACKAGE_VERSION=${PACKAGE_VERSION} \
@@ -13,5 +13,5 @@ npx rollup-umd-scripts doc variable \
   CLI_HELP="$(npx rollup-umd-scripts help)" \
   IMG_SHIELD_PUBLISHING=$(npx rollup-umd-scripts publish status --badge)
 
-npx rollup-umd-scripts doc add-section -n 'Code of conduct' -a 'FAQ' -c 'CODE_OF_CONDUCT.md' -f
-npx rollup-umd-scripts doc add-section -n 'Changelog' -a 'Code of conduct' -c 'CHANGELOG.md' -f
+npx @rollup-umd/documentation-cli add-section -n 'Code of conduct' -a 'FAQ' -c 'CODE_OF_CONDUCT.md' -f
+npx @rollup-umd/documentation-cli add-section -n 'Changelog' -a 'Code of conduct' -c 'CHANGELOG.md' -f
