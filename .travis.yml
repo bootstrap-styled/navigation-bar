@@ -7,10 +7,6 @@ branches:
   except:
   - gh-pages # will be deployed to, no need to build it
 
-cache:
-  directories:
-  - node_modules
-
 before_install:
 - npm install -g npm
 # const
@@ -57,7 +53,7 @@ jobs:
 
   # Job: Release
   - stage: release
-    if: branch = master
+    if: branch = master AND type = push AND fork = false
     node_js:
     - 'lts/*'
     skip_cleanup: true
@@ -66,7 +62,7 @@ jobs:
 
   # Job: Page
   - stage: deploy
-    if: branch = master
+    if: branch = master AND type = push AND fork = false
     node_js:
     - 'lts/*'
     script:
