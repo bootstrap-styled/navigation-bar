@@ -11,13 +11,7 @@ describe('makeTheme', () => {
   });
   it('should create custom theme', () => {
     const customTheme = {
-      '$nav-styleguide-height': '50%',
-    };
-    expect(makeThemeNavigation(customTheme).navigationStyleguide['$nav-styleguide-height']).toEqual('50%');
-  });
-  it('should create custom theme', () => {
-    const customTheme = {
-      '$nav-styleguide-height': '50%',
+      navigationStyleguide: { '$nav-styleguide-height': '50%' },
     };
     expect(makeThemeNavigation(customTheme).navigationStyleguide['$nav-styleguide-color']).toEqual('#444444');
     expect(makeThemeNavigation(customTheme).navigationStyleguide['$nav-styleguide-height']).toEqual('50%');

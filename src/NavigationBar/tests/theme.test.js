@@ -15,7 +15,7 @@ describe('makeTheme', () => {
   });
   it('should create scope', () => {
     const customTheme = {
-      '$zindex-overlay': '2050',
+      navigationBar: { '$zindex-overlay': '2050' },
     };
     expect(typeof makeTheme(customTheme).navigationBar).toEqual('object');
   });
