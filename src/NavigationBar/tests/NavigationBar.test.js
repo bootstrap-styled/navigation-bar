@@ -16,7 +16,7 @@ describe('<NavigationBar />', () => {
   let props;
 
   beforeEach(() => {
-    theme = defaultProps.theme;
+    theme = defaultProps.theme; // eslint-disable-line prefer-destructuring
     props = Object.assign(defaultProps, {
       children,
       button: {

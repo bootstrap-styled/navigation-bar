@@ -56,8 +56,9 @@ class NavigationBarUnstyled extends React.Component {
     noOverlay: PropTypes.bool,
     menuClose: PropTypes.bool,
     cssModule: PropTypes.object,
+    dismiss: PropTypes.bool,
     button: PropTypes.shape({
-      component: PropTypes.component,
+      component: PropTypes.any,
       className: PropTypes.string,
     }),
     'nav-top': PropTypes.node,
@@ -74,6 +75,7 @@ class NavigationBarUnstyled extends React.Component {
       push: PropTypes.bool,
     }),
   };
+
   static defaultProps = defaultProps;
 
   state = {
@@ -81,7 +83,7 @@ class NavigationBarUnstyled extends React.Component {
   };
 
   componentDidMount() {
-    const { push: animationPush, right: menuRight } = this.props.offsetNav;
+    const { push: animationPush, right: menuRight } = this.props.offsetNav; // eslint-disable-line react/destructuring-assignment
     const wrapper = document.getElementById('wrapper');
     //  menu-push animation
     if (animationPush && wrapper) {
@@ -91,13 +93,13 @@ class NavigationBarUnstyled extends React.Component {
 
   handleClick = (e) => {
     const { onClick } = this.props;
-    const { push: animationPush } = this.props.offsetNav;
+    const { push: animationPush } = this.props.offsetNav; // eslint-disable-line react/destructuring-assignment
     const wrapper = document.getElementById('wrapper');
     if (onClick) {
       onClick(e);
     }
 
-    this.setState({ show: !this.state.show });
+    this.setState({ show: !this.state.show }); // eslint-disable-line react/no-access-state-in-setstate, react/destructuring-assignment
 
     //  menu-push animation
     if (animationPush && wrapper) {
@@ -142,6 +144,7 @@ class NavigationBarUnstyled extends React.Component {
       push: offsetNavPush,
     } = offsetNav;
 
+    const { show } = this.state;
     const cssClasses = cn('d-flex', 'justify-content-between', 'w-100', className, {
       'navbar-light': light,
       'navbar-inverse': inverse,
@@ -159,7 +162,7 @@ class NavigationBarUnstyled extends React.Component {
     const OffsetMenuAnimated = offsetNavPush ? (
       <OffsetNavPush
         className="offset-navigation-bar"
-        active={this.state.show}
+        active={show}
         bgColor={offsetNavBgColor}
         right={offsetNavRight}
         push={offsetNavPush}
@@ -173,7 +176,7 @@ class NavigationBarUnstyled extends React.Component {
     ) : (
       <OffsetNavSlide
         className="offset-navigation-bar"
-        active={this.state.show}
+        active={show}
         bgColor={offsetNavBgColor}
         right={offsetNavRight}
         push={offsetNavPush}
@@ -188,7 +191,7 @@ class NavigationBarUnstyled extends React.Component {
 
     return (
       <div>
-        {!noOverlay && (<Overlay active={this.state.show} onClick={this.handleClick} />)}
+        {!noOverlay && (<Overlay active={show} onClick={this.handleClick} />)}
         <Header className={mapToCssModules(cn(cssClasses), cssModule)} shadowHeader={shadowHeader} {...attributes} ref={(header) => { this.header = header; }}>
           <ButtonToggle className={buttonClasses} onClick={this.handleClick} {...restButton} />
           {navTop && (<div>{navTop}</div>)}

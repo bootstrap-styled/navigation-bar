@@ -31,4 +31,3 @@ const OffsetNavSlide = styled(OffsetNav)`
 `;
 
 export default OffsetNavSlide;
-

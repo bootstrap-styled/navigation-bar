@@ -22,6 +22,7 @@ class PageWrapperUnstyled extends React.Component {
     className: PropTypes.string.isRequired,
     theme: PropTypes.object,
   }
+
   static defaultProps = defaultProps;
 
   render() {
@@ -69,4 +70,3 @@ PageWrapper.defaultProps = defaultProps;
 
 /** @component */
 export default PageWrapper;
-

@@ -23,6 +23,7 @@ class OverlayUnstyled extends React.Component {
     active: PropTypes.bool,
     theme: PropTypes.object,
   }
+
   static defaultProps = defaultProps;
 
   render() {
@@ -62,4 +63,3 @@ const Overlay = styled(OverlayUnstyled)`
 Overlay.defaultProps = defaultProps;
 
 export default Overlay;
-

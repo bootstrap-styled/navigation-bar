@@ -3,7 +3,7 @@ import { defaultProps } from '../NavigationStyleguide';
 
 describe('makeTheme', () => {
   it('should use default values', () => {
-    const defaultTheme = defaultProps.theme;
+    const defaultTheme = defaultProps.theme; // eslint-disable-line prefer-destructuring
     expect(makeThemeNavigation().navigationStyleguide).toEqual(defaultTheme.navigationStyleguide);
   });
   it('should create scope', () => {

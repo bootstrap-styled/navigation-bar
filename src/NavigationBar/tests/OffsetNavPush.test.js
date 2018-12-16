@@ -15,7 +15,7 @@ describe('<OffsetNavPush />', () => {
   let props;
 
   beforeEach(() => {
-    theme = defaultProps.theme;
+    theme = defaultProps.theme; // eslint-disable-line prefer-destructuring
     props = Object.assign(defaultProps, {
       children,
     });
@@ -36,7 +36,7 @@ describe('<OffsetNavPush />', () => {
   it('should render an OffsetNavPush with show xs', () => {
     const renderedComponent = mount(
       <BootstrapProvider theme={theme} injectGlobal={false}>
-        <NavigationBar {...Object.assign(props, { offsetNav: { show: 'xs', push: true } })} >
+        <NavigationBar {...Object.assign(props, { offsetNav: { show: 'xs', push: true } })}>
           {children}
         </NavigationBar>
       </BootstrapProvider>

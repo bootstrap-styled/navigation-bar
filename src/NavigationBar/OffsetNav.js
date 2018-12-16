@@ -43,6 +43,7 @@ class OffsetNavUnstyled extends React.Component {
     show: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
     cssModule: PropTypes.object,
   }
+
   static defaultProps = defaultProps;
 
   render() {
