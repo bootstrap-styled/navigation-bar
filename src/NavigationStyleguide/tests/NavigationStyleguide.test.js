@@ -14,7 +14,7 @@ describe('<NavigationStyleguide />', () => {
   let props;
 
   beforeEach(() => {
-    theme = defaultProps.theme;
+    theme = defaultProps.theme; // eslint-disable-line prefer-destructuring
   });
 
   it('should render an NavigationBar', () => {

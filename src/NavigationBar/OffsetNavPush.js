@@ -28,4 +28,3 @@ const OffsetNavPush = styled(OffsetNav)`
 `;
 
 export default OffsetNavPush;
-
