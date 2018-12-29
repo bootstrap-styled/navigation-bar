@@ -67,6 +67,10 @@ jobs:
     - 'lts/*'
     script:
     - git fetch --tags
+    # debugging info
+    - git status
+    - git diff package.json
+    # end debugging
     - git checkout refs/tags/$(git describe --tags `git rev-list --tags --max-count=1`)
     - npm install
     - chmod +x styleguide/prepare.sh
