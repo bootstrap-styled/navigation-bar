@@ -128,7 +128,7 @@
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
     "@bootstrap-styled/documentation": "^1.1.1",
-    "@rollup-umd/documentation": "^1.2.0",
+    "@rollup-umd/documentation": "^2.0.0",
     "@semantic-release/changelog": "^3.0.1",
     "@semantic-release/git": "^7.0.5",
     "@semantic-release/github": "^5.2.6",
