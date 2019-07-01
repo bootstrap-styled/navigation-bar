@@ -160,7 +160,7 @@
     "istanbul-reports": "^2.2.6",
     "jest-cli": "^24.8.0",
     "jest-sonar-reporter": "^2.0.0",
-    "lint-staged": "^8.1.7",
+    "lint-staged": "^9.0.0",
     "pre-commit": "^1.2.2",
     "raf": "^3.4.1",
     "react": "^16.6.3",
