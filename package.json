@@ -169,7 +169,7 @@
     "react-styleguidist": "^9.1.2",
     "react-test-renderer": "^16.8.6",
     "request": "^2.88.0",
-    "rimraf": "^2.6.3",
+    "rimraf": "^3.0.0",
     "rollup": "^1.12.3",
     "semantic-release": "^15.13.12",
     "styled-components": "^4.1.2",
