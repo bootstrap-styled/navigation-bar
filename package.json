@@ -166,7 +166,7 @@
     "react": "^16.6.3",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.6.3",
-    "react-styleguidist": "^9.1.2",
+    "react-styleguidist": "^10.0.0",
     "react-test-renderer": "^16.8.6",
     "request": "^2.88.0",
     "rimraf": "^2.6.3",
