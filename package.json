@@ -171,7 +171,7 @@
     "request": "^2.88.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.12.3",
-    "semantic-release": "^15.13.12",
+    "semantic-release": "^16.0.0",
     "styled-components": "^4.1.2",
     "toctoc": "^0.3.2",
     "webpack": "^4.32.2"
